@@ -41,7 +41,14 @@ export class DocumentsController {
   })
   @ApiBadRequestResponse({
     description: 'Error al crear el documento',
-    type: BadRequestException,
+    schema: {
+      type: 'object',
+      properties: {
+        statusCode: { type: 'number', example: 400 },
+        message: { type: 'string', example: 'Bad Request' },
+        error: { type: 'string', example: 'Invalid base64 content' },
+      },
+    },
   })
   async create(@Body() createDocumentDto: CreateDocumentDto, @Res() response) {
     try {
@@ -84,7 +91,14 @@ export class DocumentsController {
   })
   @ApiNotFoundResponse({
     description: 'No se encontro el documento',
-    type: NotFoundException,
+    schema: {
+      type: 'object',
+      properties: {
+        statusCode: { type: 'number', example: 404 },
+        message: { type: 'string', example: 'Not Found' },
+        error: { type: 'string', example: 'Document not found with id: 1' },
+      },
+    },
   })
   async findOne(@Param('id') id: string, @Res() response) {
     try {

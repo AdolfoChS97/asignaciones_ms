@@ -2,6 +2,8 @@ import { Module } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
+import { Document } from '@modules/documents/entities/document.entity';
+
 const configService = new ConfigService();
 
 @Module({
@@ -12,7 +14,7 @@ const configService = new ConfigService();
       port: configService.get<number>('DB_PORT'),
       password: configService.get<string>('DB_PASS'),
       username: configService.get<string>('DB_USER'),
-      entities: [],
+      entities: [Document],
       database: configService.get<string>('DB_NAME'),
       synchronize: configService.get<boolean>('DB_SYNC'),
       logging: true,

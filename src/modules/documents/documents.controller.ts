@@ -8,15 +8,16 @@ import {
   Query,
   Res,
   HttpStatus,
-  NotFoundException,
-  BadRequestException,
 } from '@nestjs/common';
 import { DocumentsService } from './documents.service';
 import {
   CreateDocumentDto,
   createdDocumentDto,
 } from './dto/create-document.dto';
-import { UpdateDocumentDto } from './dto/update-document.dto';
+import {
+  UpdateDocumentDto,
+  UpdatedDocumentDto,
+} from './dto/update-document.dto';
 import {
   ApiBadRequestResponse,
   ApiCreatedResponse,
@@ -27,7 +28,7 @@ import {
   ApiTags,
 } from '@nestjs/swagger';
 import { PaginationQueryParamsDto } from '@/shared/dtos/pagination.dto';
-import { getDocumentsDto } from './dto/get-document.dto';
+import { getDocumentDto, getDocumentsDto } from './dto/get-document.dto';
 
 @Controller('documents')
 @ApiTags('Documents')
@@ -47,6 +48,17 @@ export class DocumentsController {
         statusCode: { type: 'number', example: 400 },
         message: { type: 'string', example: 'Bad Request' },
         error: { type: 'string', example: 'Invalid base64 content' },
+      },
+    },
+  })
+  @ApiBadRequestResponse({
+    description: 'No hay una cadena base64 valida',
+    schema: {
+      type: 'object',
+      properties: {
+        statusCode: { type: 'number', example: 400 },
+        message: { type: 'string', example: 'Bad Request' },
+        error: { type: 'string', example: 'Is not valid base64 string' },
       },
     },
   })
@@ -89,6 +101,10 @@ export class DocumentsController {
     example: 1,
     description: 'Id del documento',
   })
+  @ApiOkResponse({
+    description: 'Devuelve un documento segun el id',
+    type: getDocumentDto,
+  })
   @ApiNotFoundResponse({
     description: 'No se encontro el documento',
     schema: {
@@ -110,7 +126,44 @@ export class DocumentsController {
   }
 
   @Patch(':id')
-  update(
+  @ApiOkResponse({
+    description: 'Devuelve un digito 1 si se actualizo el documento',
+    type: UpdatedDocumentDto,
+  })
+  @ApiNotFoundResponse({
+    description: 'No se encontro el documento',
+    schema: {
+      type: 'object',
+      properties: {
+        statusCode: { type: 'number', example: 404 },
+        message: { type: 'string', example: 'Not Found' },
+        error: { type: 'string', example: 'Document not found with id: 1' },
+      },
+    },
+  })
+  @ApiBadRequestResponse({
+    description: 'No hay propiedades para actualizar',
+    schema: {
+      type: 'object',
+      properties: {
+        statusCode: { type: 'number', example: 400 },
+        message: { type: 'string', example: 'Bad Request' },
+        error: { type: 'string', example: 'No properties to update' },
+      },
+    },
+  })
+  @ApiBadRequestResponse({
+    description: 'No hay una cadena base64 valida',
+    schema: {
+      type: 'object',
+      properties: {
+        statusCode: { type: 'number', example: 400 },
+        message: { type: 'string', example: 'Bad Request' },
+        error: { type: 'string', example: 'Is not valid base64 string' },
+      },
+    },
+  })
+  async update(
     @Param('id') id: string,
     @Body() updateDocumentDto: UpdateDocumentDto,
   ) {

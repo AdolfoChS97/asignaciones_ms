@@ -8,13 +8,16 @@ import { CreateDocumentDto } from './dto/create-document.dto';
 import { UpdateDocumentDto } from './dto/update-document.dto';
 import { Repository } from 'typeorm';
 import { Document } from './entities/document.entity';
-import { PaginationQueryParamsDto } from '@/shared/dtos/pagination.dto';
 import {
   getDocumentsRecords,
   getDocumentRecord,
   generatesDocumentRecord,
+  generatesUpdatedDocumentRecord,
 } from './mappers/document.mapper';
 import { isBase64 } from '@shared/utils/isBase64';
+import { checkProperties } from '@/shared/utils/checkProperties';
+import { PaginationQueryParamsDto } from '@/shared/dtos/pagination.dto';
+
 
 @Injectable()
 export class DocumentsService {
@@ -25,7 +28,7 @@ export class DocumentsService {
 
   async create({ name, base64, approves_id }: CreateDocumentDto) {
     try {
-      isBase64(base64);
+      if (base64) isBase64(base64);
 
       const doc = await this.documentRepository.save({
         name,
@@ -60,7 +63,26 @@ export class DocumentsService {
     }
   }
 
-  update(id: number, updateDocumentDto: UpdateDocumentDto) {
-    return `This action updates a #${id} document`;
+  async update(id: number, { approves_id, name, base64 }: UpdateDocumentDto) {
+    try {
+      if (base64) isBase64(base64);
+
+      const docExists = await this.documentRepository.findBy({ id: id });
+      if (!docExists)
+        throw new NotFoundException(`Document with id ${id} not found`);
+
+      const propertiesToUpdate = checkProperties({
+        approves_id,
+        name,
+        base64,
+      }) as unknown as Document;
+
+      if (Object.keys(propertiesToUpdate).length === 0)
+        throw new BadRequestException('No properties to update');
+      const doc = await this.documentRepository.update(id, propertiesToUpdate);
+      return generatesUpdatedDocumentRecord(doc);
+    } catch (e) {
+      throw e;
+    }
   }
 }

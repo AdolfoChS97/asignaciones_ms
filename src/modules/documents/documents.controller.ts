@@ -41,17 +41,6 @@ export class DocumentsController {
     type: createdDocumentDto,
   })
   @ApiBadRequestResponse({
-    description: 'Error al crear el documento',
-    schema: {
-      type: 'object',
-      properties: {
-        statusCode: { type: 'number', example: 400 },
-        message: { type: 'string', example: 'Bad Request' },
-        error: { type: 'string', example: 'Invalid base64 content' },
-      },
-    },
-  })
-  @ApiBadRequestResponse({
     description: 'No hay una cadena base64 valida',
     schema: {
       type: 'object',

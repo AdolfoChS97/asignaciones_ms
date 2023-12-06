@@ -18,7 +18,6 @@ import { isBase64 } from '@shared/utils/isBase64';
 import { checkProperties } from '@/shared/utils/checkProperties';
 import { PaginationQueryParamsDto } from '@/shared/dtos/pagination.dto';
 
-
 @Injectable()
 export class DocumentsService {
   constructor(

@@ -29,8 +29,8 @@ import {
   UpdatedObservationDto,
 } from './dtos/update-observation.dto';
 import {
-  getObservationDto,
-  getObservationsDto,
+  GetObservationDto,
+  GetObservationsDto,
 } from './dtos/get-observation.dto';
 
 @ApiTags('Observations')
@@ -48,7 +48,7 @@ export class ObservationsController {
   })
   @ApiOkResponse({
     description: 'Devuelve un objeto Observacion',
-    type: getObservationDto,
+    type: GetObservationDto,
   })
   @ApiNotFoundResponse({
     description: 'No hay observaciones',
@@ -81,7 +81,7 @@ export class ObservationsController {
   @ApiQuery({ name: 'pageSize', type: 'number', required: true, example: 10 })
   @ApiOkResponse({
     description: 'Devuelve un arreglo de objetos Observacion',
-    type: getObservationsDto,
+    type: GetObservationsDto,
     isArray: true,
   })
   async findAll(

@@ -1,26 +1,37 @@
 import { Injectable } from '@nestjs/common';
 import { CreateEvaluationDto } from './dto/create-evaluation.dto';
 import { UpdateEvaluationDto } from './dto/update-evaluation.dto';
+import {Evaluation} from './entities/evaluation.entity';
+import { Repository } from 'typeorm';
+import { InjectRepository } from '@nestjs/typeorm';
+
+
 
 @Injectable()
 export class EvaluationsService {
-  create(createEvaluationDto: CreateEvaluationDto) {
+
+ constructor(
+  @InjectRepository(Evaluation)
+  private readonly evaluationRepository : Repository <Evaluation>
+ ){ }
+
+  async create(createEvaluationDto: CreateEvaluationDto) {
     return 'This action adds a new evaluation';
   }
 
-  findAll() {
-    return `This action returns all evaluations`;
+  async findAll() {
+    return await this.evaluationRepository.find();
   }
 
-  findOne(id: number) {
+  async findOne(id: number) {
     return `This action returns a #${id} evaluation`;
   }
 
-  update(id: number, updateEvaluationDto: UpdateEvaluationDto) {
+  async update(id: number, updateEvaluationDto: UpdateEvaluationDto) {
     return `This action updates a #${id} evaluation`;
   }
 
-  remove(id: number) {
+  async remove(id: number) {
     return `This action removes a #${id} evaluation`;
   }
 }

@@ -10,12 +10,11 @@ import {
 import { EvaluationsService } from './evaluations.service';
 import { CreateEvaluationDto } from './dto/create-evaluation.dto';
 import { UpdateEvaluationDto } from './dto/update-evaluation.dto';
+import { ApiCreatedResponse, ApiTags } from '@nestjs/swagger';
 
 @Controller('evaluations')
+@ApiTags('Evaluations')
 export class EvaluationsController {
-
-
-  
   constructor(private readonly evaluationsService: EvaluationsService) {}
 
   @Post()

@@ -16,7 +16,8 @@ export class EvaluationsService {
  ){ }
 
   async create(createEvaluationDto: CreateEvaluationDto) {
-    return 'This action adds a new evaluation';
+    const evaluation = this.evaluationRepository.create(createEvaluationDto);
+    return await this.evaluationRepository.save(evaluation);
   }
 
   async findAll() {

@@ -37,7 +37,7 @@ export class DocumentsController {
 
   @Post()
   @ApiCreatedResponse({
-    description: 'Devuelve un arreglo de documentos segun la paginación',
+    description: 'Devuelve un objeto documento creado',
     type: createdDocumentDto,
   })
   @ApiBadRequestResponse({

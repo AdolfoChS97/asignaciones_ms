@@ -12,7 +12,6 @@ import {
 import { ObservationsService } from './observations.service';
 import {
   ApiBadRequestResponse,
-  ApiBody,
   ApiCreatedResponse,
   ApiNotFoundResponse,
   ApiOkResponse,
@@ -20,9 +19,15 @@ import {
   ApiQuery,
   ApiTags,
 } from '@nestjs/swagger';
-import { CreateObservationDto } from './dtos/create-observation.dto';
+import {
+  CreateObservationDto,
+  CreatedObservationDto,
+} from './dtos/create-observation.dto';
 import { PaginationQueryParamsDto } from '@/shared/dtos/pagination.dto';
-import { UpdateObservationDto } from './dtos/update-observation.dto';
+import {
+  UpdateObservationDto,
+  UpdatedObservationDto,
+} from './dtos/update-observation.dto';
 import {
   getObservationDto,
   getObservationsDto,
@@ -98,7 +103,7 @@ export class ObservationsController {
   @Post()
   @ApiCreatedResponse({
     description: 'Devuelve un objeto Observacion creado',
-    type: CreateObservationDto,
+    type: CreatedObservationDto,
   })
   @ApiBadRequestResponse({
     description: 'Error en la validación de datos',
@@ -136,10 +141,10 @@ export class ObservationsController {
     example: 1,
     description: 'Id de la observación',
   })
-  // ApiOkResponse({
-  //   description: 'Devuelve un objeto Observacion actualizado',
-  //   type: UpdatedObservationDto,
-  // })
+  @ApiOkResponse({
+    description: 'Devuelve un objeto Observacion actualizado',
+    type: UpdatedObservationDto,
+  })
   @ApiBadRequestResponse({
     description: 'Error en la validación de datos',
     schema: {

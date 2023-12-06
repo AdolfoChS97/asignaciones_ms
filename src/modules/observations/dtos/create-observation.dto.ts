@@ -8,7 +8,7 @@ export class CreateObservationDto extends OmitType(Observation, [
   'updated_at',
 ]) {}
 
-export class createdObservationDto {
+export class CreatedObservationDto {
   @ApiProperty({
     type: Observation,
     example: Observation,

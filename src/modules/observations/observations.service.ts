@@ -3,18 +3,19 @@ import {
   Injectable,
   NotFoundException,
 } from '@nestjs/common';
-import { CreateObservationDto } from './dtos/create-observation.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Observation } from './entities/observations.entity';
 import { Repository } from 'typeorm';
 import { PaginationQueryParamsDto } from '@/shared/dtos/pagination.dto';
 import {
+  generatesObservationRecord,
+  generatesUpdatedObservationRecord,
   getObservationRecord,
   getObservationsRecords,
 } from './mappers/observation.mapper';
 import { checkProperties } from '@/shared/utils/checkProperties';
+import { CreateObservationDto } from './dtos/create-observation.dto';
 import { UpdateObservationDto } from './dtos/update-observation.dto';
-import { generatesUpdatedDocumentRecord } from '../documents/mappers/document.mapper';
 
 @Injectable()
 export class ObservationsService {
@@ -66,7 +67,9 @@ export class ObservationsService {
         detail,
       });
 
-      return await this.observationRepository.save(observation);
+      return generatesObservationRecord(
+        await this.observationRepository.save(observation),
+      );
     } catch (e) {
       throw e;
     }
@@ -101,8 +104,7 @@ export class ObservationsService {
         id,
         propertiesToUpdate,
       );
-
-      return generatesUpdatedDocumentRecord(observation);
+      return generatesUpdatedObservationRecord(observation);
     } catch (e) {
       throw e;
     }

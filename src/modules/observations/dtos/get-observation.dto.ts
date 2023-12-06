@@ -2,7 +2,7 @@ import { HttpStatus } from '@nestjs/common';
 import { ApiProperty } from '@nestjs/swagger';
 import { Observation } from '../entities/observations.entity';
 
-export class getObservationsDto {
+export class GetObservationsDto {
   @ApiProperty({
     type: Observation,
     isArray: true,
@@ -26,7 +26,7 @@ export class getObservationsDto {
   status: HttpStatus.OK;
 }
 
-export class getObservationDto {
+export class GetObservationDto {
   @ApiProperty({
     type: Observation,
     description: 'Devuelve una observacion',

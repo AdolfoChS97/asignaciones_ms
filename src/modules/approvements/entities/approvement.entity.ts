@@ -54,7 +54,7 @@ export class Approvement {
     example: 1,
     required: false,
   })
-  @Column({ type: 'varchar', length: 125, nullable: true })
+  @Column({ type: 'integer', nullable: true })
   status?: string;
 
   @ApiProperty({

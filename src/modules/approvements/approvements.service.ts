@@ -29,13 +29,10 @@ async create({applicationId , documentId, rolId, endorsement, status, descriptio
 
         isBoolean(endorsement) 
 
-        if(!status){
-            throw new BadRequestException('El estatus debe ser un string no vacío')
+        if(Number.isInteger(status)){
+            throw new BadRequestException('El estatus debe ser un numero')
         }
 
-        if(!description){
-            throw new BadRequestException('La description debe ser un string no vacío')
-        }
 
         const approvement = await this.approvementRepository.save({
             applicationId,

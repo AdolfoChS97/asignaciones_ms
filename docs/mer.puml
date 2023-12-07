@@ -1,0 +1,53 @@
+@startuml
+
+entity Aprobaciones {
+    * id
+    --
+    * postulaciones_id
+    * documentos_id
+    * rol_id
+    * aval
+    estado
+    descripcion
+    created_at
+    updated_at
+}
+
+entity Evaluaciones {
+    * id
+    --
+    * aprobaciones_id
+    * descripcion 
+    * resultado
+    created_at
+    updated_at
+
+}
+
+entity Documentos {
+    * id
+    -- 
+    * aprobaciones_id 
+    * nombre_documento
+    * documento_base64 
+    created_at
+    updated_at
+}
+
+entity Observaciones {
+    * id
+    --
+    * aprobaciones_id
+    * detalle
+    created_at
+    updated_at
+}
+
+
+Aprobaciones ||--o{ Documentos
+Aprobaciones ||--o{ Observaciones
+Aprobaciones ||--o{ Evaluaciones
+
+
+@enduml
+```

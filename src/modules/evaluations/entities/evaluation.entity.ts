@@ -1,6 +1,7 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { type } from 'os';
+import { IsNotEmpty } from 'class-validator';
 import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+
 
 
 @Entity({name: 'Evaluations'})
@@ -43,6 +44,7 @@ export class Evaluation {
         type : 'boolean'
     })    
     @Column({type : 'bool' , nullable : false})
+    @IsNotEmpty()
     result: boolean;
 
     @ApiProperty({

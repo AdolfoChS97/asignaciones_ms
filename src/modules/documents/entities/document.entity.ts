@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsBase64 } from 'class-validator';
+import { IsBase64, IsDate, IsNotEmpty, IsNumber } from 'class-validator';
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity({ name: 'Documents' })
@@ -12,7 +12,10 @@ export class Document {
     example: 1,
     description: 'ID de la aprobación',
     type: 'number',
+    required: true,
   })
+  @IsNumber()
+  @IsNotEmpty()
   @Column({ type: 'integer', nullable: false })
   approves_id: number;
 
@@ -31,6 +34,7 @@ export class Document {
     type: 'text',
   })
   @IsBase64()
+  @IsNotEmpty()
   @Column({ type: 'text', nullable: false })
   base64: string;
 
@@ -40,6 +44,7 @@ export class Document {
     description: 'Día de creación del documento',
     required: false,
   })
+  @IsDate()
   @Column({ type: 'timestamptz', default: new Date() })
   created_at: Date;
 
@@ -49,6 +54,7 @@ export class Document {
     description: 'Día de actualización del documento',
     required: false,
   })
+  @IsDate()
   @Column({ type: 'timestamptz', default: new Date() })
   updated_at: Date;
 }

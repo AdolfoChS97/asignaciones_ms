@@ -29,6 +29,12 @@ export class DocumentsService {
     try {
       if (base64) isBase64(base64);
 
+      if (!Number.isInteger(approves_id))
+        throw new BadRequestException('approves_id must be a number');
+
+      if (!approves_id)
+        throw new BadRequestException('approves_id is required');
+
       const doc = await this.documentRepository.save({
         name,
         base64,
@@ -65,6 +71,9 @@ export class DocumentsService {
   async update(id: number, { approves_id, name, base64 }: UpdateDocumentDto) {
     try {
       if (base64) isBase64(base64);
+
+      if (approves_id && !Number.isInteger(approves_id))
+        throw new BadRequestException('approves_id must be a number');
 
       const docExists = await this.documentRepository.findBy({ id: id });
       if (!docExists)

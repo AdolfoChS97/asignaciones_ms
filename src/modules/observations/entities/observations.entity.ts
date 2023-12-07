@@ -1,4 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
+import { IsDate, IsNotEmpty, IsNumber } from 'class-validator';
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity({ name: 'Observations' })
@@ -17,6 +18,8 @@ export class Observation {
     type: 'number',
     required: true,
   })
+  @IsNumber()
+  @IsNotEmpty()
   @Column({ type: 'integer', nullable: false })
   approves_id: number;
 
@@ -35,6 +38,7 @@ export class Observation {
     description: 'Día de creación de la observación',
     required: false,
   })
+  @IsDate()
   @Column({ type: 'timestamptz', default: new Date() })
   created_at: Date;
 
@@ -44,6 +48,7 @@ export class Observation {
     description: 'Día de actualización de la observación',
     required: false,
   })
+  @IsDate()
   @Column({ type: 'timestamptz', default: new Date() })
   updated_at: Date;
 }

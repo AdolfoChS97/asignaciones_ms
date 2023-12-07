@@ -12,6 +12,7 @@ import {
 import { ObservationsService } from './observations.service';
 import {
   ApiBadRequestResponse,
+  ApiBody,
   ApiCreatedResponse,
   ApiNotFoundResponse,
   ApiOkResponse,
@@ -123,6 +124,10 @@ export class ObservationsController {
       },
     },
   })
+  @ApiBody({
+    type: CreateObservationDto,
+    description: 'Cuerpo de la solicitud',
+  })
   async create(@Body() body: CreateObservationDto, @Res() response) {
     try {
       return response
@@ -180,6 +185,10 @@ export class ObservationsController {
         },
       },
     },
+  })
+  @ApiBody({
+    type: UpdateObservationDto,
+    description: 'Cuerpo de la solicitud',
   })
   async update(
     @Param('id') id: number,

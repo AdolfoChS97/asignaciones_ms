@@ -26,12 +26,13 @@ export class Document {
     required: false,
   })
   @Column({ type: 'varchar', nullable: true, length: 255 })
-  name: string;
+  name?: string;
 
   @ApiProperty({
     example: `base64`,
     description: 'Hash del documento en base64',
     type: 'text',
+    required: true,
   })
   @IsBase64()
   @IsNotEmpty()
@@ -46,7 +47,7 @@ export class Document {
   })
   @IsDate()
   @Column({ type: 'timestamptz', default: new Date() })
-  created_at: Date;
+  created_at?: Date;
 
   @ApiProperty({
     example: new Date(),
@@ -56,5 +57,5 @@ export class Document {
   })
   @IsDate()
   @Column({ type: 'timestamptz', default: new Date() })
-  updated_at: Date;
+  updated_at?: Date;
 }

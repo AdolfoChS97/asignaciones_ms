@@ -2,6 +2,7 @@ import { ApiProperty } from '@nestjs/swagger';
 import { IsBase64, IsDate, IsNotEmpty, IsNumber } from 'class-validator';
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
+
 @Entity({ name: 'Documents' })
 export class Document {
   @ApiProperty({ example: 1, description: 'ID del documento', type: 'number' })

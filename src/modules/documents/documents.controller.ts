@@ -20,6 +20,7 @@ import {
 } from './dto/update-document.dto';
 import {
   ApiBadRequestResponse,
+  ApiBody,
   ApiCreatedResponse,
   ApiNotFoundResponse,
   ApiOkResponse,
@@ -37,7 +38,7 @@ export class DocumentsController {
 
   @Post()
   @ApiCreatedResponse({
-    description: 'Devuelve un arreglo de documentos segun la paginación',
+    description: 'Devuelve un objeto documento creado',
     type: createdDocumentDto,
   })
   @ApiBadRequestResponse({
@@ -51,6 +52,7 @@ export class DocumentsController {
       },
     },
   })
+  @ApiBody({ type: CreateDocumentDto, description: 'Cuerpo de la solicitud' })
   async create(@Body() createDocumentDto: CreateDocumentDto, @Res() response) {
     try {
       const doc = await this.documentsService.create(createDocumentDto);
@@ -152,6 +154,7 @@ export class DocumentsController {
       },
     },
   })
+  @ApiBody({ type: UpdateDocumentDto, description: 'Cuerpo de la solicitud' })
   async update(
     @Param('id') id: string,
     @Body() updateDocumentDto: UpdateDocumentDto,

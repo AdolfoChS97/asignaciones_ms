@@ -5,6 +5,7 @@ import { ConfigModule } from '@nestjs/config';
 import { DatabaseTsModule } from '@shared/modules/database.module';
 import { DocumentsModule } from './modules/documents/documents.module';
 import { EvaluationsModule} from './modules/evaluations/evaluations.module';
+import { ObservationsModule } from './modules/observations/observations.module';
 import configuration from './config/configuration';
 
 @Module({
@@ -16,7 +17,8 @@ import configuration from './config/configuration';
     }),
     DatabaseTsModule,
     DocumentsModule,
-    EvaluationsModule
+    EvaluationsModule,
+    ObservationsModule
   ],
   controllers: [AppController],
   providers: [AppService],

@@ -20,6 +20,7 @@ import {
   ApiQuery,
   ApiTags,
 } from '@nestjs/swagger';
+import { UpdateApprovementDto, UpdatedApprovementDto } from './dto/update-approvements.dto';
 
 @Controller('approvements')
 @ApiTags('Approvements')
@@ -50,5 +51,40 @@ export class ApprovementsController {
     throw e;
   }
 }
+
+@Patch(':id')
+@ApiOkResponse({
+  description : 'Devuelve un digito 1 si se actualiza la aprobación',
+  type : UpdatedApprovementDto,
+})
+@ApiNotFoundResponse({
+  description : 'No se encontro la aprobación',
+  schema: {
+    type : 'object',
+    properties : {
+      statusCode : {type : 'number' , example: 404},
+      message: { type: 'string' , example: 'Not Found' },
+      error : { type: 'string' , example : 'Aprobación no encontrada con: 1'}
+    }
+  }
+})
+
+
+@ApiBadRequestResponse({
+  description : 'No hay propiedades para actualizar',
+  schema : {
+    type : 'object',
+    properties:{
+      statusCode  : {type : 'number' , example: 400},
+      message : {type : 'string' , example: 'No hay propiedades para actualizar'}
+    },
+  },
+})
+
+async update(
+  @Param('id') id: string,
+  @Body() updateApprovementDto : UpdateApprovementDto) {
+    return  this.approvementsService.update(+id , updateApprovementDto)
+  }
 
 }

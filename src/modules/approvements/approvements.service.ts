@@ -1,13 +1,16 @@
 import { 
     Injectable,
-    BadRequestException
+    BadRequestException,
+    NotFoundException
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import {CreateApprovementDto} from './dto/create-approvements.dto';
+import { UpdateApprovementDto , UpdatedApprovementDto } from './dto/update-approvements.dto';
 import { Approvement } from './entities/approvement.entity'
 import { isBoolean } from '@shared/utils/isBoolean';
 import { generatesApprovementRecord } from './mappers/approvements.mappers';
+import { checkProperties } from '@/shared/utils/checkProperties';
 
 @Injectable()
 export class ApprovementsService {
@@ -46,6 +49,32 @@ async create({applicationId , documentId, rolId, endorsement, status, descriptio
     }
 
 }
+
+async update(id : number , {applicationId , documentId , rolId ,endorsement, status ,description}: UpdateApprovementDto){
+    try {     
+        const approveExists = await this.approvementRepository.findBy({id : id})
+        if(!approveExists)
+        throw new NotFoundException(`aprobación con id ${id} no encontrado`);
+        
+        const propertiesToUpdate = checkProperties({
+            applicationId,
+            documentId,
+            rolId,
+            endorsement,
+            status,
+            description
+        }) as unknown as Approvement;
+         
+        if(Object.keys(propertiesToUpdate).length === 0)
+        throw new BadRequestException('No hay propiedades para actualizar');
+        const doc = await this.approvementRepository.update(id , propertiesToUpdate );
+        return generatesApprovementRecord(doc);
+
+    } catch (e) {
+        throw e;   
+    }
+}
+
 
 
 }

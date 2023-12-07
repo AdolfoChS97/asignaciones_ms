@@ -41,7 +41,7 @@ export class Approvement {
 
   @ApiProperty({
     description: 'Resultado de la aprobación (true/false) acorde al usuario',
-    example: 1,
+    example: true,
     required: true,
   })
   @IsNotEmpty()

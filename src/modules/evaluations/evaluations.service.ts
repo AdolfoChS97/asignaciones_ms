@@ -4,7 +4,7 @@ import {
   NotFoundException 
 } from '@nestjs/common';
 import { CreateEvaluationDto } from './dto/create-evaluation.dto';
-import { UpdatedEvaluationDto } from './dto/update-evaluation.dto';
+import { UpdatedEvaluationDto, UpdateEvaluationDto } from './dto/update-evaluation.dto';
 import {Evaluation} from './entities/evaluation.entity';
 import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -38,7 +38,7 @@ export class EvaluationsService {
       if (!result) {
         throw new BadRequestException('El resultado tiene que ser true o false');
       }
-      if (Number.isInteger(approves_id)) {
+      if (!Number.isInteger(approves_id)) {
         throw new BadRequestException('El id de aprobación debe ser un número');
       }    
       if(!approves_id){
@@ -83,27 +83,28 @@ export class EvaluationsService {
     }
   }
 
-  async update(id: number, { approves_id, name, description,  result }: UpdatedEvaluationDto) {
-    try {
-  
-      const docExists = await this.evaluationRepository.findBy({ id: id });
-      if (!docExists)
-        throw new NotFoundException(`Evaluation with id ${id} not found`);
+  async update(id: number, { approves_id, name, description,  result }: UpdateEvaluationDto) {
+   try{
+    
+    const evaluExists = await this.evaluationRepository.findBy({id : id}) 
+    if(!evaluExists)
+      throw new NotFoundException(`Evaluation with id ${id} not found`);
 
       const propertiesToUpdate = checkProperties({
         approves_id,
         name,
         description,
         result
-      }) as unknown as Evaluation;
+      })as unknown as Evaluation;
 
-      if (Object.keys(propertiesToUpdate).length === 0)
+      if(Object.keys(propertiesToUpdate).length === 0)
         throw new BadRequestException('No properties to update');
-      const doc = await this.evaluationRepository.update(id, propertiesToUpdate);
-      return generatesUpdatedEvaluatioRecord(doc);
-    } catch (e) {
-      throw e;
-    }
+        const doc = await this.evaluationRepository.update(id, propertiesToUpdate);
+        return generatesUpdatedEvaluatioRecord(doc);
+
+   }catch(e){
+    throw e;
+   }
   }
 
 }

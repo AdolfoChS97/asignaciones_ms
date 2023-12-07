@@ -18,7 +18,6 @@ import { isBase64 } from '@shared/utils/isBase64';
 import { checkProperties } from '@/shared/utils/checkProperties';
 import { PaginationQueryParamsDto } from '@/shared/dtos/pagination.dto';
 
-
 @Injectable()
 export class DocumentsService {
   constructor(
@@ -29,6 +28,12 @@ export class DocumentsService {
   async create({ name, base64, approves_id }: CreateDocumentDto) {
     try {
       if (base64) isBase64(base64);
+
+      if (!Number.isInteger(approves_id))
+        throw new BadRequestException('approves_id must be a number');
+
+      if (!approves_id)
+        throw new BadRequestException('approves_id is required');
 
       const doc = await this.documentRepository.save({
         name,
@@ -66,6 +71,9 @@ export class DocumentsService {
   async update(id: number, { approves_id, name, base64 }: UpdateDocumentDto) {
     try {
       if (base64) isBase64(base64);
+
+      if (approves_id && !Number.isInteger(approves_id))
+        throw new BadRequestException('approves_id must be a number');
 
       const docExists = await this.documentRepository.findBy({ id: id });
       if (!docExists)

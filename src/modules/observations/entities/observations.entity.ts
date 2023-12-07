@@ -1,10 +1,14 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsBase64, IsDate, IsNotEmpty, IsNumber } from 'class-validator';
+import { IsDate, IsNotEmpty, IsNumber } from 'class-validator';
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
-@Entity({ name: 'Documents' })
-export class Document {
-  @ApiProperty({ example: 1, description: 'ID del documento', type: 'number' })
+@Entity({ name: 'Observations' })
+export class Observation {
+  @ApiProperty({
+    example: 1,
+    description: 'ID de la observación',
+    type: 'number',
+  })
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -20,42 +24,31 @@ export class Document {
   approves_id: number;
 
   @ApiProperty({
-    example: 'Documento',
-    description: 'Nombre del documento',
+    example: 'Observación',
+    description: 'Detalle de la observación',
     type: 'string',
-    required: false,
-  })
-  @Column({ type: 'varchar', nullable: true, length: 255 })
-  name?: string;
-
-  @ApiProperty({
-    example: `base64`,
-    description: 'Hash del documento en base64',
-    type: 'text',
     required: true,
   })
-  @IsBase64()
-  @IsNotEmpty()
-  @Column({ type: 'text', nullable: false })
-  base64: string;
+  @Column({ type: 'varchar', nullable: false })
+  detail: string;
 
   @ApiProperty({
     example: new Date(),
     type: 'date',
-    description: 'Día de creación del documento',
+    description: 'Día de creación de la observación',
     required: false,
   })
   @IsDate()
   @Column({ type: 'timestamptz', default: new Date() })
-  created_at?: Date;
+  created_at: Date;
 
   @ApiProperty({
     example: new Date(),
     type: 'date',
-    description: 'Día de actualización del documento',
+    description: 'Día de actualización de la observación',
     required: false,
   })
   @IsDate()
   @Column({ type: 'timestamptz', default: new Date() })
-  updated_at?: Date;
+  updated_at: Date;
 }

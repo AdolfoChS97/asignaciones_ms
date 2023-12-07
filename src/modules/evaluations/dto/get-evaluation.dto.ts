@@ -14,7 +14,7 @@ export class getEvaluationsDto {
   @ApiProperty({
     type: 'number',
     example: 1,
-    description: 'Cuenta cuantos documentos fueron devueltos en la consulta',
+    description: 'Cuenta cuantas evaluaciones fueron devueltas en la consulta',
   })
   meta: number;
 

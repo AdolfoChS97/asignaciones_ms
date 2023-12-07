@@ -42,7 +42,7 @@ export class EvaluationsController {
     properties: {
       statusCode: {type: 'number' , example: 400},
       message: { type: 'string', example: 'Bad Request' },
-      error: { type: 'string', example: 'Is not valid' },
+      error: { type: 'string', example: 'No puede estar vacio los campos' },
     },
   },
  })
@@ -64,6 +64,28 @@ export class EvaluationsController {
     description: 'Devuelve un arreglo de documentos segun la paginación',
     type: getEvaluationDto,
   })
+  @ApiBadRequestResponse({
+    description: 'No se encontro la evaluacion',
+    schema: {
+      type : 'object',
+      properties: { 
+        statusCode : {type: 'number' , example: 400},
+        message: {type : 'string' , example: 'Bad reques'},
+        error: {type: 'string', example: 'Solicitud Incrorrecta' },
+      },
+    },
+  })
+  @ApiNotFoundResponse({
+    description : 'No se encontro la evaluacion',
+    schema: {
+      type : 'object',
+      properties: {
+        statusCode : {type : 'number' , example: 404},
+        message: { type: 'string' , example: 'Not Found'},
+        error : {type: 'string' , example: 'Evaluación no encontrada con: 1'},
+      }
+    }
+  })
   async findAll(
     @Query() { pageNumber, pageSize }: PaginationQueryParamsDto,
     @Res() response,
@@ -78,6 +100,7 @@ export class EvaluationsController {
       throw e;
     }
   }
+  
 
   @Get(':id')
   @ApiParam({
@@ -96,11 +119,22 @@ export class EvaluationsController {
     schema: {
       type : 'object',
       properties: { 
-        statusCode : {type: 'number' , example: 404},
+        statusCode : {type: 'number' , example: 400},
         message: {type : 'string' , example: 'Not Found'},
-        error: {type: 'string', example: 'Evaluation not found wih id: 1' },
+        error: {type: 'string', example: 'Solicitud incorrecta' },
       },
     },
+  })
+  @ApiNotFoundResponse({
+    description : 'No se encontro la evaluacion',
+    schema: {
+      type : 'object',
+      properties: {
+        statusCode : {type : 'number' , example: 404},
+        message: { type: 'string' , example: 'Not Found'},
+        error : {type: 'string' , example: 'Evaluación no encontrada con: 1'},
+      }
+    }
   })
 
   async findOne(@Param('id') id: string, @Res() response) {
@@ -124,7 +158,7 @@ export class EvaluationsController {
       properties: {
         statusCode : {type : 'number' , example: 404},
         message: { type: 'string' , example: 'Not Found'},
-        error : {type: 'string' , example: 'Evaluation not found with id: 1'},
+        error : {type: 'string' , example: 'Evaluación no encontrada con: 1'},
       }
     }
   })
@@ -134,7 +168,7 @@ export class EvaluationsController {
       type : 'object',
       properties: {
         statusCode : {type: 'number' , example: 400},
-        message : {type : 'string' , example: 'No properties to update'}
+        message : {type : 'string' , example: 'No hay propiedades para actualizar'}
       },
     },
   })

@@ -16,6 +16,7 @@ import {
 } from './mappers/evaluation.mapper'
 import { checkProperties } from '@/shared/utils/checkProperties';
 import { PaginationQueryParamsDto } from '@/shared/dtos/pagination.dto';
+import { isBoolean } from '@shared/utils/isBoolean';
 
 
 
@@ -35,9 +36,8 @@ export class EvaluationsService {
       if(!description){
         throw new BadRequestException('La description debe ser un string no vacío')
       }
-      if (!result) {
-        throw new BadRequestException('El resultado tiene que ser true o false');
-      }
+      isBoolean(result) 
+       
       if (!Number.isInteger(approves_id)) {
         throw new BadRequestException('El id de aprobación debe ser un número');
       }    
@@ -89,6 +89,11 @@ export class EvaluationsService {
     const evaluExists = await this.evaluationRepository.findBy({id : id}) 
     if(!evaluExists)
       throw new NotFoundException(`Evaluation with id ${id} not found`);
+
+    if (!approves_id)
+      throw new BadRequestException('approves_id is required');
+
+      isBoolean(result) 
 
       const propertiesToUpdate = checkProperties({
         approves_id,

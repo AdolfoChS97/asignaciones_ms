@@ -41,20 +41,19 @@ export class Approvement {
 
   @ApiProperty({
     description: 'Resultado de la aprobación (true/false) acorde al usuario',
-    example: 1,
-    required: true,
+    example: true,
+    required: false,
   })
-  @IsNotEmpty()
   @IsBoolean()
-  @Column({ type: 'boolean', nullable: false })
-  endorsement: boolean;
+  @Column({ type: 'boolean', nullable: true })
+  endorsement?: boolean;
 
   @ApiProperty({
     description: 'Enum que indica el estado de la aprobación',
     example: 1,
     required: false,
   })
-  @Column({ type: 'varchar', length: 125, nullable: true })
+  @Column({ type: 'integer', nullable: true })
   status?: string;
 
   @ApiProperty({

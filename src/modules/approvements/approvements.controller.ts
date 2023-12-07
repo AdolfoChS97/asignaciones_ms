@@ -28,7 +28,7 @@ export class ApprovementsController {
 
 @Post()
 @ApiCreatedResponse({
-  description : 'Devuelve un objeto de aprovaciones segun la paginacion', 
+  description : 'Devuelve un objeto de aprobaciones segun la paginación', 
   type: CreateApprovementDto,
 })
 @ApiBadRequestResponse({

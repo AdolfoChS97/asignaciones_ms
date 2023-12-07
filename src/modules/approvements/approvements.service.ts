@@ -27,20 +27,17 @@ async create({applicationId , documentId, rolId, endorsement, status, descriptio
             throw new BadRequestException('Debe tener un id de rol valido')
         }
 
-        isBoolean(endorsement) 
+        // isBoolean(endorsement) 
 
-        if(Number.isInteger(status)){
-            throw new BadRequestException('El estatus debe ser un numero')
-        }
+        // if(Number.isInteger(status)){
+        //     throw new BadRequestException('El estatus debe ser un numero')
+        // }
 
 
         const approvement = await this.approvementRepository.save({
             applicationId,
             documentId,
             rolId,
-            endorsement,
-            status,
-            description
         });
         return generatesApprovementRecord(approvement)
 

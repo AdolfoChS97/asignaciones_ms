@@ -9,8 +9,9 @@ import {CreateApprovementDto} from './dto/create-approvements.dto';
 import { UpdateApprovementDto , UpdatedApprovementDto } from './dto/update-approvements.dto';
 import { Approvement } from './entities/approvement.entity'
 import { isBoolean } from '@shared/utils/isBoolean';
-import { generatesApprovementRecord } from './mappers/approvements.mappers';
+import { generatesApprovementRecord, getAprovementRecords } from './mappers/approvements.mappers';
 import { checkProperties } from '@/shared/utils/checkProperties';
+import { PaginationQueryParamsDto } from '@/shared/dtos/pagination.dto';
 
 @Injectable()
 export class ApprovementsService {
@@ -49,6 +50,23 @@ async create({applicationId , documentId, rolId, endorsement, status, descriptio
     }
 
 }
+async findAll({pageNumber, pageSize} : PaginationQueryParamsDto){
+    try {
+        const[approvements , total] = await this.approvementRepository.findAndCount({
+            skip : (pageNumber - 1) * pageSize,
+            take : pageSize,
+        });
+        return getAprovementRecords(approvements , total);
+
+    } catch (e) {
+        throw e;
+    }
+}
+
+
+
+
+
 
 async update(id : number , {applicationId , documentId , rolId ,endorsement, status ,description}: UpdateApprovementDto){
     try {     

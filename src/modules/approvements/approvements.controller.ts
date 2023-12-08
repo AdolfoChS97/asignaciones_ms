@@ -21,6 +21,9 @@ import {
   ApiTags,
 } from '@nestjs/swagger';
 import { UpdateApprovementDto, UpdatedApprovementDto } from './dto/update-approvements.dto';
+import { getAprovementDto } from './dto/get-approvements.dto';
+import { PaginationQueryParamsDto } from '@/shared/dtos/pagination.dto';
+
 
 @Controller('approvements')
 @ApiTags('Approvements')
@@ -51,6 +54,58 @@ export class ApprovementsController {
     throw e;
   }
 }
+
+@Get()
+@ApiQuery({ name: 'pageNumber', type:'number' , required: true, example: 1})
+@ApiQuery({name : 'pageSize' , type: 'number' , required: true, example: 10})
+@ApiOkResponse({
+  description: 'Devuelve un object de aprovaciones segun la pagina',
+  type: getAprovementDto,
+})
+@ApiBadRequestResponse({
+  description: 'No se encontro la Aprobación',
+  schema: {
+    type: 'object',
+    properties:{
+      statusCode : {type : 'number' ,  example : 400},
+      message : {type : 'string' , example: 'Bad request'},
+      error: {type : 'string' , example : 'Solicitud Incorrecta'},
+    },
+  },
+})
+@ApiNotFoundResponse({
+  description : 'No se encontro la evaluacion',
+  schema: {
+    type : 'object',
+    properties: {
+      statusCode : {type : 'number' , example: 404},
+      message: { type: 'string' , example: 'Not Found'},
+      error : {type: 'string' , example: 'Solicitud no encontrada con: 1'},
+    }
+  }
+})
+async findAll(
+  @Query() { pageNumber, pageSize }: PaginationQueryParamsDto,
+    @Res() response,
+){
+  try{
+    const data = await this.approvementsService.findAll({
+      pageNumber: +pageNumber,
+      pageSize: +pageSize,
+    });
+    return response.status(HttpStatus.OK).json(data);
+  }catch(e){
+    throw e;
+  }
+}
+
+
+
+
+
+
+
+
 
 @Patch(':id')
 @ApiOkResponse({

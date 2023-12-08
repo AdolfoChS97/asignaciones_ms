@@ -26,9 +26,11 @@ export class Approvement {
   })
   @IsNumber()
   @IsNotEmpty()
-  @Column({ type: 'integer', nullable: false })
-  @OneToMany(() => Document, (document) => document.approvesId)
-  documentId: number;
+  // @Column({ nullable: false, default: 0 })
+  @OneToMany(() => Document, (document) => document.approvement, {
+    cascade: ['insert', 'update'],
+  })
+  documents: Document[];
 
   @ApiProperty({
     description:
@@ -38,7 +40,7 @@ export class Approvement {
   })
   @IsNumber()
   @IsNotEmpty()
-  @Column({ type: 'integer', nullable: false })
+  @Column({ type: 'integer', nullable: false, default: 0 })
   rolId: number;
 
   @ApiProperty({
@@ -47,7 +49,7 @@ export class Approvement {
     required: false,
   })
   @IsBoolean()
-  @Column({ type: 'boolean', nullable: true })
+  @Column({ type: 'boolean', nullable: true, default: false })
   endorsement?: boolean;
 
   @ApiProperty({
@@ -55,7 +57,7 @@ export class Approvement {
     example: 1,
     required: false,
   })
-  @Column({ type: 'integer', nullable: true })
+  @Column({ type: 'integer', nullable: true, default: 0 })
   status?: string;
 
   @ApiProperty({
@@ -63,7 +65,7 @@ export class Approvement {
     example: 'Texto',
     required: false,
   })
-  @Column({ type: 'varchar', length: 225, nullable: true })
+  @Column({ type: 'varchar', length: 225, nullable: true, default: '' })
   description?: string;
 
   @ApiProperty({

@@ -29,7 +29,7 @@ export class getEvaluationsDto {
 export class getEvaluationDto {
   @ApiProperty({
     type: Evaluation,
-    description: 'Devuelve un documento',
+    description: 'Devuelve una evaluacion',
     example: Evaluation,
   })
   data: Evaluation;

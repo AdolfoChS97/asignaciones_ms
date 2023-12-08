@@ -27,11 +27,8 @@ export class Approvement {
   @IsNumber()
   @IsNotEmpty()
   @Column({ type: 'integer', nullable: false })
-  @OneToMany(type => Document, document => document.approves_id )
+  @OneToMany(() => Document, (document) => document.approvesId)
   documentId: number;
-
-
-
 
   @ApiProperty({
     description:

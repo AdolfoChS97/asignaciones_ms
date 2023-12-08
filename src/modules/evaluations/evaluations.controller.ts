@@ -5,7 +5,6 @@ import {
   Body, 
   Patch, 
   Param, 
-  Delete,
   Res,
   Query,
   HttpStatus
@@ -48,8 +47,8 @@ export class EvaluationsController {
  })
  async create(@Body() CreateEvaluationDto: CreateEvaluationDto, @Res() response) {
   try {
-    const doc = await this.evaluationsService.create(CreateEvaluationDto);
-    return response.status(HttpStatus.CREATED).json(doc);
+    const evaluation = await this.evaluationsService.create(CreateEvaluationDto);
+    return response.status(HttpStatus.CREATED).json(evaluation);
   } catch (e) {
     throw e;
   }
@@ -61,16 +60,16 @@ export class EvaluationsController {
   @ApiQuery({ name: 'pageNumber', type: 'number', required: true, example: 1 })
   @ApiQuery({ name: 'pageSize', type: 'number', required: true, example: 10 })
   @ApiOkResponse({
-    description: 'Devuelve un arreglo de documentos segun la paginación',
+    description: 'Devuelve un object de evaluaciones segun la paginación',
     type: getEvaluationDto,
   })
   @ApiBadRequestResponse({
-    description: 'No se encontro la evaluacion',
+    description: 'No se encontro la evaluación',
     schema: {
       type : 'object',
       properties: { 
         statusCode : {type: 'number' , example: 400},
-        message: {type : 'string' , example: 'Bad reques'},
+        message: {type : 'string' , example: 'Bad request'},
         error: {type: 'string', example: 'Solicitud Incrorrecta' },
       },
     },
@@ -139,8 +138,8 @@ export class EvaluationsController {
 
   async findOne(@Param('id') id: string, @Res() response) {
     try{
-      const doc = await this.evaluationsService.findOne(+id);
-      response.status(HttpStatus.OK).json(doc);
+      const evaluation = await this.evaluationsService.findOne(+id);
+      response.status(HttpStatus.OK).json(evaluation);
     } catch(e){
       throw e;
     }

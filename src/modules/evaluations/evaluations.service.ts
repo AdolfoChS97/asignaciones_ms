@@ -63,11 +63,11 @@ export class EvaluationsService {
 
   async findAll({ pageNumber, pageSize }: PaginationQueryParamsDto) {
     try {
-      const [docs, total] = await this.evaluationRepository.findAndCount({
+      const [evaluations, total] = await this.evaluationRepository.findAndCount({
         skip: (pageNumber - 1) * pageSize,
         take: pageSize,
       });
-      return getEvaluationRecords(docs, total);
+      return getEvaluationRecords(evaluations, total);
     } catch (e) {
       throw e;
     }
@@ -75,9 +75,9 @@ export class EvaluationsService {
 
   async findOne(id: number) {
     try {
-      const doc = await this.evaluationRepository.findOne({ where: { id: id } });
-      if (!doc) throw new NotFoundException(`Evaluaion with id ${id} not found`);
-      return getEvaluationRecord(doc);
+      const evaluation = await this.evaluationRepository.findOne({ where: { id: id } });
+      if (!evaluation) throw new NotFoundException(`Evaluaion with id ${id} not found`);
+      return getEvaluationRecord(evaluation);
     } catch (e) {
       throw e;
     }
@@ -104,8 +104,8 @@ export class EvaluationsService {
 
       if(Object.keys(propertiesToUpdate).length === 0)
         throw new BadRequestException('No properties to update');
-        const doc = await this.evaluationRepository.update(id, propertiesToUpdate);
-        return generatesUpdatedEvaluatioRecord(doc);
+        const evaluation = await this.evaluationRepository.update(id, propertiesToUpdate);
+        return generatesUpdatedEvaluatioRecord(evaluation);
 
    }catch(e){
     throw e;

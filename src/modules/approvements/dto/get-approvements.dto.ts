@@ -1,6 +1,7 @@
-import { ApiProperty } from '@nestjs/swagger';
+import { ApiProperty, PartialType } from '@nestjs/swagger';
 import { Approvement } from '../entities/approvement.entity';
 import { HttpStatus } from '@nestjs/common';
+import { PaginationQueryParamsDto } from '@/shared/dtos/pagination.dto';
 
 export class getAprovementsDto {
   @ApiProperty({
@@ -40,4 +41,15 @@ export class getAprovementDto {
     description: 'Codigo de la respuesta',
   })
   status: HttpStatus.OK;
+}
+
+export class getApprovementsByQueryParams extends PartialType(
+  PaginationQueryParamsDto,
+) {
+  @ApiProperty({
+    type: 'number',
+    example: 1,
+    description: 'Id del rol que recibie la postulación',
+  })
+  rolId?: number;
 }

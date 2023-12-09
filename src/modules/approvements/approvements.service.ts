@@ -17,8 +17,9 @@ import {
   getAprovementRecords,
 } from './mappers/approvements.mappers';
 import { checkProperties } from '@/shared/utils/checkProperties';
-import { PaginationQueryParamsDto } from '@/shared/dtos/pagination.dto';
 import { isBoolean } from '@/shared/utils/isBoolean';
+import { getApprovementsByQueryParams } from './dto/get-approvements.dto';
+import { applyParamsToSearch } from '@/shared/utils/applyParamsToSearch';
 
 @Injectable()
 export class ApprovementsService {
@@ -71,13 +72,19 @@ export class ApprovementsService {
     }
   }
 
-  async findAll({ pageNumber, pageSize }: PaginationQueryParamsDto) {
+  async findAll(queryParams: getApprovementsByQueryParams) {
     try {
+      const { pageNumber, pageSize, ...rest } = queryParams;
+      const options = {
+        skip: (pageNumber - 1) * pageSize,
+        take: pageSize,
+        where: {},
+      };
+
+      const searchParams = applyParamsToSearch(rest, options);
+
       const [approvements, total] =
-        await this.approvementRepository.findAndCount({
-          skip: (pageNumber - 1) * pageSize,
-          take: pageSize,
-        });
+        await this.approvementRepository.findAndCount({ ...searchParams });
       return getAprovementRecords(approvements, total);
     } catch (e) {
       throw e;

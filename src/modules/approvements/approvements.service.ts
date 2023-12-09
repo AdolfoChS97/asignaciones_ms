@@ -111,6 +111,8 @@ export class ApprovementsService {
     {
       applicationId,
       documents,
+      evaluations,
+      observations,
       rolId,
       endorsement,
       status,
@@ -125,6 +127,8 @@ export class ApprovementsService {
       const propertiesToUpdate = checkProperties({
         applicationId,
         documents,
+        evaluations,
+        observations,
         rolId,
         endorsement,
         status,

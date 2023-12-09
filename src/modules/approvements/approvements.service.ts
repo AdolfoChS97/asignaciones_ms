@@ -49,7 +49,7 @@ export class ApprovementsService {
 
       isBoolean(endorsement);
 
-      if (observations.length > 0)
+      if (observations.length <= 0)
         throw new BadRequestException('Debe existir al menos una observación');
 
       const propertiesToSave = checkProperties({

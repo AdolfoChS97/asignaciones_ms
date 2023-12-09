@@ -18,6 +18,7 @@ import {
 } from './mappers/approvements.mappers';
 import { checkProperties } from '@/shared/utils/checkProperties';
 import { PaginationQueryParamsDto } from '@/shared/dtos/pagination.dto';
+import { isBoolean } from '@/shared/utils/isBoolean';
 
 @Injectable()
 export class ApprovementsService {
@@ -28,32 +29,48 @@ export class ApprovementsService {
 
   async create({
     applicationId,
-    documents,
     rolId,
-    document,
+    documents,
+    observations,
+    evaluations,
+    description,
+    endorsement,
+    status,
   }: CreateApprovementDto) {
     try {
-      if (!Number.isInteger(applicationId)) {
+      if (applicationId && !Number.isInteger(applicationId)) {
         throw new BadRequestException('Debe tener un id de aprobación valido');
       }
-    //   if (!Number.isInteger(documents)) {
-    //     throw new BadRequestException('Debe tener un id de documento valido');
-    //   }
-      if (!Number.isInteger(rolId)) {
+
+      if (rolId && !Number.isInteger(rolId)) {
         throw new BadRequestException('Debe tener un id de rol valido');
       }
 
-      const approvement = await this.approvementRepository.save({
+      isBoolean(endorsement);
+
+      if (observations.length > 0)
+        throw new BadRequestException('Debe existir al menos una observación');
+
+      const propertiesToSave = checkProperties({
         applicationId,
-        documents,
         rolId,
-        document,
+        documents,
+        observations,
+        evaluations,
+        description,
+        endorsement,
+        status,
       });
+
+      const approvement =
+        await this.approvementRepository.save(propertiesToSave);
+
       return generatesApprovementRecord(approvement);
     } catch (e) {
       throw e;
     }
   }
+
   async findAll({ pageNumber, pageSize }: PaginationQueryParamsDto) {
     try {
       const [approvements, total] =

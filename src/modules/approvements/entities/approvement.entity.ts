@@ -2,6 +2,8 @@ import { ApiProperty } from '@nestjs/swagger';
 import { IsBoolean, IsNumber, IsNotEmpty } from 'class-validator';
 import { Column, Entity, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
 import { Document } from '@/modules/documents/entities/document.entity';
+import { Observation } from '@/modules/observations/entities/observations.entity';
+import { Evaluation } from '@/modules/evaluations/entities/evaluation.entity';
 
 @Entity({ name: 'Approvements' })
 export class Approvement {
@@ -20,17 +22,42 @@ export class Approvement {
   applicationId: number;
 
   @ApiProperty({
-    description: 'Parametro que referencia al ID de documento',
-    example: 1,
+    description:
+      'Objeto que insertara el registro del documento en su tabla pertinente',
     required: true,
+    isArray: true,
+    type: () => Document,
   })
-  @IsNumber()
   @IsNotEmpty()
-  // @Column({ nullable: false, default: 0 })
   @OneToMany(() => Document, (document) => document.approvement, {
     cascade: ['insert', 'update'],
   })
   documents: Document[];
+
+  @ApiProperty({
+    description:
+      'Objeto que insertara el registro de la Observación en su tabla pertinente',
+    required: true,
+    isArray: true,
+    type: () => Observation,
+  })
+  @IsNotEmpty()
+  @OneToMany(() => Observation, (observation) => observation.approvement, {
+    cascade: ['insert', 'update'],
+  })
+  observations: Observation[];
+
+  @ApiProperty({
+    description:
+      'Objeto que insertara el registro de la Evaluación en su tabla pertinente',
+    required: false,
+    isArray: true,
+    type: () => Evaluation,
+  })
+  @OneToMany(() => Evaluation, (evaluation) => evaluation.approvement, {
+    cascade: ['insert', 'update'],
+  })
+  evaluations?: Evaluation[];
 
   @ApiProperty({
     description:

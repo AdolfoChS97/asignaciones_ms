@@ -15,6 +15,7 @@ import {
   generatesApprovementRecord,
   getAprovementRecords,
   getAprovementRecord,
+  generatesUpdatedpprovementRecord,
 } from './mappers/approvements.mappers';
 import { checkProperties } from '@/shared/utils/checkProperties';
 import { isBoolean } from '@/shared/utils/isBoolean';
@@ -49,7 +50,7 @@ export class ApprovementsService {
 
       isBoolean(endorsement);
 
-      if (observations.length > 0)
+      if (observations.length <= 0)
         throw new BadRequestException('Debe existir al menos una observación');
 
       const propertiesToSave = checkProperties({
@@ -137,11 +138,11 @@ export class ApprovementsService {
 
       if (Object.keys(propertiesToUpdate).length === 0)
         throw new BadRequestException('No hay propiedades para actualizar');
-      const doc = await this.approvementRepository.update(
+      const approvement = await this.approvementRepository.update(
         id,
         propertiesToUpdate,
       );
-      return generatesApprovementRecord(doc);
+      return generatesUpdatedpprovementRecord(approvement);
     } catch (e) {
       throw e;
     }

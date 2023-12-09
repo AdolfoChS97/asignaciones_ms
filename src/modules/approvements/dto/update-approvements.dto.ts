@@ -1,17 +1,17 @@
 import { ApiProperty, OmitType } from '@nestjs/swagger';
-import { Evaluation } from '../entities/evaluation.entity';
+import { Approvement } from '../entities/approvement.entity';
 
-export class UpdateEvaluationDto extends OmitType(Evaluation, [
+export class UpdateApprovementDto extends OmitType(Approvement, [
   'id',
-  'created_at',
-  'updated_at',
+  'createdAt',
+  'updatedAt',
 ]) {}
 
-export class UpdatedEvaluationDto {
+export class UpdatedApprovementDto {
   @ApiProperty({
     type: 'number',
     example: { rowsAffected: 1 },
-    description: 'Numero de registro afectados',
+    description: 'Numero de registro afectado',
   })
   data: { rowsAffected: number };
 

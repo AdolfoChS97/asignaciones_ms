@@ -1,0 +1,139 @@
+import {
+  Injectable,
+  BadRequestException,
+  NotFoundException,
+} from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
+import { CreateApprovementDto } from './dto/create-approvements.dto';
+import {
+  UpdateApprovementDto,
+  //   UpdatedApprovementDto,
+} from './dto/update-approvements.dto';
+import { Approvement } from './entities/approvement.entity';
+// import { isBoolean } from '@shared/utils/isBoolean';
+import {
+  generatesApprovementRecord,
+  getAprovementRecords,
+  getAprovementRecord
+} from './mappers/approvements.mappers';
+import { checkProperties } from '@/shared/utils/checkProperties';
+import { PaginationQueryParamsDto } from '@/shared/dtos/pagination.dto';
+import { isBoolean } from '@/shared/utils/isBoolean';
+
+@Injectable()
+export class ApprovementsService {
+  constructor(
+    @InjectRepository(Approvement)
+    private readonly approvementRepository: Repository<Approvement>,
+  ) {}
+
+  async create({
+    applicationId,
+    rolId,
+    documents,
+    observations,
+    evaluations,
+    description,
+    endorsement,
+    status,
+  }: CreateApprovementDto) {
+    try {
+      if (applicationId && !Number.isInteger(applicationId)) {
+        throw new BadRequestException('Debe tener un id de aprobación valido');
+      }
+
+      if (rolId && !Number.isInteger(rolId)) {
+        throw new BadRequestException('Debe tener un id de rol valido');
+      }
+
+      isBoolean(endorsement);
+
+      if (observations.length > 0)
+        throw new BadRequestException('Debe existir al menos una observación');
+
+      const propertiesToSave = checkProperties({
+        applicationId,
+        rolId,
+        documents,
+        observations,
+        evaluations,
+        description,
+        endorsement,
+        status,
+      });
+
+      const approvement =
+        await this.approvementRepository.save(propertiesToSave);
+
+      return generatesApprovementRecord(approvement);
+    } catch (e) {
+      throw e;
+    }
+  }
+
+  async findAll({ pageNumber, pageSize }: PaginationQueryParamsDto) {
+    try {
+      const [approvements, total] =
+        await this.approvementRepository.findAndCount({
+          skip: (pageNumber - 1) * pageSize,
+          take: pageSize,
+        });
+      return getAprovementRecords(approvements, total);
+    } catch (e) {
+      throw e;
+    }
+  }
+
+  async findOne(id: number){
+    try {
+      const approvement = await this.approvementRepository.findOne({
+        where :{ id : id},
+      });
+      if(!approvement)
+        throw new NotFoundException(`Aprobacion with id ${id} not found`);
+        return getAprovementRecord(approvement);
+    } catch (e) {
+      console.log('errro pipi' , e)
+      throw e
+    }
+  }
+
+
+  async update(
+    id: number,
+    {
+      applicationId,
+      documents,
+      rolId,
+      endorsement,
+      status,
+      description,
+    }: UpdateApprovementDto,
+  ) {
+    try {
+      const approveExists = await this.approvementRepository.findBy({ id: id });
+      if (!approveExists)
+        throw new NotFoundException(`aprobación con id ${id} no encontrado`);
+
+      const propertiesToUpdate = checkProperties({
+        applicationId,
+        documents,
+        rolId,
+        endorsement,
+        status,
+        description,
+      }) as unknown as Approvement;
+
+      if (Object.keys(propertiesToUpdate).length === 0)
+        throw new BadRequestException('No hay propiedades para actualizar');
+      const doc = await this.approvementRepository.update(
+        id,
+        propertiesToUpdate,
+      );
+      return generatesApprovementRecord(doc);
+    } catch (e) {
+      throw e;
+    }
+  }
+}

@@ -52,18 +52,18 @@ export class ObservationsService {
     }
   }
 
-  async create({ approves_id, detail }: CreateObservationDto) {
+  async create({ approvement, detail }: CreateObservationDto) {
     try {
-      if (!approves_id)
-        throw new BadRequestException('approves_id is required');
+      if (!approvement)
+        throw new BadRequestException('approvement is required');
 
       if (!detail) throw new BadRequestException('detail is required');
 
-      if (!Number.isInteger(approves_id))
-        throw new BadRequestException('approves_id must be a number');
+      if (!Number.isInteger(approvement))
+        throw new BadRequestException('approvement must be a number');
 
       const observation = await this.observationRepository.create({
-        approves_id,
+        approvement,
         detail,
       });
 
@@ -75,15 +75,15 @@ export class ObservationsService {
     }
   }
 
-  async update(id: number, { approves_id, detail }: UpdateObservationDto) {
+  async update(id: number, { approvement, detail }: UpdateObservationDto) {
     try {
       if (!detail) throw new BadRequestException('detail is required');
 
-      if (!Number.isInteger(approves_id))
-        throw new BadRequestException('approves_id must be a number');
+      if (!Number.isInteger(approvement))
+        throw new BadRequestException('approvement must be a number');
 
-      if (!approves_id)
-        throw new BadRequestException('approves_id is required');
+      if (!approvement)
+        throw new BadRequestException('approvement is required');
 
       const observationExists = await this.observationRepository.findOne({
         where: { id: id },
@@ -94,7 +94,7 @@ export class ObservationsService {
 
       const propertiesToUpdate = checkProperties({
         detail,
-        approves_id,
+        approvement,
       }) as unknown as Observation;
 
       if (Object.keys(propertiesToUpdate).length === 0)

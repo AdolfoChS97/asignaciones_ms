@@ -1,38 +1,38 @@
 import { ApiProperty } from '@nestjs/swagger';
+import { Approvement } from '../entities/approvement.entity';
 import { HttpStatus } from '@nestjs/common';
-import { Evaluation } from '../entities/evaluation.entity';
 
-export class getEvaluationsDto {
+export class getAprovementsDto {
   @ApiProperty({
-    type: Evaluation,
+    type: Approvement,
     isArray: true,
-    description: 'Devuelve un array de evaluaciones',
-    example: Evaluation,
+    description: 'Devuelve un array de aprovaciones',
+    example: Approvement,
   })
-  data: Evaluation[];
+  data: Approvement[];
 
   @ApiProperty({
     type: 'number',
     example: 1,
-    description: 'Cuenta cuantas evaluaciones fueron devueltas en la consulta',
+    description: 'Cuenta cuantas aprobaciones fueron devueltas en la consulta',
   })
   meta: number;
 
   @ApiProperty({
     type: 'number',
-    example: HttpStatus.OK,
+    example: HttpStatus,
     description: 'Codigo de la respuesta',
   })
   status: HttpStatus.OK;
 }
 
-export class getEvaluationDto {
+export class getAprovementDto {
   @ApiProperty({
-    type: Evaluation,
-    description: 'Devuelve una evaluacion',
-    example: Evaluation,
+    type: Approvement,
+    description: 'Devuelve una aprobación',
+    example: Approvement,
   })
-  data: Evaluation;
+  data: Approvement;
 
   @ApiProperty({
     type: 'number',

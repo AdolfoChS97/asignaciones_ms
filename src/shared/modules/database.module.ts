@@ -5,7 +5,6 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { Document } from '@modules/documents/entities/document.entity';
 import { Evaluation } from '@modules/evaluations/entities/evaluation.entity';
 import { Observation } from '@modules/observations/entities/observations.entity';
-import { Approvement } from '@/modules/approvements/entities/approvement.entity';
 
 const configService = new ConfigService();
 
@@ -17,7 +16,7 @@ const configService = new ConfigService();
       port: configService.get<number>('DB_PORT'),
       password: configService.get<string>('DB_PASS'),
       username: configService.get<string>('DB_USER'),
-      entities: [Document, Observation, Evaluation, Approvement],
+      entities: [Document , Evaluation, Observation ],
       database: configService.get<string>('DB_NAME'),
       synchronize: configService.get<boolean>('DB_SYNC'),
       logging: true,

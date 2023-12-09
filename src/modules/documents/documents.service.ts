@@ -25,20 +25,20 @@ export class DocumentsService {
     private documentRepository: Repository<Document>,
   ) {}
 
-  async create({ name, base64, approvement }: CreateDocumentDto) {
+  async create({ name, base64, approves_id }: CreateDocumentDto) {
     try {
       if (base64) isBase64(base64);
 
-      if (!Number.isInteger(approvement))
-        throw new BadRequestException('approvement must be a number');
+      if (!Number.isInteger(approves_id))
+        throw new BadRequestException('approves_id must be a number');
 
-      if (!approvement)
-        throw new BadRequestException('approvement is required');
+      if (!approves_id)
+        throw new BadRequestException('approves_id is required');
 
       const doc = await this.documentRepository.save({
         name,
         base64,
-        approvement,
+        approves_id,
       });
       return generatesDocumentRecord(doc);
     } catch (e) {
@@ -68,19 +68,19 @@ export class DocumentsService {
     }
   }
 
-  async update(id: number, { approvement, name, base64 }: UpdateDocumentDto) {
+  async update(id: number, { approves_id, name, base64 }: UpdateDocumentDto) {
     try {
       if (base64) isBase64(base64);
 
-      if (approvement && !Number.isInteger(approvement))
-        throw new BadRequestException('approvement must be a number');
+      if (approves_id && !Number.isInteger(approves_id))
+        throw new BadRequestException('approves_id must be a number');
 
       const docExists = await this.documentRepository.findBy({ id: id });
       if (!docExists)
         throw new NotFoundException(`Document with id ${id} not found`);
 
       const propertiesToUpdate = checkProperties({
-        approvement,
+        approves_id,
         name,
         base64,
       }) as unknown as Document;

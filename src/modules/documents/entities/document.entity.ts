@@ -1,13 +1,7 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { IsBase64, IsDate, IsNotEmpty, IsNumber } from 'class-validator';
-import {
-  Entity,
-  Column,
-  PrimaryGeneratedColumn,
-  ManyToOne,
-  JoinColumn,
-} from 'typeorm';
-import { Approvement } from '@modules/approvements/entities/approvement.entity';
+import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+
 
 @Entity({ name: 'Documents' })
 export class Document {
@@ -23,9 +17,8 @@ export class Document {
   })
   @IsNumber()
   @IsNotEmpty()
-  @JoinColumn({ name: 'approvementId' })
-  @ManyToOne(() => Approvement, (approvement) => approvement.documents)
-  approvement: Approvement;
+  @Column({ type: 'integer', nullable: false })
+  approves_id: number;
 
   @ApiProperty({
     example: 'Documento',

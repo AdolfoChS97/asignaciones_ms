@@ -8,6 +8,7 @@ export class CreateDocumentDto extends OmitType(Document, [
   'updated_at',
 ]) {}
 
+
 export class createdDocumentDto {
   @ApiProperty({
     type: Document,

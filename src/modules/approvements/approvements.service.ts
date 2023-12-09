@@ -11,11 +11,10 @@ import {
   //   UpdatedApprovementDto,
 } from './dto/update-approvements.dto';
 import { Approvement } from './entities/approvement.entity';
-// import { isBoolean } from '@shared/utils/isBoolean';
 import {
   generatesApprovementRecord,
   getAprovementRecords,
-  getAprovementRecord
+  getAprovementRecord,
 } from './mappers/approvements.mappers';
 import { checkProperties } from '@/shared/utils/checkProperties';
 import { isBoolean } from '@/shared/utils/isBoolean';
@@ -92,20 +91,20 @@ export class ApprovementsService {
     }
   }
 
-  async findOne(id: number){
+  async findOne(id: number) {
     try {
       const approvement = await this.approvementRepository.findOne({
-        where :{ id : id},
+        where: { id: id },
       });
-      if(!approvement)
-        throw new NotFoundException(`Aprobacion with id ${id} not found`);
-        return getAprovementRecord(approvement);
+
+      if (!approvement)
+        throw new BadRequestException('No existe la aprobación');
+
+      return getAprovementRecord(approvement);
     } catch (e) {
-      console.log('errro pipi' , e)
-      throw e
+      throw e;
     }
   }
-
 
   async update(
     id: number,

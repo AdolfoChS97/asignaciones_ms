@@ -32,7 +32,8 @@ export class DocumentsService {
       if (!Number.isInteger(approvement))
         throw new BadRequestException('approvement must be a number');
 
-      if (!approvement) throw new BadRequestException('approvement is required');
+      if (!approvement)
+        throw new BadRequestException('approvement is required');
 
       const doc = await this.documentRepository.save({
         name,

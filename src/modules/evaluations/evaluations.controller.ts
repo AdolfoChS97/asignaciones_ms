@@ -111,10 +111,10 @@ export class EvaluationsController {
     type: 'number',
     required: true,
     example: 1,
-    description: 'Id de la evaluacion',
+    description: 'Id de la evaluación',
   })
   @ApiOkResponse({
-    description: 'Devuelve una evaluacion segun el id',
+    description: 'Devuelve una evaluación segun el id',
     type: getEvaluationDto,
   })
   @ApiBadRequestResponse({

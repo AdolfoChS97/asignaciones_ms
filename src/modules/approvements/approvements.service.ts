@@ -15,6 +15,7 @@ import { Approvement } from './entities/approvement.entity';
 import {
   generatesApprovementRecord,
   getAprovementRecords,
+  getAprovementRecord
 } from './mappers/approvements.mappers';
 import { checkProperties } from '@/shared/utils/checkProperties';
 import { PaginationQueryParamsDto } from '@/shared/dtos/pagination.dto';
@@ -83,6 +84,21 @@ export class ApprovementsService {
       throw e;
     }
   }
+
+  async findOne(id: number){
+    try {
+      const approvement = await this.approvementRepository.findOne({
+        where :{ id : id},
+      });
+      if(!approvement)
+        throw new NotFoundException(`Aprobacion with id ${id} not found`);
+        return getAprovementRecord(approvement);
+    } catch (e) {
+      console.log('errro pipi' , e)
+      throw e
+    }
+  }
+
 
   async update(
     id: number,

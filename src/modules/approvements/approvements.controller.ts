@@ -16,6 +16,7 @@ import {
   ApiCreatedResponse,
   ApiNotFoundResponse,
   ApiOkResponse,
+  ApiParam,
   // ApiParam,
   ApiQuery,
   ApiTags,
@@ -26,6 +27,7 @@ import {
 } from './dto/update-approvements.dto';
 import { getAprovementDto } from './dto/get-approvements.dto';
 import { PaginationQueryParamsDto } from '@/shared/dtos/pagination.dto';
+import e from 'express';
 
 @Controller('approvements')
 @ApiTags('Approvements')
@@ -103,6 +105,52 @@ export class ApprovementsController {
       throw e;
     }
   }
+
+@Get(':id')
+@ApiParam({
+  name : 'id',
+  type : 'number',
+  required : true,
+  example : 1,
+  description : 'Id de la aprobación'
+})
+@ApiOkResponse({
+  description: 'Devuelve una aprobación segun el id',
+  type: getAprovementDto,
+})
+@ApiBadRequestResponse({
+  description: 'NO se encontro la aprobación',
+  schema: {
+    type : 'object',
+    properties: {
+      statusCode: { type: 'number' , example: 400},
+      message : {type : 'string' , example : 'Not Found'},
+      error : {type : 'string' , example : 'Solicitud incorrecta'},
+    }
+  }
+})
+@ApiNotFoundResponse({
+  description : 'No se encontro la aprobación',
+  schema: {
+    type: 'object',
+    properties: {
+      statusCode : { type : 'number' , example: 404},
+      message: { type: 'string' , example : 'Not found'},
+      error : { type : 'string' , example : 'Aprobación no encontrada con: 1'}
+    }
+  }
+})
+
+async findOne(@Param('id') id: string, @Res() response){
+  try {
+      const approvement = await this.approvementsService.findOne(+id)
+      response.status(HttpStatus.OK).json(approvement)
+  } catch (error) {
+    throw e;
+  }
+
+}
+
 
   @Patch(':id')
   @ApiOkResponse({

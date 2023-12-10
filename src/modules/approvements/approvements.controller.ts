@@ -69,12 +69,24 @@ export class ApprovementsController {
   @ApiQuery({ name: 'pageNumber', type: 'number', required: true, example: 1 })
   @ApiQuery({ name: 'pageSize', type: 'number', required: true, example: 10 })
   @ApiQuery({ name: 'rolId', type: 'number', required: false, example: 1 })
+  @ApiQuery({
+    name: 'applicationId',
+    type: 'number',
+    required: false,
+    example: 1,
+  })
   @ApiOkResponse({
     description: 'Devuelve un object de aprovaciones segun la pagina',
     type: getAprovementDto,
   })
   async findAll(
-    @Query() { pageNumber, pageSize, rolId }: getApprovementsByQueryParams,
+    @Query()
+    {
+      pageNumber,
+      pageSize,
+      rolId,
+      applicationId,
+    }: getApprovementsByQueryParams,
     @Res() response,
   ) {
     try {
@@ -82,6 +94,7 @@ export class ApprovementsController {
         pageNumber: +pageNumber,
         pageSize: +pageSize,
         rolId: +rolId,
+        applicationId: +applicationId,
       });
       return response.status(HttpStatus.OK).json(data);
     } catch (e) {

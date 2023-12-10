@@ -80,11 +80,13 @@ export class Approvement {
   endorsement?: boolean;
 
   @ApiProperty({
-    description: 'Enum que indica el estado de la aprobación',
-    example: 1,
+    description:
+      'Calificación de la aprobación (Puede usarse para especificar los tipos de aprobación del psicologo)',
+    example: 'No procedente',
     required: false,
+    type: 'string',
   })
-  @Column({ type: 'integer', nullable: true, default: 0 })
+  @Column({ type: 'varchar', nullable: true, default: 'N/A' })
   status?: string;
 
   @ApiProperty({

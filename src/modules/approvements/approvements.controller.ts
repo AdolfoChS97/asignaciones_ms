@@ -84,6 +84,7 @@ export class ApprovementsController {
       pageSize,
       rolId,
       applicationId,
+      userId
     }: getApprovementsByQueryParams,
     @Res() response,
   ) {
@@ -93,6 +94,7 @@ export class ApprovementsController {
         pageSize: +pageSize,
         rolId: +rolId,
         applicationId: +applicationId,
+        userId: +userId,
       });
       return response.status(HttpStatus.OK).json(data);
     } catch (e) {
@@ -111,6 +113,12 @@ export class ApprovementsController {
   @ApiQuery({ name: 'rolId', type: 'number', required: false, example: 1 })
   @ApiQuery({
     name: 'applicationId',
+    type: 'number',
+    required: false,
+    example: 1,
+  })
+  @ApiQuery({
+    name: 'userId',
     type: 'number',
     required: false,
     example: 1,
@@ -144,13 +152,14 @@ export class ApprovementsController {
   async findOne(
     @Param('id') id: string,
     @Query()
-    { rolId, applicationId }: getApprovementsByQueryParams,
+    { rolId, applicationId, userId }: getApprovementsByQueryParams,
     @Res() response,
   ) {
     try {
       const approvement = await this.approvementsService.findOne(+id, {
         rolId,
         applicationId,
+        userId,
       });
       response.status(HttpStatus.OK).json(approvement);
     } catch (e) {

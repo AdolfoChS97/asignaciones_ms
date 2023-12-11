@@ -94,12 +94,12 @@ export class ApprovementsService {
 
   async findOne(
     id: number,
-    { rolId, applicationId }: getApprovementsByQueryParams,
+    { rolId, applicationId, userId }: getApprovementsByQueryParams,
   ) {
     try {
       const options = { where: {} };
       const searchParams = applyParamsToSearch(
-        { rolId: rolId, applicationId: applicationId, id: id },
+        { rolId: rolId, applicationId: applicationId, userId: userId, id: id },
         options,
       );
 

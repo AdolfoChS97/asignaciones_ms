@@ -59,4 +59,11 @@ export class getApprovementsByQueryParams extends PartialType(
     description: 'Id de la postulación',
   })
   applicationId?: number;
+  
+  @ApiProperty({
+    type: 'number',
+    example: 1,
+    description: 'Id del usuario que realizo la postulación',
+  })
+  userId?: number;
 }

@@ -22,6 +22,14 @@ export class Approvement {
   applicationId: number;
 
   @ApiProperty({
+    example: 1,
+    description: 'ID del usuario',
+    type: 'number',
+    required: true,
+  })
+  userId: number;
+
+  @ApiProperty({
     description:
       'Objeto que insertara el registro del documento en su tabla pertinente',
     required: true,
@@ -32,7 +40,7 @@ export class Approvement {
   @OneToMany(() => Document, (document) => document.approvement, {
     cascade: ['insert', 'update'],
   })
-  documents: Document[];
+  documents?: Document[];
 
   @ApiProperty({
     description:
@@ -45,7 +53,7 @@ export class Approvement {
   @OneToMany(() => Observation, (observation) => observation.approvement, {
     cascade: ['insert', 'update'],
   })
-  observations: Observation[];
+  observations?: Observation[];
 
   @ApiProperty({
     description:

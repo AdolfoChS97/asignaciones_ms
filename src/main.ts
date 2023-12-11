@@ -20,6 +20,7 @@ async function bootstrap() {
     `Swagger docs running on http://localhost:${port}/docs`,
     'Bootstrap',
   );
+  app.enableCors({ origin: '*' });
   await app.listen(port);
   Logger.log(`Server running on http://localhost:${port}`, 'Bootstrap');
 }

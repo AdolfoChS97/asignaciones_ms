@@ -21,6 +21,14 @@ export class Evaluation {
 
   @ApiProperty({
     example: 1,
+    description: 'ID del usuario',
+    type: 'number',
+    required: true,
+  })
+  userId: number;
+
+  @ApiProperty({
+    example: 1,
     description: 'ID de la aprobacion',
     type: 'number',
   })

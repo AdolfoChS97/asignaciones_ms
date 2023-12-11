@@ -21,6 +21,14 @@ export class Observation {
 
   @ApiProperty({
     example: 1,
+    description: 'ID del usuario',
+    type: 'number',
+    required: true,
+  })
+  userId: number;
+
+  @ApiProperty({
+    example: 1,
     description: 'ID de la aprobación',
     type: 'number',
     required: true,

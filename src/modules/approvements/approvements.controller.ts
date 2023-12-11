@@ -29,8 +29,6 @@ import {
   getApprovementsByQueryParams,
   getAprovementDto,
 } from './dto/get-approvements.dto';
-import { PaginationQueryParamsDto } from '@/shared/dtos/pagination.dto';
-import e from 'express';
 
 @Controller('approvements')
 @ApiTags('Approvements')
@@ -76,7 +74,7 @@ export class ApprovementsController {
     example: 1,
   })
   @ApiOkResponse({
-    description: 'Devuelve un object de aprovaciones segun la pagina',
+    description: 'Devuelve un object de aprobaciones segun la pagina',
     type: getAprovementDto,
   })
   async findAll(
@@ -140,7 +138,7 @@ export class ApprovementsController {
     try {
       const approvement = await this.approvementsService.findOne(+id);
       response.status(HttpStatus.OK).json(approvement);
-    } catch (error) {
+    } catch (e) {
       throw e;
     }
   }

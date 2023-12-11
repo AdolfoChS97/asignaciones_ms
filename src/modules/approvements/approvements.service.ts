@@ -92,10 +92,19 @@ export class ApprovementsService {
     }
   }
 
-  async findOne(id: number) {
+  async findOne(
+    id: number,
+    { rolId, applicationId }: getApprovementsByQueryParams,
+  ) {
     try {
+      const options = { where: {} };
+      const searchParams = applyParamsToSearch(
+        { rolId: rolId, applicationId: applicationId, id: id },
+        options,
+      );
+
       const approvement = await this.approvementRepository.findOne({
-        where: { id: id },
+        ...searchParams,
       });
 
       if (!approvement)

@@ -54,9 +54,6 @@ export class ObservationsService {
 
   async create({ approvement, detail }: CreateObservationDto) {
     try {
-      if (!approvement)
-        throw new BadRequestException('approvement is required');
-
       if (!detail) throw new BadRequestException('detail is required');
 
       if (!Number.isInteger(approvement))

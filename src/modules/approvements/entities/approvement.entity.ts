@@ -27,6 +27,9 @@ export class Approvement {
     type: 'number',
     required: true,
   })
+  @IsNumber()
+  @IsNotEmpty()
+  @Column({ type: 'integer', nullable: false })
   userId: number;
 
   @ApiProperty({

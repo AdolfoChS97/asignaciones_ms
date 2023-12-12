@@ -31,6 +31,7 @@ export class ApprovementsService {
 
   async create({
     applicationId,
+    userId,
     rolId,
     documents,
     observations,
@@ -48,6 +49,10 @@ export class ApprovementsService {
         throw new BadRequestException('Debe tener un id de rol valido');
       }
 
+      if (userId && !Number.isInteger(userId)) {
+        throw new BadRequestException('Debe tener un id de usuario valido');
+      }
+
       isBoolean(endorsement);
 
       // if (observations && observations?.length <= 0)
@@ -55,6 +60,7 @@ export class ApprovementsService {
 
       const propertiesToSave = checkProperties({
         applicationId,
+        userId,
         rolId,
         documents,
         observations,
@@ -83,7 +89,7 @@ export class ApprovementsService {
       };
 
       const searchParams = applyParamsToSearch(rest, options);
-
+      console.log(searchParams);
       const [approvements, total] =
         await this.approvementRepository.findAndCount({ ...searchParams });
       return getAprovementRecords(approvements, total);

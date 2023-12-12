@@ -73,6 +73,12 @@ export class ApprovementsController {
     required: false,
     example: 1,
   })
+  @ApiQuery({
+    name: 'userId',
+    type: 'number',
+    required: false,
+    example: 1,
+  })
   @ApiOkResponse({
     description: 'Devuelve un object de aprobaciones segun la pagina',
     type: getAprovementDto,
@@ -84,7 +90,7 @@ export class ApprovementsController {
       pageSize,
       rolId,
       applicationId,
-      userId
+      userId,
     }: getApprovementsByQueryParams,
     @Res() response,
   ) {

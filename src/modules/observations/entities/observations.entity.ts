@@ -1,6 +1,6 @@
 import { Approvement } from '@/modules/approvements/entities/approvement.entity';
 import { ApiProperty } from '@nestjs/swagger';
-import { IsDate, IsNotEmpty } from 'class-validator';
+import { IsDate, IsNotEmpty, IsNumber } from 'class-validator';
 import {
   Entity,
   Column,
@@ -25,6 +25,9 @@ export class Observation {
     type: 'number',
     required: true,
   })
+  @IsNumber()
+  @IsNotEmpty()
+  @Column({ type: 'integer', nullable: false })
   userId: number;
 
   @ApiProperty({

@@ -8,6 +8,7 @@ import { EvaluationsModule } from './modules/evaluations/evaluations.module';
 import { ObservationsModule } from './modules/observations/observations.module';
 import { ApprovementsModule } from './modules/approvements/approvements.module';
 import { NotificationsModule } from './modules/notifications/notifications.module';
+import { ParametersModule } from './modules/parameters/parameters.module'
 import configuration from './config/configuration';
 
 @Module({
@@ -24,6 +25,7 @@ import configuration from './config/configuration';
     EvaluationsModule,
     ObservationsModule,
     NotificationsModule,
+    ParametersModule,
   ],
   controllers: [AppController],
   providers: [AppService],

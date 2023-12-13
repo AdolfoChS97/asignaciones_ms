@@ -7,6 +7,7 @@ import { Evaluation } from '@modules/evaluations/entities/evaluation.entity';
 import { Observation } from '@modules/observations/entities/observations.entity';
 import { Approvement } from '@/modules/approvements/entities/approvement.entity';
 import { Notification } from '@/modules/notifications/entities/notification.entity';
+import { Parameter } from '@modules/parameters/entities/parameter.entity';
 
 const configService = new ConfigService();
 
@@ -18,7 +19,14 @@ const configService = new ConfigService();
       port: configService.get<number>('DB_PORT'),
       password: configService.get<string>('DB_PASS'),
       username: configService.get<string>('DB_USER'),
-      entities: [Document, Observation, Evaluation, Approvement, Notification],
+      entities: [
+        Document,
+        Observation,
+        Evaluation,
+        Approvement,
+        Notification,
+        Parameter,
+      ],
       database: configService.get<string>('DB_NAME'),
       synchronize: configService.get<boolean>('DB_SYNC'),
       logging: true,

@@ -4,6 +4,11 @@ import { UpdateParamDto } from './dto/update-param.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Param } from './entities/param.entity'  
+import { PaginationQueryParamsDto } from '@/shared/dtos/pagination.dto';
+import  {
+  generatesParamRecord,
+  getParamsRecords
+} from  './mappers/param.mapper'
 
 @Injectable()
 export class ParamsService {
@@ -22,13 +27,11 @@ export class ParamsService {
       if(!name){
         throw new BadRequestException('El nombre de ser un string no vacío')
       }
-    
   
       if(!description){
         throw new BadRequestException('La descripcion debe ser un string no vacío')
       }
-     
-  
+      
       const param = await this.paramRepository.save({
         name,
       description
@@ -37,12 +40,18 @@ export class ParamsService {
     } catch (e) {
       throw e;
     }
-    
- 
   }
 
-  findAll() {
-    return `This action returns all params`;
+  async findAll({ pageNumber, pageSize }: PaginationQueryParamsDto) {
+    try {
+      const [params, total] = await this.paramRepository.findAndCount({
+        skip: (pageNumber - 1) * pageSize,
+        take: pageSize,
+      });
+      return getParamsRecords(params, total);
+    } catch (e) {
+      throw e;
+    }
   }
 
   findOne(id: number) {

@@ -1,4 +1,14 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, Res, HttpStatus } from '@nestjs/common';
+import { 
+  Controller, 
+  Get, 
+  Post, 
+  Body, 
+  Patch, 
+  Param, 
+  Query,
+  Delete, 
+  Res, 
+  HttpStatus } from '@nestjs/common';
 import { ParamsService } from './params.service';
 import { CreateParamDto } from './dto/create-param.dto';
 import {
@@ -12,7 +22,9 @@ import {
   ApiTags,
 } from '@nestjs/swagger';
 import { UpdateParamDto } from './dto/update-param.dto';
-import { response } from 'express';
+import { PaginationQueryParamsDto } from '@/shared/dtos/pagination.dto';
+import {getParamsDto} from './dto/get-param.dto'
+
 
 @ApiTags('Params')
 @Controller('params')
@@ -49,14 +61,32 @@ async create(
 }
 
 
-
-
-
-
   @Get()
-  findAll() {
-    return this.paramsService.findAll();
+  @ApiQuery({ name: 'pageNumber', type: 'number', required: true, example: 1 })
+  @ApiQuery({ name: 'pageSize', type: 'number', required: true, example: 10 })
+  @ApiOkResponse({
+    description: 'Devuelve un arreglo de documentos segun la paginación',
+    type: getParamsDto,
+  })
+  async findAll(
+    @Query() { pageNumber, pageSize }: PaginationQueryParamsDto,
+    @Res() response,
+  ) {
+  try {
+    const data = await this.paramsService.findAll({
+      pageNumber: +pageNumber,
+      pageSize: + pageSize,
+    });
+    return response.status(HttpStatus.OK).json(data);
+  } catch (e) {
+    throw e
   }
+  }
+
+
+
+
+
 
   @Get(':id')
   findOne(@Param('id') id: string) {

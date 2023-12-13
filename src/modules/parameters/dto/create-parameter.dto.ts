@@ -1,21 +1,21 @@
 import { ApiProperty, OmitType } from '@nestjs/swagger';
-import { Param }  from '../entities/param.entity'
+import { Parameter }  from '../entities/parameter.entity'
 import { HttpStatus } from '@nestjs/common';
 
 
-export class CreateParamDto  extends OmitType(Param , [
+export class CreateParameterDto  extends OmitType(Parameter , [
     'id',
     'created_at',
     'updated_at',
 ]){}
 
-export class CreatedParamDto{
+export class CreatedParameterDto{
     @ApiProperty({
-        type : Param,
-        example : Param,
+        type : Parameter,
+        example : Parameter,
         description : 'Devuelve un parametro',
     })
-    data: Param;
+    data: Parameter;
 
     @ApiProperty({
         type: 'number',

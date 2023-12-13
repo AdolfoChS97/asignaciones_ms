@@ -5,8 +5,8 @@ import {
     PrimaryGeneratedColumn,
   } from 'typeorm';
 
-@Entity({name : 'Params'})
-export class Param {
+@Entity({name : 'Parameters'})
+export class Parameter {
 @ApiProperty({
     example: 1,
     description: 'Id del parametro',

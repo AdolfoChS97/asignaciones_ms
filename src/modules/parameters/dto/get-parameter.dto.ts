@@ -1,15 +1,15 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { HttpStatus } from '@nestjs/common';
-import { Param } from '../entities/param.entity';
+import { Parameter } from '../entities/parameter.entity';
 
-export class getParamsDto {
+export class getParametersDto {
     @ApiProperty({
-        type: Param,
+        type: Parameter,
         isArray: true,
         description: 'Devuelve un array de parametros',
-        example: Param,
+        example: Parameter,
     })
-    data: Param [];
+    data: Parameter [];
 
     @ApiProperty({
         type: 'number',
@@ -26,13 +26,13 @@ export class getParamsDto {
     status: HttpStatus.OK;
 }
 
-export class getParamDto {
+export class getParameterDto {
     @ApiProperty({
-      type: Param,
+      type: Parameter,
       description: 'Devuelve un Param',
-      example: Param,
+      example: Parameter,
     })
-    data: Param;
+    data: Parameter;
   
     @ApiProperty({
       type: 'number',

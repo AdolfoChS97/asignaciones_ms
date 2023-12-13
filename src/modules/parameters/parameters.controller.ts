@@ -8,8 +8,8 @@ import {
   Query,
   Res, 
   HttpStatus } from '@nestjs/common';
-import { ParamsService } from './params.service';
-import { CreateParamDto } from './dto/create-param.dto';
+import { ParametersService } from './parameters.service';
+import { CreateParameterDto } from './dto/create-parameter.dto';
 import {
   ApiBadRequestResponse,
   ApiBody,
@@ -20,21 +20,21 @@ import {
   ApiQuery,
   ApiTags,
 } from '@nestjs/swagger';
-import { UpdateParamDto } from './dto/update-param.dto';
+import { UpdateParameterDto } from './dto/update-parameter.dto'
 import { PaginationQueryParamsDto } from '@/shared/dtos/pagination.dto';
-import {getParamsDto, getParamDto} from './dto/get-param.dto'
+import {getParametersDto, getParameterDto} from './dto/get-parameter.dto'
 import { response } from 'express';
 
 
-@ApiTags('Params')
-@Controller('params')
-export class ParamsController {
-  constructor(private readonly paramsService: ParamsService) {}
+@ApiTags('Parameters')
+@Controller('parameters')
+export class ParametersController {
+  constructor(private readonly parametersService: ParametersService) {}
 
   @Post()
  @ApiCreatedResponse({
   description : 'Devuelve un arreglo de parametros',
-  type : CreateParamDto,
+  type : CreateParameterDto,
  })
  @ApiBadRequestResponse({
   description: 'No puede estar vacio los campos',
@@ -48,13 +48,13 @@ export class ParamsController {
   },
 })
 async create(
-  @Body() CreateParamDto : CreateParamDto,
+  @Body() CreateParameterDto : CreateParameterDto,
   @Res() response,
 ){
   try {
-    const param = 
-    await this.paramsService.create(CreateParamDto);
-    return response.status(HttpStatus.CREATED).json(param)
+    const parameter = 
+    await this.parametersService.create(CreateParameterDto);
+    return response.status(HttpStatus.CREATED).json(parameter)
   } catch (e) {
     throw e;
   }
@@ -66,14 +66,14 @@ async create(
   @ApiQuery({ name: 'pageSize', type: 'number', required: true, example: 10 })
   @ApiOkResponse({
     description: 'Devuelve un arreglo de documentos segun la paginación',
-    type: getParamsDto,
+    type: getParametersDto,
   })
   async findAll(
     @Query() { pageNumber, pageSize }: PaginationQueryParamsDto,
     @Res() response,
   ) {
   try {
-    const data = await this.paramsService.findAll({
+    const data = await this.parametersService.findAll({
       pageNumber: +pageNumber,
       pageSize: + pageSize,
     });
@@ -93,23 +93,23 @@ async create(
   })
   @ApiOkResponse({
     description: 'Devuelve un parametro segun el id',
-    type: getParamDto,
+    type: getParameterDto,
   })
   @ApiNotFoundResponse({
-    description: 'No se encontro el parametro',
+    description: 'No se encontro el parameteretro',
     schema: {
       type: 'object',
       properties: {
         statusCode: { type: 'number', example: 404 },
         message: { type: 'string', example: 'Not Found' },
-        error: { type: 'string', example: 'parametro not found with id: 1' },
+        error: { type: 'string', example: 'parameteretro not found with id: 1' },
       },
     },
   })
   async findOne(@Param('id') id: string, @Res() response ) {
     try {
-        const param = await this.paramsService.findOne(+id);
-        response.status(HttpStatus.OK).json(param)
+        const parameter = await this.parametersService.findOne(+id);
+        response.status(HttpStatus.OK).json(parameter)
     } catch (e) {
       throw e
     }
@@ -121,7 +121,7 @@ async create(
   @Patch(':id')
   @ApiOkResponse({
     description: 'Devuelve un digito 1 si se actualiza el parametro',
-    type: UpdateParamDto,
+    type: UpdateParameterDto,
   })
   @ApiNotFoundResponse({
     description: 'No se encontro el parametro',
@@ -149,18 +149,18 @@ async create(
   })
 
   @ApiBody({
-    type: UpdateParamDto,
+    type: UpdateParameterDto,
     description: 'Cuerpo de la solicitud',
   })
   async update(
     @Param('id') id: number, 
-    @Body() body: UpdateParamDto, 
+    @Body() body: UpdateParameterDto, 
     @Res()response,
     ) {
     try {
       return response
       .status(HttpStatus.OK)
-      .json(await this.paramsService.update(+id, {...body}));
+      .json(await this.parametersService.update(+id, {...body}));
     } catch (e) {
       throw e;
     }

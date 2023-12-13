@@ -1,31 +1,31 @@
 import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
-import { CreateParamDto } from './dto/create-param.dto';
-import { UpdateParamDto } from './dto/update-param.dto';
+import { CreateParameterDto } from './dto/create-parameter.dto';
+import { UpdateParameterDto } from './dto/update-parameter.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { Param } from './entities/param.entity'  
+import { Parameter } from './entities/parameter.entity'  
 import { PaginationQueryParamsDto } from '@/shared/dtos/pagination.dto';
 import  {
-  generatesParamRecord,
-  getParamsRecords,
-  getParamRecord,
-  generatesUpdatedParamRecord
-} from  './mappers/param.mapper'
+  generatesParameterRecord,
+  getParametersRecords,
+  getParameterRecord,
+  generatesUpdatedParameterRecord
+} from  './mappers/parameter.mapper'
 import { NotFoundError } from 'rxjs';
 import { checkProperties } from '@/shared/utils/checkProperties';
 
 @Injectable()
-export class ParamsService {
+export class ParametersService {
   constructor(
-    @InjectRepository(Param)
-    private readonly paramRepository : Repository<Param>
+    @InjectRepository(Parameter)
+    private readonly parameterRepository : Repository<Parameter>
   ){}
 
 
   async create({
     name,
     description
-  }: CreateParamDto) {
+  }: CreateParameterDto) {
 
     try {
       if(!name){
@@ -36,11 +36,11 @@ export class ParamsService {
         throw new BadRequestException('La descripcion debe ser un string no vacío')
       }
       
-      const param = await this.paramRepository.save({
+      const param = await this.parameterRepository.save({
         name,
       description
     });
-    return generatesParamRecord (param)
+    return generatesParameterRecord (param)
     } catch (e) {
       throw e;
     }
@@ -48,11 +48,11 @@ export class ParamsService {
 
   async findAll({ pageNumber, pageSize }: PaginationQueryParamsDto) {
     try {
-      const [params, total] = await this.paramRepository.findAndCount({
+      const [params, total] = await this.parameterRepository.findAndCount({
         skip: (pageNumber - 1) * pageSize,
         take: pageSize,
       });
-      return getParamsRecords(params, total);
+      return getParametersRecords(params, total);
     } catch (e) {
       throw e;
     }
@@ -60,33 +60,33 @@ export class ParamsService {
 
   async findOne(id: number) {
   try { 
-      const param = await this.paramRepository.findOne({ where : {id:id}});
+      const param = await this.parameterRepository.findOne({ where : {id:id}});
       if(!param) throw new NotFoundException(`Parametro con el id ${id} no encontrado`);
-      return getParamRecord(param);
+      return getParameterRecord(param);
   } catch (e) {
     throw e
   }
   }
 
-  async update(id: number, {name, description}: UpdateParamDto) {
+  async update(id: number, {name, description}: UpdateParameterDto) {
     try {
-      const paramExists = await this.paramRepository.findOne({where : {id: id}});
-      console.log('existe' ,paramExists)
-      if(!paramExists){
+      const parameterExists = await this.parameterRepository.findOne({where : {id: id}});
+      console.log('existe' ,parameterExists)
+      if(!parameterExists){
         throw new NotFoundException(`Parametro con id ${id} no encontrado`)
       }
       const propertiesToUpdate = checkProperties({
         name,
         description
-      }) as unknown as Param;
+      }) as unknown as Parameter;
 
       if(Object.keys(propertiesToUpdate).length === 0)
         throw new BadRequestException('No properties to update');
-        const param =await this.paramRepository.update(
+        const param =await this.parameterRepository.update(
           id,
           propertiesToUpdate
         );
-        return generatesUpdatedParamRecord(param);
+        return generatesUpdatedParameterRecord(param);
     } catch (e) {
       throw e;
     }

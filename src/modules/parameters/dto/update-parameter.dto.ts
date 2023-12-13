@@ -1,13 +1,13 @@
 import { ApiProperty, OmitType } from '@nestjs/swagger';
-import { Param } from '../entities/param.entity'
+import { Parameter } from '../entities/parameter.entity'
 
-export class UpdateParamDto extends OmitType(Param, [
+export class UpdateParameterDto extends OmitType(Parameter, [
     'id',
     'created_at',
     'updated_at',
 ]) {}
 
-export class UpdatedParamDto {
+export class UpdatedParameterDto {
     @ApiProperty({
         type: 'number',
         example: { rowsAffected: 1 },

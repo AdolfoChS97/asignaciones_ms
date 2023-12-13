@@ -9,6 +9,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import {
   generatesNotificationRecord,
+  generatesUpdatedNotificationRecord,
   getNotificationRecord,
   getNotificationsRecords,
 } from './mappers/notification.mapper';
@@ -19,6 +20,9 @@ import {
 } from './dto/get-notification.dto';
 import { applyParamsToSearch } from '@/shared/utils/applyParamsToSearch';
 import { ApprovementsService } from '@modules/approvements/approvements.service';
+import { UpdateNotificationDto } from './dto/update-notification.dto';
+import { checkProperties } from '@/shared/utils/checkProperties';
+import { isBoolean } from 'class-validator';
 
 @Injectable()
 export class NotificationsService {
@@ -119,6 +123,75 @@ export class NotificationsService {
         throw new NotFoundException('La notificación no existe');
 
       return getNotificationRecord(notification);
+    } catch (e) {
+      throw e;
+    }
+  }
+
+  async update(
+    id: number,
+    {
+      approvement,
+      emitterId,
+      rolId,
+      title,
+      description,
+      status,
+    }: UpdateNotificationDto,
+  ) {
+    try {
+      isBoolean(status);
+
+      if (!approvement && !Number.isInteger(+approvement))
+        throw new BadRequestException(
+          'approvement is required and should be a number',
+        );
+
+      if (!emitterId && !Number.isInteger(+emitterId))
+        throw new BadRequestException(
+          'emitterId is required and should be a number',
+        );
+
+      if (!rolId && !Number.isInteger(+rolId))
+        throw new BadRequestException(
+          'rolId is required and should be a number',
+        );
+
+      if (!title) throw new BadRequestException('title is required');
+
+      if (!description)
+        throw new BadRequestException('description is required');
+
+      if (!status) throw new BadRequestException('status is required');
+
+      const notification = await this.notificationRepository
+        .createQueryBuilder('notification')
+        .innerJoinAndSelect('notification.approvement', 'approvement')
+        .select(['notification', 'approvement.id'])
+        .where('notification.id = :id', { id: id })
+        .getOne();
+
+      if (!notification)
+        throw new NotFoundException('La notificación no existe');
+
+      const propertiesToUpdate = checkProperties({
+        approvement,
+        emitterId,
+        rolId,
+        title,
+        description,
+        status,
+      }) as unknown as Notification;
+
+      if (Object.keys(propertiesToUpdate).length === 0)
+        throw new BadRequestException('No properties to update');
+
+      const updatedNotification = await this.notificationRepository.update(
+        id,
+        propertiesToUpdate,
+      );
+
+      return generatesUpdatedNotificationRecord(updatedNotification);
     } catch (e) {
       throw e;
     }

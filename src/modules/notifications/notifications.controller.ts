@@ -4,6 +4,7 @@ import {
   Get,
   HttpStatus,
   Param,
+  Patch,
   Post,
   Query,
   Res,
@@ -28,7 +29,7 @@ import {
   GetNotificationDto,
   GetNotificationsRecords,
 } from './dto/get-notification.dto';
-import { Approvement } from '../approvements/entities/approvement.entity';
+import { UpdateNotificationDto, UpdatedNotificationDto } from './dto/update-notification.dto';
 
 @ApiTags('Notifications')
 @Controller('notifications')
@@ -157,15 +158,19 @@ export class NotificationsController {
     }: GetNotificationsDto,
     @Res() response,
   ) {
-    return response.status(HttpStatus.OK).json(
-      await this.notificationsService.findAll({
-        pageNumber: +pageNumber,
-        pageSize: +pageSize,
-        approvement: +approvement,
-        rolId: +rolId,
-        emitterId: +emitterId,
-      }),
-    );
+    try {
+      return response.status(HttpStatus.OK).json(
+        await this.notificationsService.findAll({
+          pageNumber: +pageNumber,
+          pageSize: +pageSize,
+          approvement: +approvement,
+          rolId: +rolId,
+          emitterId: +emitterId,
+        }),
+      );
+    } catch (e) {
+      throw e;
+    }
   }
 
   @Get(':id')
@@ -230,11 +235,66 @@ export class NotificationsController {
     { approvement, rolId, emitterId }: GetNotificationDto,
     @Res() response,
   ) {
-    const { data, status } = await this.notificationsService.findOne(+id, {
-      approvement: +approvement,
-      rolId: +rolId,
-      emitterId: +emitterId,
-    });
-    return response.status(status).json(data);
+    try {
+      const { data, status } = await this.notificationsService.findOne(+id, {
+        approvement: +approvement,
+        rolId: +rolId,
+        emitterId: +emitterId,
+      });
+      return response.status(status).json(data);
+    } catch (e) {
+      throw e;
+    }
+  }
+
+  @Patch(':id')
+  @ApiParam({
+    name: 'id',
+    type: 'number',
+    example: 1,
+    description: 'ID de la notificación',
+    required: true,
+  })
+  @ApiOkResponse({
+    type: UpdatedNotificationDto,
+    description: 'Ejemplo de respuesta al actualizar la notificación',
+  })
+  @ApiNotFoundResponse({
+    description: 'Notificación no encontrada',
+    schema: {
+      type: 'object',
+      properties: {
+        message: {
+          type: 'string',
+          example: 'Parametro no existente',
+          description: 'Mensaje de error',
+        },
+        statusCode: {
+          type: 'number',
+          example: 404,
+          description: 'Código de error',
+        },
+        error: {
+          type: 'string',
+          example: 'Not Found',
+          description: 'Nombre del error',
+        },
+      },
+    },
+  })
+  async update(
+    @Param('id') id: string,
+    @Body() body: UpdateNotificationDto,
+    @Res() response,
+  ) {
+    try {
+      const { status, data } = await this.notificationsService.update(
+        +id,
+        body,
+      );
+      return response.status(status).json(data);
+    } catch (e) {
+      throw e;
+    }
   }
 }

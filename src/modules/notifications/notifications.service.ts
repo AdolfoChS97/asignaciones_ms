@@ -3,7 +3,12 @@ import { Notification } from './entities/notification.entity';
 import { CreateNotificationDto } from './dto/create-notification.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { generatesNotificationRecord } from './mappers/notification.mapper';
+import {
+  generatesNotificationRecord,
+  getNotificationsRecords,
+} from './mappers/notification.mapper';
+import { GetNotificationsDto } from './dto/get-notification.dto';
+import { applyParamsToSearch } from '@/shared/utils/applyParamsToSearch';
 
 @Injectable()
 export class NotificationsService {
@@ -42,6 +47,27 @@ export class NotificationsService {
           emitterId,
           rolId,
           title,
+        }),
+      );
+    } catch (e) {
+      throw e;
+    }
+  }
+
+  async findAll(queryParams: GetNotificationsDto) {
+    try {
+      const { pageNumber, pageSize, ...rest } = queryParams;
+      const options = {
+        skip: (pageNumber - 1) * pageSize,
+        take: pageSize,
+        where: {},
+      };
+
+      const searchParams = applyParamsToSearch(rest, options);
+
+      return getNotificationsRecords(
+        await this.notificationRepository.findAndCount({
+          ...searchParams,
         }),
       );
     } catch (e) {

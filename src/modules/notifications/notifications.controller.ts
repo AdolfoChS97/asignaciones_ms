@@ -1,4 +1,12 @@
-import { Body, Controller, Post, Res } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  HttpStatus,
+  Post,
+  Query,
+  Res,
+} from '@nestjs/common';
 import { NotificationsService } from './notifications.service';
 import {
   CreateNotificationDto,
@@ -8,8 +16,13 @@ import {
   ApiBadRequestResponse,
   ApiBody,
   ApiCreatedResponse,
+  ApiQuery,
   ApiTags,
 } from '@nestjs/swagger';
+import {
+  GetNotificationsDto,
+  GetNotificationDto,
+} from './dto/get-notification.dto';
 
 @ApiTags('Notifications')
 @Controller('notifications')
@@ -85,5 +98,63 @@ export class NotificationsController {
     } catch (e) {
       throw e;
     }
+  }
+
+  @Get()
+  @ApiQuery({
+    name: 'pageNumber',
+    type: 'number',
+    example: 1,
+    description: 'Número de página',
+    required: true,
+  })
+  @ApiQuery({
+    name: 'pageSize',
+    type: 'number',
+    example: 10,
+    description: 'Numero de registros por pagina',
+    required: true,
+  })
+  @ApiQuery({
+    name: 'approvementId',
+    type: 'number',
+    example: 1,
+    description: 'ID de la solicitud de aprobación',
+    required: false,
+  })
+  @ApiQuery({
+    name: 'rolId',
+    type: 'number',
+    example: 1,
+    description: 'ID del rol del usuario que recibe la notificación',
+    required: false,
+  })
+  @ApiQuery({
+    name: 'emitterId',
+    type: 'number',
+    example: 1,
+    description: 'ID del usuario que envía la notificación',
+    required: false,
+  })
+  async findAll(
+    @Query()
+    {
+      pageNumber,
+      pageSize,
+      approvementId,
+      rolId,
+      emitterId,
+    }: GetNotificationsDto,
+    @Res() response,
+  ) {
+    return response.status(HttpStatus.OK).json(
+      await this.notificationsService.findAll({
+        pageNumber: +pageNumber,
+        pageSize: +pageSize,
+        approvementId: +approvementId,
+        rolId: +rolId,
+        emitterId: +emitterId,
+      }),
+    );
   }
 }

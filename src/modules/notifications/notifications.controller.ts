@@ -28,6 +28,7 @@ import {
   GetNotificationDto,
   GetNotificationsRecords,
 } from './dto/get-notification.dto';
+import { Approvement } from '../approvements/entities/approvement.entity';
 
 @ApiTags('Notifications')
 @Controller('notifications')
@@ -39,7 +40,7 @@ export class NotificationsController {
     schema: {
       type: 'object',
       properties: {
-        approvementId: {
+        approvement: {
           type: 'number',
           example: 1,
           description: 'ID de la solicitud de aprobación',
@@ -121,7 +122,7 @@ export class NotificationsController {
     required: true,
   })
   @ApiQuery({
-    name: 'approvementId',
+    name: 'approvement',
     type: 'number',
     example: 1,
     description: 'ID de la solicitud de aprobación',
@@ -150,7 +151,7 @@ export class NotificationsController {
     {
       pageNumber,
       pageSize,
-      approvementId,
+      approvement,
       rolId,
       emitterId,
     }: GetNotificationsDto,
@@ -160,7 +161,7 @@ export class NotificationsController {
       await this.notificationsService.findAll({
         pageNumber: +pageNumber,
         pageSize: +pageSize,
-        approvementId: +approvementId,
+        approvement: +approvement,
         rolId: +rolId,
         emitterId: +emitterId,
       }),
@@ -176,7 +177,7 @@ export class NotificationsController {
     required: true,
   })
   @ApiQuery({
-    name: 'approvementId',
+    name: 'approvement',
     type: 'number',
     example: 1,
     description: 'ID de la solicitud de aprobación',
@@ -226,11 +227,11 @@ export class NotificationsController {
   async findOne(
     @Param('id') id: string,
     @Query()
-    { approvementId, rolId, emitterId }: GetNotificationDto,
+    { approvement, rolId, emitterId }: GetNotificationDto,
     @Res() response,
   ) {
     const { data, status } = await this.notificationsService.findOne(+id, {
-      approvementId: +approvementId,
+      approvement: +approvement,
       rolId: +rolId,
       emitterId: +emitterId,
     });

@@ -29,15 +29,15 @@ export class NotificationsService {
   ) {}
 
   async create({
-    approvementId,
+    approvement,
     emitterId,
     rolId,
     title,
   }: CreateNotificationDto) {
     try {
-      if (!approvementId && !Number.isInteger(+approvementId))
+      if (!approvement && !Number.isInteger(+approvement))
         throw new BadRequestException(
-          'approvementId is required and should be a number',
+          'approvement is required and should be a number',
         );
 
       if (!emitterId && !Number.isInteger(+emitterId))
@@ -54,7 +54,7 @@ export class NotificationsService {
 
       return await generatesNotificationRecord(
         await this.notificationRepository.save({
-          approvementId,
+          approvement,
           emitterId,
           rolId,
           title,
@@ -76,11 +76,16 @@ export class NotificationsService {
 
       const searchParams = applyParamsToSearch(rest, options);
 
-      return getNotificationsRecords(
-        await this.notificationRepository.findAndCount({
-          ...searchParams,
-        }),
-      );
+      const notifications = await this.notificationRepository
+        .createQueryBuilder('notification')
+        .innerJoinAndSelect('notification.approvement', 'approvement')
+        .select(['notification', 'approvement.id'])
+        .skip(options.skip)
+        .take(options.take)
+        .where(searchParams.where)
+        .getMany();
+
+      return getNotificationsRecords(notifications);
     } catch (e) {
       throw e;
     }
@@ -88,25 +93,27 @@ export class NotificationsService {
 
   async findOne(
     id: number,
-    { approvementId, rolId, emitterId }: GetNotificationDto,
+    { approvement, rolId, emitterId }: GetNotificationDto,
   ): Promise<GetNotificationRecord> {
     try {
-      await this.approvementService.findOne(approvementId, {});
+      await this.approvementService.findOne(+approvement, {});
 
       const options = { where: {} };
       const searchParams = applyParamsToSearch(
         {
           rolId: rolId,
           id: id,
-          approvementId: approvementId,
+          approvement: approvement,
           emitterId: emitterId,
         },
         options,
       );
-
-      const notification = await this.notificationRepository.findOne({
-        ...searchParams,
-      });
+      const notification = await this.notificationRepository
+        .createQueryBuilder('notification')
+        .innerJoinAndSelect('notification.approvement', 'approvement')
+        .select(['notification', 'approvement.id'])
+        .where(searchParams.where)
+        .getOne();
 
       if (!notification)
         throw new NotFoundException('La notificación no existe');

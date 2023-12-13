@@ -11,8 +11,7 @@ export function generatesNotificationRecord(notification) {
 export function getNotificationsRecords(
   notifications,
 ): GetNotificationsRecords {
-  const [data, total] = notifications;
-  return { data: data, meta: total, status: HttpStatus.OK };
+  return { data: notifications, status: HttpStatus.OK };
 }
 
 export function getNotificationRecord(notification): GetNotificationRecord {

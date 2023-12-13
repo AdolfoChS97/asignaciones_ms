@@ -6,10 +6,10 @@ import {
   PartialType,
   PickType,
 } from '@nestjs/swagger';
-import { HttpServer, HttpStatus } from '@nestjs/common';
+import { HttpStatus } from '@nestjs/common';
 
 class QueryParamsNotification extends PickType(Notification, [
-  'approvementId',
+  'approvement',
   'emitterId',
   'rolId',
 ]) {}
@@ -27,9 +27,6 @@ export class GetNotificationDto extends IntersectionType(
 export class GetNotificationsRecords {
   @ApiProperty({ type: [Notification], description: 'Lista de notificaciones' })
   data: Notification[];
-
-  @ApiProperty({ type: Number, description: 'Total de notificaciones' })
-  meta: number;
 
   @ApiProperty({ type: Number, description: 'Estatus de la petición' })
   status: HttpStatus.OK;

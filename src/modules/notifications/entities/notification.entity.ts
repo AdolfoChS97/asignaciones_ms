@@ -1,5 +1,12 @@
+import { Approvement } from '@/modules/approvements/entities/approvement.entity';
 import { ApiProperty } from '@nestjs/swagger';
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  Entity,
+  JoinColumn,
+  ManyToOne,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 
 @Entity({ name: 'Notifications' })
 export class Notification {
@@ -18,8 +25,9 @@ export class Notification {
     type: 'number',
     required: true,
   })
-  @Column({ type: 'integer', nullable: false })
-  approvementId: number;
+  @ManyToOne(() => Approvement, (approvement) => approvement.notifications)
+  @JoinColumn({ name: 'approvement' })
+  approvement: number;
 
   @ApiProperty({
     description: 'ID del usuario que envía la notificación',

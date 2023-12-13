@@ -3,7 +3,7 @@ import { Notification } from '../entities/notification.entity';
 import { HttpStatus } from '@nestjs/common';
 
 export class CreateNotificationDto extends PickType(Notification, [
-  'approvementId',
+  'approvement',
   'emitterId',
   'rolId',
   'title',

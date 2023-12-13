@@ -52,7 +52,7 @@ export class ObservationsService {
     }
   }
 
-  async create({ approvement, detail }: CreateObservationDto) {
+  async create({ approvement, detail, userId }: CreateObservationDto) {
     try {
       if (!detail) throw new BadRequestException('detail is required');
 
@@ -62,6 +62,7 @@ export class ObservationsService {
       const observation = await this.observationRepository.create({
         approvement,
         detail,
+        userId,
       });
 
       return generatesObservationRecord(
@@ -72,7 +73,10 @@ export class ObservationsService {
     }
   }
 
-  async update(id: number, { approvement, detail }: UpdateObservationDto) {
+  async update(
+    id: number,
+    { approvement, detail, userId }: UpdateObservationDto,
+  ) {
     try {
       if (!detail) throw new BadRequestException('detail is required');
 
@@ -92,6 +96,7 @@ export class ObservationsService {
       const propertiesToUpdate = checkProperties({
         detail,
         approvement,
+        userId,
       }) as unknown as Observation;
 
       if (Object.keys(propertiesToUpdate).length === 0)

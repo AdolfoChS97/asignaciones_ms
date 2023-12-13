@@ -76,7 +76,7 @@ export class Evaluation {
   @ApiProperty({
     example: new Date(),
     type: 'date',
-    description: 'Día de actualización del documento',
+    description: 'Día de actualización de la evaluacion',
     required: false,
   })
   @Column({ type: 'timestamptz', default: new Date() })

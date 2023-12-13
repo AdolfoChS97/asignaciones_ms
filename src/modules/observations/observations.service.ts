@@ -56,9 +56,6 @@ export class ObservationsService {
     try {
       if (!detail) throw new BadRequestException('detail is required');
 
-      if (!Number.isInteger(approvement))
-        throw new BadRequestException('approvement must be a number');
-
       const observation = await this.observationRepository.create({
         approvement,
         detail,

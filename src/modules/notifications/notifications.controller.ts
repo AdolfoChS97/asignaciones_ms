@@ -16,12 +16,14 @@ import {
   ApiBadRequestResponse,
   ApiBody,
   ApiCreatedResponse,
+  ApiOkResponse,
   ApiQuery,
   ApiTags,
 } from '@nestjs/swagger';
 import {
   GetNotificationsDto,
   GetNotificationDto,
+  GetNotificationsRecords,
 } from './dto/get-notification.dto';
 
 @ApiTags('Notifications')
@@ -135,6 +137,10 @@ export class NotificationsController {
     example: 1,
     description: 'ID del usuario que envía la notificación',
     required: false,
+  })
+  @ApiOkResponse({
+    type: GetNotificationsRecords,
+    description: 'Ejemplo de respuesta al obtener las notificaciones',
   })
   async findAll(
     @Query()

@@ -1,6 +1,7 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { IsBoolean, IsNumber, IsNotEmpty } from 'class-validator';
 import { Column, Entity, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
+import { Notification } from '@/modules/notifications/entities/notification.entity';
 import { Document } from '@/modules/documents/entities/document.entity';
 import { Observation } from '@/modules/observations/entities/observations.entity';
 import { Evaluation } from '@/modules/evaluations/entities/evaluation.entity';
@@ -69,6 +70,18 @@ export class Approvement {
     cascade: ['insert', 'update'],
   })
   evaluations?: Evaluation[];
+
+  @ApiProperty({
+    description:
+      'Objeto que insertara el registro de la Notificación en su tabla pertinente',
+    required: false,
+    isArray: true,
+    type: () => Notification,
+  })
+  @OneToMany(() => Notification, (notification) => notification.approvement, {
+    cascade: ['insert', 'update'],
+  })
+  notifications?: Notification[];
 
   @ApiProperty({
     description:

@@ -113,8 +113,7 @@ export class ApprovementsService {
         ...searchParams,
       });
 
-      if (!approvement)
-        throw new BadRequestException('No existe la aprobación');
+      if (!approvement) throw new NotFoundException('No existe la aprobación');
 
       return getAprovementRecord(approvement);
     } catch (e) {

@@ -1,20 +1,31 @@
-import { BadRequestException, Injectable } from '@nestjs/common';
+import {
+  BadRequestException,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
 import { Notification } from './entities/notification.entity';
 import { CreateNotificationDto } from './dto/create-notification.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import {
   generatesNotificationRecord,
+  getNotificationRecord,
   getNotificationsRecords,
 } from './mappers/notification.mapper';
-import { GetNotificationsDto } from './dto/get-notification.dto';
+import {
+  GetNotificationDto,
+  GetNotificationRecord,
+  GetNotificationsDto,
+} from './dto/get-notification.dto';
 import { applyParamsToSearch } from '@/shared/utils/applyParamsToSearch';
+import { ApprovementsService } from '@modules/approvements/approvements.service';
 
 @Injectable()
 export class NotificationsService {
   constructor(
     @InjectRepository(Notification)
     private readonly notificationRepository: Repository<Notification>,
+    private readonly approvementService: ApprovementsService,
   ) {}
 
   async create({
@@ -70,6 +81,37 @@ export class NotificationsService {
           ...searchParams,
         }),
       );
+    } catch (e) {
+      throw e;
+    }
+  }
+
+  async findOne(
+    id: number,
+    { approvementId, rolId, emitterId }: GetNotificationDto,
+  ): Promise<GetNotificationRecord> {
+    try {
+      await this.approvementService.findOne(approvementId, {});
+
+      const options = { where: {} };
+      const searchParams = applyParamsToSearch(
+        {
+          rolId: rolId,
+          id: id,
+          approvementId: approvementId,
+          emitterId: emitterId,
+        },
+        options,
+      );
+
+      const notification = await this.notificationRepository.findOne({
+        ...searchParams,
+      });
+
+      if (!notification)
+        throw new NotFoundException('La notificación no existe');
+
+      return getNotificationRecord(notification);
     } catch (e) {
       throw e;
     }

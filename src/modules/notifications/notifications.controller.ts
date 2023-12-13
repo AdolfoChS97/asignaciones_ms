@@ -3,6 +3,7 @@ import {
   Controller,
   Get,
   HttpStatus,
+  Param,
   Post,
   Query,
   Res,
@@ -16,7 +17,9 @@ import {
   ApiBadRequestResponse,
   ApiBody,
   ApiCreatedResponse,
+  ApiNotFoundResponse,
   ApiOkResponse,
+  ApiParam,
   ApiQuery,
   ApiTags,
 } from '@nestjs/swagger';
@@ -162,5 +165,75 @@ export class NotificationsController {
         emitterId: +emitterId,
       }),
     );
+  }
+
+  @Get(':id')
+  @ApiParam({
+    name: 'id',
+    type: 'number',
+    example: 1,
+    description: 'ID de la notificación',
+    required: true,
+  })
+  @ApiQuery({
+    name: 'approvementId',
+    type: 'number',
+    example: 1,
+    description: 'ID de la solicitud de aprobación',
+    required: false,
+  })
+  @ApiQuery({
+    name: 'rolId',
+    type: 'number',
+    example: 1,
+    description: 'ID del rol del usuario que recibe la notificación',
+    required: false,
+  })
+  @ApiQuery({
+    name: 'emitterId',
+    type: 'number',
+    example: 1,
+    description: 'ID del usuario que envía la notificación',
+    required: false,
+  })
+  @ApiOkResponse({
+    type: GetNotificationDto,
+    description: 'Ejemplo de respuesta al obtener la notificación',
+  })
+  @ApiNotFoundResponse({
+    description: 'Notificación no encontrada',
+    schema: {
+      type: 'object',
+      properties: {
+        message: {
+          type: 'string',
+          example: 'Parametro no existente',
+          description: 'Mensaje de error',
+        },
+        statusCode: {
+          type: 'number',
+          example: 404,
+          description: 'Código de error',
+        },
+        error: {
+          type: 'string',
+          example: 'Not Found',
+          description: 'Nombre del error',
+        },
+      },
+    },
+  })
+  async findOne(
+    @Param('id') id: string,
+    @Query()
+    { approvementId, rolId, emitterId }: GetNotificationDto,
+    @Res() response,
+  ) {
+    const { data, status } = await this.notificationsService.findOne(+id, {
+      approvementId: +approvementId,
+      rolId: +rolId,
+      emitterId: +emitterId,
+    });
+    return response.status(status).json(data);
   }
 }

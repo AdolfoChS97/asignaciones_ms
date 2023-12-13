@@ -39,9 +39,6 @@ export class GetNotificationRecord {
   @ApiProperty({ type: [Notification], description: 'Lista de notificaciones' })
   data: Notification[];
 
-  @ApiProperty({ type: Number, description: 'Total de notificaciones' })
-  meta: number;
-
   @ApiProperty({ type: Number, description: 'Estatus de la petición' })
   status: HttpStatus.OK;
 }

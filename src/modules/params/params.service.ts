@@ -1,4 +1,4 @@
-import { BadRequestException, Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
 import { CreateParamDto } from './dto/create-param.dto';
 import { UpdateParamDto } from './dto/update-param.dto';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -7,8 +7,12 @@ import { Param } from './entities/param.entity'
 import { PaginationQueryParamsDto } from '@/shared/dtos/pagination.dto';
 import  {
   generatesParamRecord,
-  getParamsRecords
+  getParamsRecords,
+  getParamRecord,
+  generatesUpdatedParamRecord
 } from  './mappers/param.mapper'
+import { NotFoundError } from 'rxjs';
+import { checkProperties } from '@/shared/utils/checkProperties';
 
 @Injectable()
 export class ParamsService {
@@ -36,7 +40,7 @@ export class ParamsService {
         name,
       description
     });
-    return
+    return generatesParamRecord (param)
     } catch (e) {
       throw e;
     }
@@ -54,15 +58,38 @@ export class ParamsService {
     }
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} param`;
+  async findOne(id: number) {
+  try { 
+      const param = await this.paramRepository.findOne({ where : {id:id}});
+      if(!param) throw new NotFoundException(`Parametro con el id ${id} no encontrado`);
+      return getParamRecord(param);
+  } catch (e) {
+    throw e
+  }
   }
 
-  update(id: number, updateParamDto: UpdateParamDto) {
-    return `This action updates a #${id} param`;
+  async update(id: number, {name, description}: UpdateParamDto) {
+    try {
+      const paramExists = await this.paramRepository.findOne({where : {id: id}});
+      console.log('existe' ,paramExists)
+      if(!paramExists){
+        throw new NotFoundException(`Parametro con id ${id} no encontrado`)
+      }
+      const propertiesToUpdate = checkProperties({
+        name,
+        description
+      }) as unknown as Param;
+
+      if(Object.keys(propertiesToUpdate).length === 0)
+        throw new BadRequestException('No properties to update');
+        const param =await this.paramRepository.update(
+          id,
+          propertiesToUpdate
+        );
+        return generatesUpdatedParamRecord(param);
+    } catch (e) {
+      throw e;
+    }
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} param`;
-  }
 }

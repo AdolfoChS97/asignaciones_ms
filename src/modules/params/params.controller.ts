@@ -6,7 +6,6 @@ import {
   Patch, 
   Param, 
   Query,
-  Delete, 
   Res, 
   HttpStatus } from '@nestjs/common';
 import { ParamsService } from './params.service';
@@ -23,7 +22,8 @@ import {
 } from '@nestjs/swagger';
 import { UpdateParamDto } from './dto/update-param.dto';
 import { PaginationQueryParamsDto } from '@/shared/dtos/pagination.dto';
-import {getParamsDto} from './dto/get-param.dto'
+import {getParamsDto, getParamDto} from './dto/get-param.dto'
+import { response } from 'express';
 
 
 @ApiTags('Params')
@@ -83,23 +83,87 @@ async create(
   }
   }
 
-
-
-
-
-
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.paramsService.findOne(+id);
+  @ApiParam({
+    name: 'id',
+    type: 'number',
+    required: true,
+    example: 1,
+    description: 'Id del parametro',
+  })
+  @ApiOkResponse({
+    description: 'Devuelve un parametro segun el id',
+    type: getParamDto,
+  })
+  @ApiNotFoundResponse({
+    description: 'No se encontro el parametro',
+    schema: {
+      type: 'object',
+      properties: {
+        statusCode: { type: 'number', example: 404 },
+        message: { type: 'string', example: 'Not Found' },
+        error: { type: 'string', example: 'parametro not found with id: 1' },
+      },
+    },
+  })
+  async findOne(@Param('id') id: string, @Res() response ) {
+    try {
+        const param = await this.paramsService.findOne(+id);
+        response.status(HttpStatus.OK).json(param)
+    } catch (e) {
+      throw e
+    }
   }
+
+
+
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateParamDto: UpdateParamDto) {
-    return this.paramsService.update(+id, updateParamDto);
+  @ApiOkResponse({
+    description: 'Devuelve un digito 1 si se actualiza el parametro',
+    type: UpdateParamDto,
+  })
+  @ApiNotFoundResponse({
+    description: 'No se encontro el parametro',
+    schema: {
+      type: 'object',
+      properties: {
+        statusCode: { type: 'number', example: 404 },
+        message: { type: 'string', example: 'Not Found' },
+        error: { type: 'string', example: 'Parametro no encontrada con: 1' },
+      },
+    },
+  })
+  @ApiBadRequestResponse({
+    description: 'No hay propiedades para actulizar',
+    schema: {
+      type: 'object',
+      properties: {
+        statusCode: { type: 'number', example: 400 },
+        message: {
+          type: 'string',
+          example: 'No hay propiedades para actualizar',
+        },
+      },
+    },
+  })
+
+  @ApiBody({
+    type: UpdateParamDto,
+    description: 'Cuerpo de la solicitud',
+  })
+  async update(
+    @Param('id') id: number, 
+    @Body() body: UpdateParamDto, 
+    @Res()response,
+    ) {
+    try {
+      return response
+      .status(HttpStatus.OK)
+      .json(await this.paramsService.update(+id, {...body}));
+    } catch (e) {
+      throw e;
+    }
   }
 
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.paramsService.remove(+id);
-  }
 }

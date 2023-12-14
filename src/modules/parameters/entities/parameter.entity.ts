@@ -31,6 +31,21 @@ name: string;
 @Column({ type: 'varchar' , nullable: false, length: 255 })
 description: string;
 
+@ApiProperty({
+  example: 'Type',
+  description : 'tipo del parametro',
+  type: 'string',
+})
+@Column({ type: 'varchar' , nullable: false, length: 255 })
+type: string;
+
+@ApiProperty({
+  example: 'status',
+  description : 'Estatus  del parametro',
+  type: 'string',
+})
+@Column({ type: 'varchar' , nullable: false, length: 255 })
+status: string;
 
 @ApiProperty({
     example: new Date(),

@@ -23,7 +23,7 @@ import {
 import { UpdateParameterDto } from './dto/update-parameter.dto'
 import { PaginationQueryParamsDto } from '@/shared/dtos/pagination.dto';
 import {getParametersDto, getParameterDto} from './dto/get-parameter.dto'
-import { response } from 'express';
+
 
 
 @ApiTags('Parameters')

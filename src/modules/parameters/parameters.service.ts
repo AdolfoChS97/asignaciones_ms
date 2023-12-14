@@ -11,7 +11,6 @@ import  {
   getParameterRecord,
   generatesUpdatedParameterRecord
 } from  './mappers/parameter.mapper'
-import { NotFoundError } from 'rxjs';
 import { checkProperties } from '@/shared/utils/checkProperties';
 
 @Injectable()
@@ -24,7 +23,9 @@ export class ParametersService {
 
   async create({
     name,
-    description
+    description,
+    status,
+    type
   }: CreateParameterDto) {
 
     try {
@@ -35,10 +36,18 @@ export class ParametersService {
       if(!description){
         throw new BadRequestException('La descripcion debe ser un string no vacío')
       }
+      if(!status){
+        throw new BadRequestException('El estatus debe ser un string no vacío')
+      }
+      if(!type){
+        throw new BadRequestException('El tipo debe ser un string no vacío')
+      }
       
       const param = await this.parameterRepository.save({
         name,
-      description
+      description,
+      status,
+      type
     });
     return generatesParameterRecord (param)
     } catch (e) {
@@ -68,16 +77,27 @@ export class ParametersService {
   }
   }
 
-  async update(id: number, {name, description}: UpdateParameterDto) {
+  async update(id: number, {name, description, status, type}: UpdateParameterDto) {
     try {
       const parameterExists = await this.parameterRepository.findOne({where : {id: id}});
       console.log('existe' ,parameterExists)
       if(!parameterExists){
         throw new NotFoundException(`Parametro con id ${id} no encontrado`)
       }
+
+      if (!status || typeof status !== 'string') {
+        throw new BadRequestException('status is required and should be a string');
+      }
+
+      if (!type || typeof type !== 'string') {
+        throw new BadRequestException('type is required and should be a string');
+      }
+
       const propertiesToUpdate = checkProperties({
         name,
-        description
+        description,
+        status,
+        type
       }) as unknown as Parameter;
 
       if(Object.keys(propertiesToUpdate).length === 0)

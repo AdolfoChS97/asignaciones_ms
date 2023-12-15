@@ -71,11 +71,11 @@ export class DocumentsService {
       const file = (await this.fileService.getFile(fileName)).toString();
       const parsedFile = Mustache.render(file, data);
       return new Promise((resolve, reject) => {
-        Pdf?.create(parsedFile).toFile(async (err, file) => {
+        Pdf?.create(parsedFile).toBuffer(async (err, buffer) => {
           if (err) reject(new InternalServerErrorException(err.message));
           const doc = await this.documentRepository.save({
             name,
-            base64: Buffer.from(file.filename).toString('base64'),
+            base64: buffer.toString('base64'),
             approvement,
             userId,
           });

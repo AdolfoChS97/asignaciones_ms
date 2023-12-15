@@ -52,7 +52,7 @@ export class getApprovementsByQueryParams extends PartialType(
     description: 'Id de la postulación',
   })
   applicationId?: number;
-  
+
   @ApiProperty({
     type: 'number',
     example: 1,

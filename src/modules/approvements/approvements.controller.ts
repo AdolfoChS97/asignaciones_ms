@@ -143,10 +143,7 @@ export class ApprovementsController {
       },
     },
   })
-  async findOne(
-    @Param('id') id: string,
-    @Res() response,
-  ) {
+  async findOne(@Param('id') id: string, @Res() response) {
     try {
       const approvement = await this.approvementsService.findOne(+id);
       response.status(HttpStatus.OK).json(approvement);

@@ -103,13 +103,11 @@ export class EvaluationsService {
       if (!approvement)
         throw new BadRequestException('approvement is required');
 
-      isBoolean(result);
-
       const propertiesToUpdate = checkProperties({
         approvement,
         name,
         description,
-        result,
+        ...(result !== undefined ? { result } : {}),
       }) as unknown as Evaluation;
 
       if (Object.keys(propertiesToUpdate).length === 0)

@@ -1,6 +1,7 @@
 import {
   BadRequestException,
   Injectable,
+  InternalServerErrorException,
   NotFoundException,
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -69,15 +70,17 @@ export class DocumentsService {
     try {
       const file = (await this.fileService.getFile(fileName)).toString();
       const parsedFile = Mustache.render(file, data);
-      Pdf?.create(parsedFile).toBuffer(async (err, buffer) => {
-        if (err) throw err;
-        const doc = await this.documentRepository.save({
-          name,
-          base64: buffer.toString('base64'),
-          approvement,
-          userId,
+      return new Promise((resolve, reject) => {
+        Pdf?.create(parsedFile).toBuffer(async (err, buffer) => {
+          if (err) reject(new InternalServerErrorException(err.message));
+          const doc = await this.documentRepository.save({
+            name,
+            base64: buffer.toString('base64'),
+            approvement,
+            userId,
+          });
+          resolve(generatesDocumentRecord(doc));
         });
-        return generatesDocumentRecord(doc);
       });
     } catch (e) {
       throw e;

@@ -2,8 +2,8 @@ import { HttpStatus } from '@nestjs/common';
 import { createApprovement } from '../dto/create-approvements.dto';
 import { UpdatedApprovementDto } from '../dto/update-approvements.dto';
 import {
-  getAprovementsDto,
-  getAprovementDto,
+  GetApprovementRecords,
+  GetApprovementRecord,
 } from '../dto/get-approvements.dto';
 
 export function generatesApprovementRecord(approvement): createApprovement {
@@ -17,10 +17,10 @@ export function generatesUpdatedpprovementRecord(
   return { data: { rowsAffected: affected }, status: HttpStatus.OK };
 }
 
-export function getAprovementRecords(approvements, total): getAprovementsDto {
-  return { data: approvements, meta: total, status: HttpStatus.OK };
+export function getApprovementRecords(approvements): GetApprovementRecords {
+  return { data: approvements, status: HttpStatus.OK };
 }
 
-export function getAprovementRecord(approvement): getAprovementDto {
+export function getApprovementRecord(approvement): GetApprovementRecord {
   return { data: approvement, status: HttpStatus.OK };
 }

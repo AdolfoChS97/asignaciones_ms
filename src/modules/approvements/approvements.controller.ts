@@ -26,8 +26,9 @@ import {
   UpdatedApprovementDto,
 } from './dto/update-approvements.dto';
 import {
+  GetApprovementRecords,
   getApprovementsByQueryParams,
-  getAprovementDto,
+  GetApprovementRecord,
 } from './dto/get-approvements.dto';
 
 @Controller('approvements')
@@ -81,7 +82,7 @@ export class ApprovementsController {
   })
   @ApiOkResponse({
     description: 'Devuelve un object de aprobaciones segun la pagina',
-    type: getAprovementDto,
+    type: GetApprovementRecords,
   })
   async findAll(
     @Query()
@@ -116,22 +117,9 @@ export class ApprovementsController {
     example: 1,
     description: 'Id de la aprobación',
   })
-  @ApiQuery({ name: 'rolId', type: 'number', required: false, example: 1 })
-  @ApiQuery({
-    name: 'applicationId',
-    type: 'number',
-    required: false,
-    example: 1,
-  })
-  @ApiQuery({
-    name: 'userId',
-    type: 'number',
-    required: false,
-    example: 1,
-  })
   @ApiOkResponse({
     description: 'Devuelve una aprobación segun el id',
-    type: getAprovementDto,
+    type: GetApprovementRecord,
   })
   @ApiBadRequestResponse({
     description: 'NO se encontro la aprobación',
@@ -155,18 +143,9 @@ export class ApprovementsController {
       },
     },
   })
-  async findOne(
-    @Param('id') id: string,
-    @Query()
-    { rolId, applicationId, userId }: getApprovementsByQueryParams,
-    @Res() response,
-  ) {
+  async findOne(@Param('id') id: string, @Res() response) {
     try {
-      const approvement = await this.approvementsService.findOne(+id, {
-        rolId,
-        applicationId,
-        userId,
-      });
+      const approvement = await this.approvementsService.findOne(+id);
       response.status(HttpStatus.OK).json(approvement);
     } catch (e) {
       throw e;

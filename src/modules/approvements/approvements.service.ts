@@ -13,8 +13,8 @@ import {
 import { Approvement } from './entities/approvement.entity';
 import {
   generatesApprovementRecord,
-  getAprovementRecords,
-  getAprovementRecord,
+  getApprovementRecords,
+  getApprovementRecord,
   generatesUpdatedpprovementRecord,
 } from './mappers/approvements.mappers';
 import { checkProperties } from '@/shared/utils/checkProperties';
@@ -89,33 +89,70 @@ export class ApprovementsService {
       };
 
       const searchParams = applyParamsToSearch(rest, options);
-      console.log(searchParams);
-      const [approvements, total] =
-        await this.approvementRepository.findAndCount({ ...searchParams });
-      return getAprovementRecords(approvements, total);
+
+      const approvements = await this.approvementRepository
+        .createQueryBuilder('approvement')
+        .innerJoinAndSelect('approvement.documents', 'documents')
+        .innerJoinAndSelect('approvement.evaluations', 'evaluations')
+        .innerJoinAndSelect('approvement.observations', 'observations')
+        .select(['approvement', 'documents', 'evaluations', 'observations'])
+        .skip(options.skip)
+        .take(options.take)
+        .where(searchParams.where)
+        .getMany();
+
+      return getApprovementRecords(approvements);
     } catch (e) {
       throw e;
     }
   }
 
-  async findOne(
-    id: number,
-    { rolId, applicationId, userId }: getApprovementsByQueryParams,
-  ) {
+  async findOne(id: number) {
     try {
       const options = { where: {} };
-      const searchParams = applyParamsToSearch(
-        { rolId: rolId, applicationId: applicationId, userId: userId, id: id },
-        options,
-      );
+      const searchParams = applyParamsToSearch({ id: id }, options);
 
-      const approvement = await this.approvementRepository.findOne({
-        ...searchParams,
-      });
+      const approvement = await this.approvementRepository
+        .createQueryBuilder('approvement')
+        .innerJoinAndSelect('approvement.documents', 'documents')
+        .innerJoinAndSelect('approvement.evaluations', 'evaluations')
+        .innerJoinAndSelect('approvement.observations', 'observations')
+        .select(['approvement', 'documents', 'evaluations', 'observations'])
+        .where(searchParams.where)
+        .getOne();
+
+      // const approvement = await this.approvementRepository.manager.query(
+      //   `
+      //   select
+      //     a.id as approvementId,
+      //     a."applicationId",
+      //     a."userId",
+      //     a."rolId",
+      //     a."endorsement",
+      //     a."status",
+      //     a."description",
+      //     d."userId" as d_userId,
+      //     d."name" as d_name,
+      //     d."base64" as d_base64,
+      //     e."userId" as e_userId,
+      //     e."name" as e_name,
+      //     e."description" as e_description,
+      //     e."result" as e_result,
+      //     o."userId" as o_userId,
+      //     o."detail" as o_detail
+      //   from "Approvements" a
+      //     inner join "Documents" d on a.id = d."approvementId"
+      //     inner join "Evaluations" e on a.id = e."approvementId"
+      //     inner join "Observations" o ON a.id = o."approvementId"
+      //   where a.id = $1`,
+      //   [id],
+      // );
+
+      // console.log('query', approvement);
 
       if (!approvement) throw new NotFoundException('No existe la aprobación');
 
-      return getAprovementRecord(approvement);
+      return getApprovementRecord(approvement);
     } catch (e) {
       throw e;
     }

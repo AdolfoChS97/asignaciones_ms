@@ -5,6 +5,7 @@ import {
 } from '@nestjs/common';
 import { CreateParameterDto } from './dto/create-parameter.dto';
 import { UpdateParameterDto } from './dto/update-parameter.dto';
+import { GetParameterByGroup } from './dto/get-parameter.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Parameter } from './entities/parameter.entity';
@@ -16,6 +17,10 @@ import {
   generatesUpdatedParameterRecord,
 } from './mappers/parameter.mapper';
 import { checkProperties } from '@/shared/utils/checkProperties';
+import { isBoolean } from '@shared/utils/isBoolean';
+import { applyParamsToSearch } from '@/shared/utils/applyParamsToSearch';
+import { object } from 'joi';
+
 
 @Injectable()
 export class ParametersService {
@@ -24,7 +29,7 @@ export class ParametersService {
     private readonly parameterRepository: Repository<Parameter>,
   ) {}
 
-  async create({ name, description, status, type }: CreateParameterDto) {
+  async create({ name, description, statusParam, type }: CreateParameterDto) {
     try {
       if (!name) {
         throw new BadRequestException('El nombre de ser un string no vacío');
@@ -35,9 +40,9 @@ export class ParametersService {
           'La descripcion debe ser un string no vacío',
         );
       }
-      if (!status) {
-        throw new BadRequestException('El estatus debe ser un string no vacío');
-      }
+     
+      isBoolean(statusParam);
+
       if (!type) {
         throw new BadRequestException('El tipo debe ser un string no vacío');
       }
@@ -45,7 +50,7 @@ export class ParametersService {
       const param = await this.parameterRepository.save({
         name,
         description,
-        status,
+        statusParam,
         type,
       });
       return generatesParameterRecord(param);
@@ -54,13 +59,18 @@ export class ParametersService {
     }
   }
 
-  async findAll({ pageNumber, pageSize }: PaginationQueryParamsDto) {
+  async findAll( queryParams : GetParameterByGroup ) {
     try {
-      const [params, total] = await this.parameterRepository.findAndCount({
-        skip: (pageNumber - 1) * pageSize,
-        take: pageSize,
-      });
-      return getParametersRecords(params, total);
+      const {pageNumber , pageSize, name, statusParam, type } = queryParams;
+
+      const parameters = await this.parameterRepository.createQueryBuilder('parameter')
+        .where('parameter.name = :name' , { name: `${name?  name: ''   }` })
+        .orWhere('parameter.type = :type' , { type: `${type?  type: ''   }` })
+        .orWhere('parameter.statusParam = :statusParam', { statusParam: statusParam ?? undefined })
+        .getMany()
+
+
+      return getParameterRecord(parameters);
     } catch (e) {
       throw e;
     }
@@ -81,7 +91,7 @@ export class ParametersService {
 
   async update(
     id: number,
-    { name, description, status, type }: UpdateParameterDto,
+    { name, description, statusParam, type }: UpdateParameterDto,
   ) {
     try {
       const parameterExists = await this.parameterRepository.findOne({
@@ -92,9 +102,9 @@ export class ParametersService {
         throw new NotFoundException(`Parametro con id ${id} no encontrado`);
       }
 
-      if (!status || typeof status !== 'string') {
+      if (!statusParam || typeof statusParam !== 'boolean') {
         throw new BadRequestException(
-          'status is required and should be a string',
+          'status is required and should be a true or false',
         );
       }
 

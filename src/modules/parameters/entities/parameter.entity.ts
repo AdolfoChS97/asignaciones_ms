@@ -1,4 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
+import { bool } from 'joi';
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity({ name: 'Parameters' })
@@ -36,12 +37,12 @@ export class Parameter {
   type: string;
 
   @ApiProperty({
-    example: 'status',
+    example: 'true',
     description: 'Estatus  del parametro',
-    type: 'string',
+    type: 'boolean',
   })
-  @Column({ type: 'varchar', nullable: false, length: 255 })
-  status: string;
+  @Column({ type: 'bool', nullable: false})
+  statusParam: boolean;
 
   @ApiProperty({
     example: new Date(),

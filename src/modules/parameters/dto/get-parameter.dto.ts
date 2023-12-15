@@ -1,6 +1,7 @@
-import { ApiProperty } from '@nestjs/swagger';
+import { ApiProperty, PartialType } from '@nestjs/swagger';
 import { HttpStatus } from '@nestjs/common';
 import { Parameter } from '../entities/parameter.entity';
+import { PaginationQueryParamsDto } from '@/shared/dtos/pagination.dto';
 
 export class getParametersDto {
   @ApiProperty({
@@ -10,6 +11,7 @@ export class getParametersDto {
     example: Parameter,
   })
   data: Parameter[];
+
 
   @ApiProperty({
     type: 'number',
@@ -24,6 +26,9 @@ export class getParametersDto {
     description: 'Codigo de la respuesta',
   })
   status: HttpStatus.OK;
+
+
+
 }
 
 export class getParameterDto {
@@ -40,4 +45,31 @@ export class getParameterDto {
     description: 'Codigo de la respuesta',
   })
   status: HttpStatus.OK;
+}
+
+
+export class GetParameterByGroup extends PartialType(
+  PaginationQueryParamsDto
+){
+
+  @ApiProperty({
+    type: 'string',
+    example: 'name',
+    description : 'Nombre del parametro'
+  })
+  name: string;
+
+  @ApiProperty({
+    type: 'string',
+    example: 'type',
+    description : 'Tipo del parametro'
+  })
+  type: string;
+
+  @ApiProperty({
+    type: 'bool',
+    example: 'true',
+    description : 'Estatus del parametro',
+  })
+  statusParam: boolean;
 }

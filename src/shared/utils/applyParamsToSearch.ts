@@ -8,4 +8,3 @@ export function applyParamsToSearch(queryParams, target) {
   }
   return target;
 }
-

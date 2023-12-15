@@ -34,7 +34,7 @@ export class Document {
   })
   @IsNumber()
   @IsNotEmpty()
-  @JoinColumn({ name: 'approvement' })
+  @JoinColumn({ name: 'approvementId' })
   @ManyToOne(() => Approvement, (approvement) => approvement.documents)
   approvement: Approvement;
 

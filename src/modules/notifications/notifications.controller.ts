@@ -29,7 +29,10 @@ import {
   GetNotificationDto,
   GetNotificationsRecords,
 } from './dto/get-notification.dto';
-import { UpdateNotificationDto, UpdatedNotificationDto } from './dto/update-notification.dto';
+import {
+  UpdateNotificationDto,
+  UpdatedNotificationDto,
+} from './dto/update-notification.dto';
 
 @ApiTags('Notifications')
 @Controller('notifications')

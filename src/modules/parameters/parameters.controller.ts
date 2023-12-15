@@ -1,13 +1,14 @@
-import { 
-  Controller, 
-  Get, 
-  Post, 
-  Body, 
-  Patch, 
-  Param, 
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
   Query,
-  Res, 
-  HttpStatus } from '@nestjs/common';
+  Res,
+  HttpStatus,
+} from '@nestjs/common';
 import { ParametersService } from './parameters.service';
 import { CreateParameterDto } from './dto/create-parameter.dto';
 import {
@@ -20,11 +21,9 @@ import {
   ApiQuery,
   ApiTags,
 } from '@nestjs/swagger';
-import { UpdateParameterDto } from './dto/update-parameter.dto'
+import { UpdateParameterDto } from './dto/update-parameter.dto';
 import { PaginationQueryParamsDto } from '@/shared/dtos/pagination.dto';
-import {getParametersDto, getParameterDto} from './dto/get-parameter.dto'
-
-
+import { getParametersDto, getParameterDto } from './dto/get-parameter.dto';
 
 @ApiTags('Parameters')
 @Controller('parameters')
@@ -32,34 +31,32 @@ export class ParametersController {
   constructor(private readonly parametersService: ParametersService) {}
 
   @Post()
- @ApiCreatedResponse({
-  description : 'Devuelve un arreglo de parametros',
-  type : CreateParameterDto,
- })
- @ApiBadRequestResponse({
-  description: 'No puede estar vacio los campos',
-  schema: {
-    type: 'object',
-    properties: {
-      statusCode: { type: 'number', example: 400 },
-      message: { type: 'string', example: 'Bad Request' },
-      error: { type: 'string', example: 'No puede estar vacio los campos' },
+  @ApiCreatedResponse({
+    description: 'Devuelve un arreglo de parametros',
+    type: CreateParameterDto,
+  })
+  @ApiBadRequestResponse({
+    description: 'No puede estar vacio los campos',
+    schema: {
+      type: 'object',
+      properties: {
+        statusCode: { type: 'number', example: 400 },
+        message: { type: 'string', example: 'Bad Request' },
+        error: { type: 'string', example: 'No puede estar vacio los campos' },
+      },
     },
-  },
-})
-async create(
-  @Body() CreateParameterDto : CreateParameterDto,
-  @Res() response,
-){
-  try {
-    const parameter = 
-    await this.parametersService.create(CreateParameterDto);
-    return response.status(HttpStatus.CREATED).json(parameter)
-  } catch (e) {
-    throw e;
+  })
+  async create(
+    @Body() CreateParameterDto: CreateParameterDto,
+    @Res() response,
+  ) {
+    try {
+      const parameter = await this.parametersService.create(CreateParameterDto);
+      return response.status(HttpStatus.CREATED).json(parameter);
+    } catch (e) {
+      throw e;
+    }
   }
-}
-
 
   @Get()
   @ApiQuery({ name: 'pageNumber', type: 'number', required: true, example: 1 })
@@ -72,15 +69,15 @@ async create(
     @Query() { pageNumber, pageSize }: PaginationQueryParamsDto,
     @Res() response,
   ) {
-  try {
-    const data = await this.parametersService.findAll({
-      pageNumber: +pageNumber,
-      pageSize: + pageSize,
-    });
-    return response.status(HttpStatus.OK).json(data);
-  } catch (e) {
-    throw e
-  }
+    try {
+      const data = await this.parametersService.findAll({
+        pageNumber: +pageNumber,
+        pageSize: +pageSize,
+      });
+      return response.status(HttpStatus.OK).json(data);
+    } catch (e) {
+      throw e;
+    }
   }
 
   @Get(':id')
@@ -102,21 +99,21 @@ async create(
       properties: {
         statusCode: { type: 'number', example: 404 },
         message: { type: 'string', example: 'Not Found' },
-        error: { type: 'string', example: 'parameteretro not found with id: 1' },
+        error: {
+          type: 'string',
+          example: 'parameteretro not found with id: 1',
+        },
       },
     },
   })
-  async findOne(@Param('id') id: string, @Res() response ) {
+  async findOne(@Param('id') id: string, @Res() response) {
     try {
-        const parameter = await this.parametersService.findOne(+id);
-        response.status(HttpStatus.OK).json(parameter)
+      const parameter = await this.parametersService.findOne(+id);
+      response.status(HttpStatus.OK).json(parameter);
     } catch (e) {
-      throw e
+      throw e;
     }
   }
-
-
-
 
   @Patch(':id')
   @ApiOkResponse({
@@ -147,23 +144,21 @@ async create(
       },
     },
   })
-
   @ApiBody({
     type: UpdateParameterDto,
     description: 'Cuerpo de la solicitud',
   })
   async update(
-    @Param('id') id: number, 
-    @Body() body: UpdateParameterDto, 
-    @Res()response,
-    ) {
+    @Param('id') id: number,
+    @Body() body: UpdateParameterDto,
+    @Res() response,
+  ) {
     try {
       return response
-      .status(HttpStatus.OK)
-      .json(await this.parametersService.update(+id, {...body}));
+        .status(HttpStatus.OK)
+        .json(await this.parametersService.update(+id, { ...body }));
     } catch (e) {
       throw e;
     }
   }
-
 }

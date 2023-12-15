@@ -1,53 +1,49 @@
 import { ApiProperty } from '@nestjs/swagger';
-import {
-    Column,
-    Entity,
-    PrimaryGeneratedColumn,
-  } from 'typeorm';
+import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
-@Entity({name : 'Parameters'})
+@Entity({ name: 'Parameters' })
 export class Parameter {
-@ApiProperty({
+  @ApiProperty({
     example: 1,
     description: 'Id del parametro',
     type: 'number',
-})
-@PrimaryGeneratedColumn()
-id: number;
+  })
+  @PrimaryGeneratedColumn()
+  id: number;
 
-@ApiProperty({
+  @ApiProperty({
     example: 'Parametro',
-    description : 'Nombre del parametro',
+    description: 'Nombre del parametro',
     type: 'string',
-})
-@Column({type : 'varchar' ,  nullable: false, length: 255})
-name: string;
+  })
+  @Column({ type: 'varchar', nullable: false, length: 255 })
+  name: string;
 
-@ApiProperty({
+  @ApiProperty({
     example: 'Descripción',
-    description : 'Descripción del parametro',
+    description: 'Descripción del parametro',
     type: 'string',
-})
-@Column({ type: 'varchar' , nullable: false, length: 255 })
-description: string;
+  })
+  @Column({ type: 'varchar', nullable: false, length: 255 })
+  description: string;
 
-@ApiProperty({
-  example: 'Type',
-  description : 'tipo del parametro',
-  type: 'string',
-})
-@Column({ type: 'varchar' , nullable: false, length: 255 })
-type: string;
+  @ApiProperty({
+    example: 'Type',
+    description: 'tipo del parametro',
+    type: 'string',
+  })
+  @Column({ type: 'varchar', nullable: false, length: 255 })
+  type: string;
 
-@ApiProperty({
-  example: 'status',
-  description : 'Estatus  del parametro',
-  type: 'string',
-})
-@Column({ type: 'varchar' , nullable: false, length: 255 })
-status: string;
+  @ApiProperty({
+    example: 'status',
+    description: 'Estatus  del parametro',
+    type: 'string',
+  })
+  @Column({ type: 'varchar', nullable: false, length: 255 })
+  status: string;
 
-@ApiProperty({
+  @ApiProperty({
     example: new Date(),
     type: 'date',
     description: 'Día de la creación del parametro',
@@ -64,8 +60,4 @@ status: string;
   })
   @Column({ type: 'timestamptz', default: new Date() })
   updated_at: Date;
-
-
 }
-
-

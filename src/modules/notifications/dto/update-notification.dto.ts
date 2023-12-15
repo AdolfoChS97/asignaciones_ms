@@ -10,7 +10,6 @@ export class UpdateNotificationDto extends PickType(Notification, [
   'status',
 ]) {}
 
-
 export class UpdatedNotificationDto {
   @ApiProperty({
     type: 'number',

@@ -3,21 +3,14 @@ import { Approvement } from '../entities/approvement.entity';
 import { HttpStatus } from '@nestjs/common';
 import { PaginationQueryParamsDto } from '@/shared/dtos/pagination.dto';
 
-export class getAprovementsDto {
+export class GetApprovementRecords {
   @ApiProperty({
     type: Approvement,
     isArray: true,
-    description: 'Devuelve un array de aprovaciones',
+    description: 'Devuelve un array de aprobaciones',
     example: Approvement,
   })
   data: Approvement[];
-
-  @ApiProperty({
-    type: 'number',
-    example: 1,
-    description: 'Cuenta cuantas aprobaciones fueron devueltas en la consulta',
-  })
-  meta: number;
 
   @ApiProperty({
     type: 'number',
@@ -27,7 +20,7 @@ export class getAprovementsDto {
   status: HttpStatus.OK;
 }
 
-export class getAprovementDto {
+export class GetApprovementRecord {
   @ApiProperty({
     type: Approvement,
     description: 'Devuelve una aprobación',

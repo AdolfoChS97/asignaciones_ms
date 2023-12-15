@@ -100,7 +100,7 @@ export class NotificationsService {
     { approvement, rolId, emitterId }: GetNotificationDto,
   ): Promise<GetNotificationRecord> {
     try {
-      await this.approvementService.findOne(+approvement, {});
+      await this.approvementService.findOne(+approvement);
 
       const options = { where: {} };
       const searchParams = applyParamsToSearch(

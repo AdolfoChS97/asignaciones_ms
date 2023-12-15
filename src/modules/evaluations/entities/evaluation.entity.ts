@@ -35,7 +35,7 @@ export class Evaluation {
     description: 'ID de la aprobacion',
     type: 'number',
   })
-  @JoinColumn({ name: 'approvementId' })
+  @JoinColumn({ name: 'approvement' })
   @ManyToOne(() => Approvement, (approvement) => approvement.evaluations)
   approvement: Approvement;
 

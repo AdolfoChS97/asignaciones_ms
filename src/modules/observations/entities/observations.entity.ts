@@ -37,7 +37,7 @@ export class Observation {
     required: true,
   })
   @IsNotEmpty()
-  @JoinColumn({ name: 'approvementId' })
+  @JoinColumn({ name: 'approvement' })
   @ManyToOne(() => Approvement, (approvement) => approvement.observations)
   approvement: Approvement;
 

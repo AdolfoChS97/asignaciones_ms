@@ -13,8 +13,8 @@ import {
 import { Approvement } from './entities/approvement.entity';
 import {
   generatesApprovementRecord,
-  getAprovementRecords,
-  getAprovementRecord,
+  getApprovementRecords,
+  getApprovementRecord,
   generatesUpdatedpprovementRecord,
 } from './mappers/approvements.mappers';
 import { checkProperties } from '@/shared/utils/checkProperties';
@@ -89,33 +89,37 @@ export class ApprovementsService {
       };
 
       const searchParams = applyParamsToSearch(rest, options);
-      console.log(searchParams);
-      const [approvements, total] =
-        await this.approvementRepository.findAndCount({ ...searchParams });
-      return getAprovementRecords(approvements, total);
+
+      const approvements = await this.approvementRepository
+        .createQueryBuilder('approvement')
+        .innerJoinAndSelect('approvement.documents', 'documents')
+        .innerJoinAndSelect('approvement.evaluations', 'evaluations')
+        .innerJoinAndSelect('approvement.observations', 'observations')
+        .select(['approvement', 'documents', 'evaluations', 'observations'])
+        .skip(options.skip)
+        .take(options.take)
+        .where(searchParams.where)
+        .getMany();
+
+      return getApprovementRecords(approvements);
     } catch (e) {
       throw e;
     }
   }
 
-  async findOne(
-    id: number,
-    { rolId, applicationId, userId }: getApprovementsByQueryParams,
-  ) {
+  async findOne(id: number) {
     try {
       const options = { where: {} };
-      const searchParams = applyParamsToSearch(
-        { rolId: rolId, applicationId: applicationId, userId: userId, id: id },
-        options,
-      );
+      const searchParams = applyParamsToSearch({ id: id }, options);
 
       const approvement = await this.approvementRepository.findOne({
         ...searchParams,
+        relations: ['documents', 'evaluations', 'observations'],
       });
 
       if (!approvement) throw new NotFoundException('No existe la aprobación');
 
-      return getAprovementRecord(approvement);
+      return getApprovementRecord(approvement);
     } catch (e) {
       throw e;
     }

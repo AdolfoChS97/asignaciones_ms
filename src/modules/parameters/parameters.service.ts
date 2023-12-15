@@ -102,22 +102,10 @@ export class ParametersService {
         throw new NotFoundException(`Parametro con id ${id} no encontrado`);
       }
 
-      if (!statusParam || typeof statusParam !== 'boolean') {
-        throw new BadRequestException(
-          'status is required and should be a true or false',
-        );
-      }
-
-      if (!type || typeof type !== 'string') {
-        throw new BadRequestException(
-          'type is required and should be a string',
-        );
-      }
-
       const propertiesToUpdate = checkProperties({
         name,
         description,
-        status,
+        ...(statusParam !== undefined ? { statusParam } : {}),
         type,
       }) as unknown as Parameter;
 

@@ -1,10 +1,14 @@
 import {
   BadRequestException,
   Injectable,
+  InternalServerErrorException,
   NotFoundException,
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { CreateDocumentDto } from './dto/create-document.dto';
+import {
+  CrearPuntosDeCuentaDto,
+  CreateDocumentDto,
+} from './dto/create-document.dto';
 import { UpdateDocumentDto } from './dto/update-document.dto';
 import { Repository } from 'typeorm';
 import { Document } from './entities/document.entity';
@@ -17,16 +21,26 @@ import {
 import { isBase64 } from '@shared/utils/isBase64';
 import { checkProperties } from '@/shared/utils/checkProperties';
 import { PaginationQueryParamsDto } from '@/shared/dtos/pagination.dto';
+import { FileService } from '@/shared/services/file.service';
+import * as Mustache from 'mustache';
+import * as Pdf from 'html-pdf';
 
 @Injectable()
 export class DocumentsService {
   constructor(
     @InjectRepository(Document)
     private documentRepository: Repository<Document>,
+    private readonly fileService: FileService,
   ) {}
 
   async create({ name, base64, approvement }: CreateDocumentDto) {
     try {
+      // if (fileName) {
+      //   const file = await this.fileService.getFile(fileName);
+      //   // base64 = file.url;
+      //   console.log(file);
+      // }
+
       if (base64) isBase64(base64);
 
       if (!Number.isInteger(approvement))
@@ -41,6 +55,33 @@ export class DocumentsService {
         approvement,
       });
       return generatesDocumentRecord(doc);
+    } catch (e) {
+      throw e;
+    }
+  }
+
+  async crearPuntosDeCuenta({
+    name,
+    fileName,
+    approvement,
+    userId,
+    data,
+  }: CrearPuntosDeCuentaDto) {
+    try {
+      const file = (await this.fileService.getFile(fileName)).toString();
+      const parsedFile = Mustache.render(file, data);
+      return new Promise((resolve, reject) => {
+        Pdf?.create(parsedFile).toBuffer(async (err, buffer) => {
+          if (err) reject(new InternalServerErrorException(err.message));
+          const doc = await this.documentRepository.save({
+            name,
+            base64: buffer.toString('base64'),
+            approvement,
+            userId,
+          });
+          resolve(generatesDocumentRecord(doc));
+        });
+      });
     } catch (e) {
       throw e;
     }

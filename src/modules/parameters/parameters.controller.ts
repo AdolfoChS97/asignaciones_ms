@@ -23,7 +23,8 @@ import {
 } from '@nestjs/swagger';
 import { UpdateParameterDto } from './dto/update-parameter.dto';
 import { PaginationQueryParamsDto } from '@/shared/dtos/pagination.dto';
-import { getParametersDto, getParameterDto } from './dto/get-parameter.dto';
+import { getParametersDto, getParameterDto, GetParameterByGroup } from './dto/get-parameter.dto';
+import { bool } from 'joi';
 
 @ApiTags('Parameters')
 @Controller('parameters')
@@ -61,18 +62,35 @@ export class ParametersController {
   @Get()
   @ApiQuery({ name: 'pageNumber', type: 'number', required: true, example: 1 })
   @ApiQuery({ name: 'pageSize', type: 'number', required: true, example: 10 })
+  @ApiQuery({ name: 'name', type: 'string', required: false, example: 'activo' })
+  @ApiQuery({
+    name: 'type',
+    type: 'string',
+    required: false,
+    example: 'tipo',
+  })
+  @ApiQuery({
+    name: 'statusParam',
+    type: 'bool',
+    required: false,
+    example: 'true',
+  })
+
   @ApiOkResponse({
     description: 'Devuelve un arreglo de documentos segun la paginación',
     type: getParametersDto,
   })
   async findAll(
-    @Query() { pageNumber, pageSize }: PaginationQueryParamsDto,
+    @Query() { pageNumber, pageSize, name, statusParam, type }: GetParameterByGroup,
     @Res() response,
   ) {
     try {
       const data = await this.parametersService.findAll({
         pageNumber: +pageNumber,
         pageSize: +pageSize,
+        name: name,
+        statusParam: statusParam,
+        type: type
       });
       return response.status(HttpStatus.OK).json(data);
     } catch (e) {

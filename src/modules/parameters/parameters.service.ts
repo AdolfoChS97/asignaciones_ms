@@ -66,7 +66,7 @@ export class ParametersService {
       const parameters = await this.parameterRepository.createQueryBuilder('parameter')
         .where('parameter.name = :name' , { name: `${name?  name: ''   }` })
         .orWhere('parameter.type = :type' , { type: `${type?  type: ''   }` })
-        .orWhere('parameter.statusParam = :statusParam', { statusParam: statusParam ?? undefined })
+        .orWhere('parameter.statusParam = :statusParam', { statusParam: statusParam }) 
         .getMany()
 
 

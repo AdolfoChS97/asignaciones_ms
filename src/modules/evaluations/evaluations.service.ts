@@ -19,7 +19,7 @@ import {
 } from './mappers/evaluation.mapper';
 import { checkProperties } from '@/shared/utils/checkProperties';
 import { PaginationQueryParamsDto } from '@/shared/dtos/pagination.dto';
-import { isBoolean } from '@shared/utils/isBoolean';
+import { isBoolean , optionBoolean } from '@shared/utils/isBoolean';
 
 @Injectable()
 export class EvaluationsService {

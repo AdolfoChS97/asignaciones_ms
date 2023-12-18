@@ -35,12 +35,6 @@ export class DocumentsService {
 
   async create({ name, base64, approvement }: CreateDocumentDto) {
     try {
-      // if (fileName) {
-      //   const file = await this.fileService.getFile(fileName);
-      //   // base64 = file.url;
-      //   console.log(file);
-      // }
-
       if (base64) isBase64(base64);
 
       if (!Number.isInteger(approvement))

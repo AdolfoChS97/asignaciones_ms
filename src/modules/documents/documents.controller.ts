@@ -11,6 +11,7 @@ import {
 } from '@nestjs/common';
 import { DocumentsService } from './documents.service';
 import {
+  CrearPuntosDeCuentaDto,
   CreateDocumentDto,
   createdDocumentDto,
 } from './dto/create-document.dto';
@@ -160,5 +161,14 @@ export class DocumentsController {
     @Body() updateDocumentDto: UpdateDocumentDto,
   ) {
     return this.documentsService.update(+id, updateDocumentDto);
+  }
+
+  @Post('puntos-de-cuenta')
+  async crearPuntosDeCuenta(@Body() body: CrearPuntosDeCuentaDto) {
+    try {
+      return await this.documentsService.crearPuntosDeCuenta(body);
+    } catch (e) {
+      throw e;
+    }
   }
 }

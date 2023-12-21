@@ -87,6 +87,9 @@
     height: 61vh;
     vertical-align: super;
 }
+.puntoCuenta{
+         font-size: 12px;
+      }
    </style>
 </head>
 
@@ -118,7 +121,7 @@
                </td>
                <td class="rowNumber" rowspan="3">
                   <P>
-                     CUENTA N° <br><strong>{{accountNumber}}</strong> <br>RECIBIDA
+                     CUENTA N° <br><strong>{{añoGenerate}}-{{idPostulado}}-{{nomenclature}}</strong> <br>RECIBIDA
                   </P>
                </td>
             </tr>
@@ -150,7 +153,7 @@
                      <br>
                      <strong>{{name}}</strong>, titular de la cédula de identdad número <strong>{{cedula}}</strong>, para desempeñar funciones
                      como <strong>{{position}}</strong> Sueldo Mensual: <strong>{{salary}}</strong>
-                     Vigencia: desde el <strong>{{date}}</strong>. Modalidad: TIEMPO COMPLETO,
+                     Vigencia: desde el <strong>{{fechaInit}}</strong>. Modalidad: TIEMPO COMPLETO,
                      Adscripción: Dirección
                      <strong>{{Workplace}}</strong> para cumplir funciones de <strong>{{jobFunctions}}</strong> en las instalaciones de
                      los diferentes <strong>{{state}}</strong>.

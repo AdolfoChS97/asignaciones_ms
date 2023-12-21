@@ -81,15 +81,6 @@
          text-align: center;
       }
    </style>
-   <script>
-      const data = {{data}};
-      const idPostulado = data.idPostulado;
-      let text = "DGRH";
-      const year = new Date().getFullYear();
-      let puntoCuenta = year + '-' + idPostulado + '-' + text
-      document.getElementById("puntoCuenta").innerHTML = puntoCuenta;
-    
-   </script>
 </head>
 
 <body>
@@ -121,8 +112,7 @@
                <td class="rowNumber" rowspan="3">
                   <P>
                      CUENTA N° <br>
-                  <div id="puntoCuenta">
-                  </div> <br>RECIBIDA
+                  {{puntoCuenta}} <br>RECIBIDA
                   </P>
                </td>
             </tr>
@@ -137,10 +127,9 @@
                      ASUNTO: <br>
                      DEJAR SIN EFECTO UN (01) MOVIMIENTO DE INGRESO A FAVOR DEL <strong>{{name}}</strong>. TITULAR LA
                      CÉDULA DE IDENTIDAD NÚMERO
-                     <strong>{{cedula}}</strong>, MEDIANTE PUNTO DE CUENTA NÚMERO <strong><span
-                           id="puntoCuenta"></span></strong>,
+                     <strong>{{cedula}}</strong>, MEDIANTE PUNTO DE CUENTA NÚMERO <strong>{{puntoCuenta}}</span></strong>,
                      APROBADO EN
-                     <strong>{{fecha}}</strong>.
+                     <strong>{{approvalFecha}}</strong>.
                   </p>
                </td>
             </tr>
@@ -178,7 +167,7 @@
                      SOPORTES:
                      <br>
                      <br>
-                     1.- Copia simple del Punto de Cuenta número <strong><span id="puntoCuenta"></span></strong>,
+                     1.- Copia simple del Punto de Cuenta número <strong>{{puntoCuenta}}</span></strong>,
                      aprobado en fecha <strong>{{approvalfecha}}</strong>
                      <br>
                      <br>

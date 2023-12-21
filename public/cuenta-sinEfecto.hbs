@@ -47,9 +47,6 @@
          margin-top: 0% !important;
       }
 
-
-
-
       h3.republiClass {
          margin-bottom: 0px;
          font-size: 12px;
@@ -84,6 +81,15 @@
          text-align: center;
       }
    </style>
+   <script>
+      const data = {{data}};
+      const idPostulado = data.idPostulado;
+      let text = "DGRH";
+      const year = new Date().getFullYear();
+      let puntoCuenta = year + '-' + idPostulado + '-' + text
+      document.getElementById("puntoCuenta").innerHTML = puntoCuenta;
+    
+   </script>
 </head>
 
 <body>
@@ -114,7 +120,9 @@
                </td>
                <td class="rowNumber" rowspan="3">
                   <P>
-                     CUENTA N° <br><strong>{{accountNumber}}</strong> <br>RECIBIDA
+                     CUENTA N° <br>
+                  <div id="puntoCuenta">
+                  </div> <br>RECIBIDA
                   </P>
                </td>
             </tr>
@@ -129,9 +137,10 @@
                      ASUNTO: <br>
                      DEJAR SIN EFECTO UN (01) MOVIMIENTO DE INGRESO A FAVOR DEL <strong>{{name}}</strong>. TITULAR LA
                      CÉDULA DE IDENTIDAD NÚMERO
-                     <strong>{{cedula}}</strong>, MEDIANTE PUNTO DE CUENTA NÚMERO <strong>{{accountNumber}}</strong>,
+                     <strong>{{cedula}}</strong>, MEDIANTE PUNTO DE CUENTA NÚMERO <strong><span
+                           id="puntoCuenta"></span></strong>,
                      APROBADO EN
-                     <strong>{{date}}</strong>.
+                     <strong>{{fecha}}</strong>.
                   </p>
                </td>
             </tr>
@@ -149,14 +158,17 @@
                      de Venezuela, en su articulo 77, numeral 12, la aprobación del Sin Efecto a saber:
                      <br>
                      <br>
-                     1.- <strong>{{name}}</strong>, titular de la cédula de idendad número <strong>{{cedula}}</strong>. Cargo:
-                     <strong>{{position}}</strong>, Código REC y SIGEFIRRHH: 230389. Vigencia: veintidós (22) de junio de
+                     1.- <strong>{{name}}</strong>, titular de la cédula de idendad número <strong>{{cedula}}</strong>.
+                     Cargo:
+                     <strong>{{position}}</strong>, Código REC y SIGEFIRRHH: 230389. Vigencia: veintidós (22) de junio
+                     de
                      2023, Adscripción:
                      Oficina de Atención al Público (OAP) de la Coordinación del Trabajo de la Circunscripción Judicial
                      del estado Vargas.
                      Vacante generada por el egreso de <strong>{{disincorporateName}}</strong>. titular de la
                      cédula de
-                     identidad número <strong>{{disincorporateCedula}}</strong>, en fecha <strong>{{disincorporateDate}}</strong>. Todo ello, en virtud de lo
+                     identidad número <strong>{{disincorporateCedula}}</strong>, en fecha
+                     <strong>{{disincorporatefecha}}</strong>. Todo ello, en virtud de lo
                      contenido en el Oficio
                      número 096/2023 de fecha diez (10) de agosto de 2023, emanado de la Coordinación del Trabajo del
                      Circuito Judicial
@@ -166,7 +178,8 @@
                      SOPORTES:
                      <br>
                      <br>
-                     1.- Copia simple del Punto de Cuenta número <strong>{{accountNumber}}</strong>, aprobado en fecha <strong>{{approvalDate}}</strong>
+                     1.- Copia simple del Punto de Cuenta número <strong><span id="puntoCuenta"></span></strong>,
+                     aprobado en fecha <strong>{{approvalfecha}}</strong>
                      <br>
                      <br>
                      2.- Original de la Participación de Nombramiento número DE/S.A. 2772 de fecha cuatro (04) de agosto

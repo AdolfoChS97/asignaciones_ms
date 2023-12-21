@@ -80,6 +80,10 @@
       td.rowNumber {
          text-align: center;
       }
+    div#puntoCuenta {
+    font-size: 12px;
+}
+
    </style>
 </head>
 
@@ -89,7 +93,7 @@
          <thead>
             <tr class="headerTable">
                <td class="tdEscudo" colspan="1">
-                  <img class="img-escudo" src="Escudo_de_Armas.png" alt="">
+                  <img class="img-escudo" src="assets/Escudo_de_Armas.png" alt="escudo-img">
                </td>
                <td colspan="1">
                   <h3 class="subTitle">REPÚBLICA BOLIVARIANA DE VENEZUELA
@@ -112,7 +116,11 @@
                <td class="rowNumber" rowspan="3">
                   <P>
                      CUENTA N° <br>
-                  {{puntoCuenta}} <br>RECIBIDA
+                  <div id="puntoCuenta">
+                     <strong><span id="puntoCuenta">{{añoGenerate}}-{{idPostulado}}-{{nomenclature}}</span></strong>
+                     <br><br>RECIBIDA
+                  </div> 
+                  
                   </P>
                </td>
             </tr>
@@ -127,7 +135,7 @@
                      ASUNTO: <br>
                      DEJAR SIN EFECTO UN (01) MOVIMIENTO DE INGRESO A FAVOR DEL <strong>{{name}}</strong>. TITULAR LA
                      CÉDULA DE IDENTIDAD NÚMERO
-                     <strong>{{cedula}}</strong>, MEDIANTE PUNTO DE CUENTA NÚMERO <strong>{{puntoCuenta}}</span></strong>,
+                     <strong>{{cedula}}</strong>, MEDIANTE PUNTO DE CUENTA NÚMERO <strong><span id="puntoCuenta">{{añoGenerate}}-{{idPostulado}}-{{nomenclature}}</span></strong>,
                      APROBADO EN
                      <strong>{{approvalFecha}}</strong>.
                   </p>
@@ -167,7 +175,7 @@
                      SOPORTES:
                      <br>
                      <br>
-                     1.- Copia simple del Punto de Cuenta número <strong>{{puntoCuenta}}</span></strong>,
+                     1.- Copia simple del Punto de Cuenta número <strong><span id="puntoCuenta">{{añoGenerate}}-{{idPostulado}}-{{nomenclature}}</span></strong>,
                      aprobado en fecha <strong>{{approvalfecha}}</strong>
                      <br>
                      <br>

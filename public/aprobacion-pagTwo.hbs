@@ -112,6 +112,9 @@
 td.firmas {
     height: 17vh;
 }
+.puntoCuenta{
+         font-size: 12px;
+      }
    </style>
 </head>
 
@@ -143,7 +146,7 @@ td.firmas {
                </td>
                <td class="rowNumber" rowspan="3">
                   <P>
-                     CUENTA N° <br><strong>{{accountNumber}}</strong> <br>RECIBIDA
+                     CUENTA N° <br><strong>{{añoGenerate}}-{{idPostulado}}-{{nomenclature}}</strong> <br>RECIBIDA
                   </P>
                </td>
             </tr>
@@ -157,7 +160,7 @@ td.firmas {
                   <p>
                      ASUNTO: <br>
                      DEJAR SIN EFECTO UN (01) MOVIMIENTO DE INGRESO A FAVOR DEL CIUDADANO <strong>{{name}}</strong>. TITULAR LA CÉDULA DE IDENTIDAD NÚMERO
-                     <strong>{{cedula}}</strong>, MEDIANTE PUNTO DE CUENTA NÚMERO <strong>{{accountNumber}}</strong>, APROBADO EN
+                     <strong>{{cedula}}</strong>, MEDIANTE PUNTO DE CUENTA NÚMERO <strong>{{añoGenerate}}-{{idPostulado}}-{{nomenclature}}</strong>, APROBADO EN
                      <strong>{{approvalFecha}}</strong>.
                   </p>
                </td>

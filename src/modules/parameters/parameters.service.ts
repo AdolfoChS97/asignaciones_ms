@@ -21,7 +21,6 @@ import { isBoolean } from '@shared/utils/isBoolean';
 import { applyParamsToSearch } from '@/shared/utils/applyParamsToSearch';
 import { object } from 'joi';
 
-
 @Injectable()
 export class ParametersService {
   constructor(
@@ -40,7 +39,7 @@ export class ParametersService {
           'La descripcion debe ser un string no vacío',
         );
       }
-     
+
       isBoolean(statusParam);
 
       if (!type) {
@@ -59,16 +58,23 @@ export class ParametersService {
     }
   }
 
-  async findAll( queryParams : GetParameterByGroup ) {
+  async findAll(queryParams: GetParameterByGroup) {
     try {
-      const {pageNumber , pageSize, name, statusParam, type } = queryParams;
+      const { pageNumber, pageSize, ...rest } = queryParams;
+      const options = {
+        skip: (pageNumber - 1) * pageSize,
+        take: pageSize,
+        where: {},
+      };
 
-      const parameters = await this.parameterRepository.createQueryBuilder('parameter')
-        .where('parameter.name = :name' , { name: `${name?  name: ''   }` })
-        .orWhere('parameter.type = :type' , { type: `${type?  type: ''   }` })
-        .orWhere('parameter.statusParam = :statusParam', { statusParam: statusParam }) 
-        .getMany()
+      const searchParams = applyParamsToSearch(rest, options);
 
+      const parameters = await this.parameterRepository
+        .createQueryBuilder('parameter')
+        .skip(options.skip)
+        .take(options.take)
+        .where(searchParams.where)
+        .getMany();
 
       return getParameterRecord(parameters);
     } catch (e) {

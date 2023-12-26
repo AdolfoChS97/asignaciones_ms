@@ -73,7 +73,7 @@ export class ParametersService {
         .createQueryBuilder('parameter')
         .skip(options.skip)
         .take(options.take)
-        .where(searchParams.where)
+        .where({ ...searchParams.where })
         .getMany();
 
       return getParameterRecord(parameters);

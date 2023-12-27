@@ -7,7 +7,7 @@ import { CreateParameterDto } from './dto/create-parameter.dto';
 import { UpdateParameterDto } from './dto/update-parameter.dto';
 import { GetParameterByGroup } from './dto/get-parameter.dto';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { Repository, } from 'typeorm';
 import { Parameter } from './entities/parameter.entity';
 import { PaginationQueryParamsDto } from '@/shared/dtos/pagination.dto';
 import {
@@ -60,22 +60,18 @@ export class ParametersService {
 
   async findAll(queryParams: GetParameterByGroup) {
     try {
-      const { pageNumber, pageSize, ...rest } = queryParams;
-      const options = {
+      const { pageNumber, pageSize, name, statusParam, type } = queryParams;
+  
+      const parameters = await this.parameterRepository.find({
+        where: {
+          name: name || null,
+          type: type || null,
+          statusParam: statusParam,
+        },
         skip: (pageNumber - 1) * pageSize,
         take: pageSize,
-        where: {},
-      };
-
-      const searchParams = applyParamsToSearch(rest, options);
-
-      const parameters = await this.parameterRepository
-        .createQueryBuilder('parameter')
-        .skip(options.skip)
-        .take(options.take)
-        .where({ ...searchParams.where })
-        .getMany();
-
+      });
+  
       return getParameterRecord(parameters);
     } catch (e) {
       throw e;

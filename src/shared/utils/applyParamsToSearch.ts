@@ -13,7 +13,7 @@ export function applyParamsToSearch(queryParams, target) {
       }else if (value == true || value == false) {
         target['where'][key] = stringToBoolean(value); // Directly apply boolean values
       }
-      console.log(value , 'lol')
+      console.log(value , 'change')
     });
   }
   return target;

@@ -68,8 +68,11 @@ export class DocumentsService {
     data,
   }: CrearPuntosDeCuentaDto) {
     try {
-      const file = (await this.fileService.getFile(fileName)).toString();
+      const file = (await this.fileService.getFile(fileName, "html")).toString();
+      
       const parsedFile = Mustache.render(file, data);
+    
+      
       return new Promise((resolve, reject) => {
         Pdf?.create(parsedFile).toBuffer(async (err, buffer) => {
           if (err) reject(new InternalServerErrorException(err.message));

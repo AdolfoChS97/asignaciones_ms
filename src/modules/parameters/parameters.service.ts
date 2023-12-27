@@ -7,7 +7,7 @@ import { CreateParameterDto } from './dto/create-parameter.dto';
 import { UpdateParameterDto } from './dto/update-parameter.dto';
 import { GetParameterByGroup } from './dto/get-parameter.dto';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { Repository, } from 'typeorm';
 import { Parameter } from './entities/parameter.entity';
 import { PaginationQueryParamsDto } from '@/shared/dtos/pagination.dto';
 import {
@@ -18,9 +18,7 @@ import {
 } from './mappers/parameter.mapper';
 import { checkProperties } from '@/shared/utils/checkProperties';
 import { isBoolean } from '@shared/utils/isBoolean';
-import { applyParamsToSearch } from '@/shared/utils/applyParamsToSearch';
 import { object } from 'joi';
-
 
 @Injectable()
 export class ParametersService {
@@ -40,7 +38,7 @@ export class ParametersService {
           'La descripcion debe ser un string no vacío',
         );
       }
-     
+
       isBoolean(statusParam);
 
       if (!type) {
@@ -59,17 +57,20 @@ export class ParametersService {
     }
   }
 
-  async findAll( queryParams : GetParameterByGroup ) {
+  async findAll(queryParams: GetParameterByGroup) {
     try {
-      const {pageNumber , pageSize, name, statusParam, type } = queryParams;
-
-      const parameters = await this.parameterRepository.createQueryBuilder('parameter')
-        .where('parameter.name = :name' , { name: `${name?  name: ''   }` })
-        .orWhere('parameter.type = :type' , { type: `${type?  type: ''   }` })
-        .orWhere('parameter.statusParam = :statusParam', { statusParam: statusParam }) 
-        .getMany()
-
-
+      const { pageNumber, pageSize, name, statusParam, type } = queryParams;
+  
+      const parameters = await this.parameterRepository.find({
+        where: {
+          name: name || null,
+          type: type || null,
+          statusParam: statusParam,
+        },
+        skip: (pageNumber - 1) * pageSize,
+        take: pageSize,
+      });
+  
       return getParameterRecord(parameters);
     } catch (e) {
       throw e;

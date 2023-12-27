@@ -93,7 +93,9 @@
          <thead>
             <tr class="headerTable">
                <td class="tdEscudo" colspan="1">
-                  <img class="img-escudo" src="assets/Escudo_de_Armas.png" alt="escudo-img">
+                  {{#imagen}}
+                        <img src="../assets/Escudo_de_Armas.png" alt="Imagen">
+                  {{/imagen}}
                </td>
                <td colspan="1">
                   <h3 class="subTitle">REPÚBLICA BOLIVARIANA DE VENEZUELA
@@ -135,7 +137,7 @@
                      ASUNTO: <br>
                      DEJAR SIN EFECTO UN (01) MOVIMIENTO DE INGRESO A FAVOR DEL <strong>{{name}}</strong>. TITULAR LA
                      CÉDULA DE IDENTIDAD NÚMERO
-                     <strong>{{cedula}}</strong>, MEDIANTE PUNTO DE CUENTA NÚMERO <strong><span id="puntoCuenta">{{añoGenerate}}-{{idPostulado}}-{{nomenclature}}</span></strong>,
+                     <strong>{{cedula}}</strong>, MEDIANTE PUNTO DE CUENTA NÚMERO <strong><span id="puntoCuenta">{{yearGenerate}}-{{idPostulado}}-{{nomenclature}}</span></strong>,
                      APROBADO EN
                      <strong>{{approvalFecha}}</strong>.
                   </p>
@@ -162,10 +164,11 @@
                      2023, Adscripción:
                      Oficina de Atención al Público (OAP) de la Coordinación del Trabajo de la Circunscripción Judicial
                      del estado Vargas.
-                     Vacante generada por el egreso de <strong>{{disincorporateName}}</strong>. titular de la
-                     cédula de
-                     identidad número <strong>{{disincorporateCedula}}</strong>, en fecha
-                     <strong>{{disincorporatefecha}}</strong>. Todo ello, en virtud de lo
+
+                     {{#disincorporate}}
+                        Vacante generada por el egreso de <strong>{{disincorporateName}}</strong>. titular de la cédula de identidad número <strong>{{disincorporateCedula}}</strong>, en fecha <strong>{{disincorporatefecha}}</strong>.
+                     {{/disincorporate}}                      
+                     Todo ello, en virtud de lo
                      contenido en el Oficio
                      número 096/2023 de fecha diez (10) de agosto de 2023, emanado de la Coordinación del Trabajo del
                      Circuito Judicial
@@ -175,7 +178,7 @@
                      SOPORTES:
                      <br>
                      <br>
-                     1.- Copia simple del Punto de Cuenta número <strong><span id="puntoCuenta">{{añoGenerate}}-{{idPostulado}}-{{nomenclature}}</span></strong>,
+                     1.- Copia simple del Punto de Cuenta número <strong><span id="puntoCuenta">{{yearGenerate}}-{{idPostulado}}-{{nomenclature}}</span></strong>,
                      aprobado en fecha <strong>{{approvalfecha}}</strong>
                      <br>
                      <br>

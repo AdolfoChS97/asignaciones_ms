@@ -83,6 +83,9 @@
     div#puntoCuenta {
     font-size: 12px;
 }
+img.img-escudo {
+         height: 108px;
+      }
 
    </style>
 </head>
@@ -93,9 +96,8 @@
          <thead>
             <tr class="headerTable">
                <td class="tdEscudo" colspan="1">
-                  {{#imagen}}
-                        <img src="../assets/Escudo_de_Armas.png" alt="Imagen">
-                  {{/imagen}}
+          
+                  <img class="img-escudo" src="../../assets/Escudo_de_Armas.png" alt="">
                </td>
                <td colspan="1">
                   <h3 class="subTitle">REPÚBLICA BOLIVARIANA DE VENEZUELA
@@ -119,7 +121,7 @@
                   <P>
                      CUENTA N° <br>
                   <div id="puntoCuenta">
-                     <strong><span id="puntoCuenta">{{añoGenerate}}-{{idPostulado}}-{{nomenclature}}</span></strong>
+                     <strong><span id="puntoCuenta">{{yearGenerate}}-{{idPostulado}}-{{nomenclature}}</span></strong>
                      <br><br>RECIBIDA
                   </div> 
                   

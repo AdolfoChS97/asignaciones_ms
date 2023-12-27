@@ -4,11 +4,11 @@ import * as path from 'path';
 
 @Injectable()
 export class FileService {
-  async getFile(name: string) {
+  async getFile(name: string , extension: string = "html") {
     try {
       return fs.readFileSync(
         path.resolve(
-          path.join(__dirname, '..', '..', '..', 'public', `${name}.hbs`),
+          path.join(__dirname, '..', '..', '..', 'public', `${name}.${extension}`),
         ),
       );
     } catch (e) {

@@ -18,7 +18,6 @@ import {
 } from './mappers/parameter.mapper';
 import { checkProperties } from '@/shared/utils/checkProperties';
 import { isBoolean } from '@shared/utils/isBoolean';
-import { applyParamsToSearch } from '@/shared/utils/applyParamsToSearch';
 import { object } from 'joi';
 
 @Injectable()

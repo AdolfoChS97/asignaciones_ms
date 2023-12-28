@@ -83,11 +83,13 @@
       td.rowNumber {
          text-align: center;
       }
+
       td.antecedesText {
-    height: 61vh;
-    vertical-align: super;
-}
-.puntoCuenta{
+         height: 61vh;
+         vertical-align: super;
+      }
+
+      .puntoCuenta {
          font-size: 12px;
       }
    </style>
@@ -99,7 +101,7 @@
          <thead>
             <tr class="headerTable">
                <td class="tdEscudo" colspan="1">
-                  <img class="img-escudo" src="../../assets/Escudo_de_Armas.png" alt="">
+                  <img class="img-escudo" src="Escudo_de_Armas.png" alt="">
                </td>
                <td colspan="1">
                   <h3 class="subTitle">REPÚBLICA BOLIVARIANA DE VENEZUELA
@@ -121,7 +123,7 @@
                </td>
                <td class="rowNumber" rowspan="3">
                   <P>
-                     CUENTA N° <br><strong>{{yearGenerate}}-{{idPostulado}}-{{nomenclature}}</strong> <br>RECIBIDA
+                     CUENTA N° <br><strong>{{añoGenerate}}-{{idPostulado}}-{{nomenclature}}</strong> <br>RECIBIDA
                   </P>
                </td>
             </tr>
@@ -134,8 +136,12 @@
                <td class="tdAsunto" colspan="3">
                   <p>
                      ASUNTO: <br>
-                     APROBACIÓN DE VEINTE (20) CONTRATOS DE TRABAJO DE PERSONAL, PARADESEMPENAR
-                     FUNCIONES COMO <strong>{{position}}</strong> EN <strong>{{Workplace}}</strong>
+                     APROBACIÓN DE UN MOVIMIENTO DE INGRESO A FAVOR DEL CIUDADANO {{name}}, TITULAR DE LA CEDULA DE
+                     IDENTIDAD
+                     NÚMERO {{cedula}}, PARA OCUPAR EL CARGO VACANTE DE <strong>{{position}}</strong> ADSCRITO A
+                     <strong>{{Workplace}}</strong>,
+                     SEGUN CODIGO DE AGENDA NÚMERO {{numAgenda}} DE FECHA {{fechaAgenda}}.
+
                   </p>
                </td>
             </tr>
@@ -151,14 +157,32 @@
                      ciudadano que se señala a continuación
                      <br>
                      <br>
-                     <strong>{{name}}</strong>, titular de la cédula de identdad número <strong>{{cedula}}</strong>, para desempeñar funciones
-                     como <strong>{{position}}</strong> Sueldo Mensual: <strong>{{salary}}</strong>
-                     Vigencia: desde el <strong>{{fechaInit}}</strong>. Modalidad: TIEMPO COMPLETO,
-                     Adscripción: Dirección
-                     <strong>{{Workplace}}</strong> para cumplir funciones de <strong>{{jobFunctions}}</strong> en las instalaciones de
+                     1.- <strong>{{name}}</strong>, titular de la cédula de identidad número
+                     <strong>{{cedula}}</strong>,
+                     para desempeñar funciones
+                     como <strong>{{position}}</strong> Código REC y SIGEFIRRHH: <strong>{{codePosition}}</strong>
+                     Vigencia: desde el <strong>{{fechaInit}}</strong>. Adscripción: Dirección
+                     <strong>{{Workplace}}</strong> para cumplir funciones de <strong>{{jobFunctions}}</strong> en las
+                     instalaciones de
                      los diferentes <strong>{{state}}</strong>.
+                     <br>
+                     {{#disincorporate}}
+                     Vacante generada por el egreso de <strong>{{disincorporateName}}</strong>. titular de la cédula de
+                     identidad número <strong>{{disincorporateCedula}}</strong>, en fecha
+                     <strong>{{disincorporatefecha}}</strong>.
+                     {{/disincorporate}}
 
 
+                     <br><br>
+                     SOPORTES:
+                     <br>
+                     {{soporteInput}}
+
+                     <br><br>
+                     RECOMENDACIÓN:
+                     <br>
+                     La Dirección General de Recursos Humanos, somete a consideración del Director
+                     Ejecutivo de la Magistratura, la aprobacón del movimiento del personal antes señalado.
                   </p>
                </td>
             </tr>

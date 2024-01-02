@@ -4,13 +4,24 @@ import * as path from 'path';
 
 @Injectable()
 export class FileService {
-  async getFile(name: string , extension: string = "html") {
+  async getFile(files: Array<string>, extension: string = 'html') {
     try {
-      return fs.readFileSync(
-        path.resolve(
-          path.join(__dirname, '..', '..', '..', 'public', `${name}.${extension}`),
-        ),
-      );
+      if (Array.isArray(files)) {
+        return files.map((n) => {
+          return fs.readFileSync(
+            path.resolve(
+              path.join(
+                __dirname,
+                '..',
+                '..',
+                '..',
+                'public',
+                `${n}.${extension}`,
+              ),
+            ),
+          );
+        });
+      }
     } catch (e) {
       throw new NotFoundException(e.message);
     }

@@ -15,7 +15,7 @@ export class CrearPuntosDeCuentaDto extends OmitType(Document, [
     description: 'Nombre de la plantilla del punto de cuenta',
   })
   @IsNotEmpty()
-  fileName: string;
+  files: string[];
 
   @ApiProperty({
     type: 'object',

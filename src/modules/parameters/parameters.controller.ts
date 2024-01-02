@@ -75,10 +75,21 @@ export class ParametersController {
     required: false,
     example: 'true',
   })
-
+ 
   @ApiOkResponse({
-    description: 'Devuelve un arreglo de documentos segun la paginación',
+    description: 'Devuelve un arreglo de parametros segun la paginación',
     type: getParametersDto,
+  })
+  @ApiBadRequestResponse({
+    description: 'No se encontro el parametro',
+    schema: {
+      type: 'object',
+      properties: {
+        statusCode: { type: 'number', example: 400 },
+        message: { type: 'string', example: 'Bad request' },
+        error: { type: 'string', example: 'Solicitud Incrorrecta' },
+      },
+    },
   })
   async findAll(
     @Query() { pageNumber, pageSize, name, statusParam, type }: GetParameterByGroup,

@@ -6,88 +6,80 @@
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <title>Document</title>
    <style>
-      .container {
+      /* .container {
          margin-left: 7%;
          margin-right: 7%;
          justify-content: center;
          text-align: justify;
-      }
+      } */
 
       .tablaCuenta {
          width: 100%;
          border: 1px solid #868080;
       }
 
-      p {
+      /* p {
          font-family: verdana;
          font-size: 10px;
          line-height: 16px;
          font-weight: 100;
-      }
+      } */
 
-      th p {
+      /* th p {
          margin-top: 0;
-      }
+      } */
 
-      h3 {
+      /* h3 {
          font-family: verdana;
          text-align: center;
-      }
+      } */
 
 
 
-      img.img-escudo {
+      /* img.img-escudo {
          height: 75px;
-      }
+      } */
 
-      h3.subTitle {
+      /* h3.subTitle {
          font-size: 11px;
          font-weight: 100;
          line-height: 18px;
          margin-top: 0% !important;
-      }
+      } */
 
-
-
-
-      h3.republiClass {
-         margin-bottom: 0px;
-         font-size: 12px;
-      }
-
-      table {
+      /* table {
          width: 100%;
-      }
+      } */
 
-      td {
+      /* td {
          border: 2px solid black;
-      }
-
+      } */
+/* 
       tr.headerTable td {
          border: 0px !important;
-      }
+      } */
 
-      thead {
+      /* thead {
          text-align: center;
-      }
+      } */
 
-      td.tdAsunto {
+      /* td.tdAsunto {
          width: 83%;
-      }
-
+      } */
+/* 
       td.antecedesText p {
          font-size: 12px;
          line-height: 22px;
-      }
+      } */
 
-      td.rowNumber {
+      /* td.rowNumber {
          text-align: center;
-      }
+      } */
 
-      td.antecedesText {
+      /* td.antecedesText {
          height: 61vh;
          vertical-align: super;
-      }
+      } */
 
       .puntoCuenta {
          font-size: 12px;
@@ -96,19 +88,27 @@
 </head>
 
 <body>
-   <div class="container">
-      <table class="tablaCuenta">
-         <thead>
+   <div class="container" style="margin-left: 7%;
+   margin-right: 7%;
+   justify-content: center;
+   text-align: justify;">
+      <table class="tablaCuenta" style="width: 100%;
+      border: 1px solid #868080;">
+         <thead style="text-align: center;">
             <tr class="headerTable">
-               <td class="tdEscudo" colspan="1">
-                  <img class="img-escudo" src="Escudo_de_Armas.png" alt="">
+               <td class="tdEscudo" style=" border: 2px solid black;  border: 0px !important;" colspan="1">
+                  <img class="img-escudo" style=" height: 75px;" src="Escudo_de_Armas.png" alt="">
                </td>
-               <td colspan="1">
-                  <h3 class="subTitle">REPÚBLICA BOLIVARIANA DE VENEZUELA
+               <td colspan="1" style=" border: 2px solid black;">
+                  <h3 class="subTitle" style=" font-family: verdana;
+                  text-align: center;   font-size: 11px;
+         font-weight: 100;
+         line-height: 18px;
+         margin-top: 0% !important;">REPÚBLICA BOLIVARIANA DE VENEZUELA
                      <br>DIRECCIÓN EJECUTIVA DE LA MAGISTRATURA
                      <br>DIREECIÓN GENERAL DE RECURSOS HUMANOS
                </td>
-               <td colspan="2">
+               <td colspan="2" style=" border: 2px solid black;">
                   <p>pag. 1 de 2</p>
                </td>
             </tr>
@@ -116,25 +116,34 @@
          <tbody>
             <tr>
 
-               <td colspan="3">
-                  <p>
+               <td colspan="3" style=" border: 2px solid black;">
+                  <p style="font-family: verdana;
+                  font-size: 10px;
+                  line-height: 16px;
+                  font-weight: 100;">
                      PARA: DIRECCIÓN EJECUTIVA
                   </p>
                </td>
-               <td class="rowNumber" rowspan="3">
-                  <P>
+               <td class="rowNumber" rowspan="3" style=" border: 2px solid black;text-align: center;">
+                  <P style="font-family: verdana;
+                  font-size: 10px;
+                  line-height: 16px;
+                  font-weight: 100;">
                      CUENTA N° <br><strong>{{añoGenerate}}-{{idPostulado}}-{{nomenclature}}</strong> <br>RECIBIDA
                   </P>
                </td>
             </tr>
             <tr>
-               <td colspan="3">
+               <td colspan="3" style=" border: 2px solid black;">
                   <p>DE: DIRECCIÓN GENERAL DE RECURSOS HUMANOS</p>
                </td>
             </tr>
             <tr>
-               <td class="tdAsunto" colspan="3">
-                  <p>
+               <td class="tdAsunto" colspan="3" style=" border: 2px solid black;width: 83%;">
+                  <p style="font-family: verdana;
+                  font-size: 10px;
+                  line-height: 16px;
+                  font-weight: 100;">
                      ASUNTO: <br>
                      APROBACIÓN DE UN MOVIMIENTO DE INGRESO A FAVOR DEL CIUDADANO {{name}}, TITULAR DE LA CEDULA DE
                      IDENTIDAD
@@ -147,8 +156,12 @@
             </tr>
             <tr>
 
-               <td class="antecedesText" colspan="4">
-                  <p>
+               <td class="antecedesText" colspan="4" style=" border: 2px solid black; font-size: 12px;
+               line-height: 22px; height: 61vh;
+         vertical-align: super;">
+                  <p style="font-family: verdana;
+                  line-height: 16px;
+                  font-weight: 100;font-size: 12px;">
                      ANTECEDENTES: La Dirección General de Recursos Humanos, somete a consideración del Director
                      Ejecutivo de la Magistratura, en
                      ejercicio de las atribuciones conferidas en el Particular Primero de la Resolución número

@@ -68,6 +68,20 @@ export class DocumentsService {
     data,
   }: CrearPuntosDeCuentaDto) {
     try {
+      if (Array.isArray(files) && files.length === 0)
+        throw new BadRequestException('files should be an array');
+
+      if (!Number.isInteger(approvement))
+        throw new BadRequestException('approvement must be a number');
+
+      if (!approvement)
+        throw new BadRequestException('approvement is required');
+
+      if (!Number.isInteger(userId))
+        throw new BadRequestException('userId must be a number');
+
+      if (!userId) throw new BadRequestException('userId is required');
+
       const bufferPromises = (
         await this.fileService.getFile(files, 'html')
       ).map((file) => {

@@ -62,29 +62,47 @@ export class DocumentsService {
 
   async crearPuntosDeCuenta({
     name,
-    fileName,
+    files,
     approvement,
     userId,
     data,
   }: CrearPuntosDeCuentaDto) {
     try {
-      const file = (await this.fileService.getFile(fileName, "html")).toString();
-      
-      const parsedFile = Mustache.render(file, data);
-    
-      
-      return new Promise((resolve, reject) => {
-        Pdf?.create(parsedFile).toBuffer(async (err, buffer) => {
-          if (err) reject(new InternalServerErrorException(err.message));
-          const doc = await this.documentRepository.save({
-            name,
-            base64: buffer.toString('base64'),
-            approvement,
-            userId,
-          });
-          resolve(generatesDocumentRecord(doc));
+      if (Array.isArray(files) && files.length === 0)
+        throw new BadRequestException('files should be an array');
+
+      if (!Number.isInteger(approvement))
+        throw new BadRequestException('approvement must be a number');
+
+      if (!approvement)
+        throw new BadRequestException('approvement is required');
+
+      if (!Number.isInteger(userId))
+        throw new BadRequestException('userId must be a number');
+
+      if (!userId) throw new BadRequestException('userId is required');
+
+      const bufferPromises = (
+        await this.fileService.getFile(files, 'html')
+      ).map((file) => {
+        return new Promise((resolve, reject) => {
+          Pdf?.create(Mustache.render(file.toString(), data)).toBuffer(
+            (err, buffer) => {
+              if (err) reject(new InternalServerErrorException(err.message));
+              resolve(buffer.toString('base64'));
+            },
+          );
         });
       });
+
+      const doc = await this.documentRepository.save({
+        name: name,
+        base64: (await Promise.all(bufferPromises)).join(''),
+        approvement,
+        userId,
+      });
+
+      return generatesDocumentRecord(doc);
     } catch (e) {
       throw e;
     }

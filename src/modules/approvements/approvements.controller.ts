@@ -80,6 +80,12 @@ export class ApprovementsController {
     required: false,
     example: 1,
   })
+  @ApiQuery({
+    name: 'status',
+    type: 'string',
+    required: false,
+    example: 'aprobado',
+  })
   @ApiOkResponse({
     description: 'Devuelve un object de aprobaciones segun la pagina',
     type: GetApprovementRecords,
@@ -92,6 +98,7 @@ export class ApprovementsController {
       rolId,
       applicationId,
       userId,
+      status,
     }: getApprovementsByQueryParams,
     @Res() response,
   ) {
@@ -102,6 +109,7 @@ export class ApprovementsController {
         rolId: +rolId,
         applicationId: +applicationId,
         userId: +userId,
+        status: status,
       });
       return response.status(HttpStatus.OK).json(data);
     } catch (e) {

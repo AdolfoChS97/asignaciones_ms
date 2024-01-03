@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ingreso</title>
+</head>
+
+<body>
+    <div class="container" style="margin: 17px 30px 21px 30px;">
+        <div class="header" style="text-align: center;line-height: 8px;">
+            <h1 style="font-size: 30px; margin-block: 0px;">DEM</h1>
+            <h3 style="font-size: 10px;  margin-block: 0px;font-weight: 100;">REPÚBLICA BOLIVARIANA DE VENEZUELA</h3>
+            <h3 style="font-size: 10px;margin-block: 0px;">Dirección de Estudios Técnicos</h3>
+            <h3 style="font-size: 10px;margin-block: 0px;">DIRECCIÓN EJECUTIVA DE LA MAGISTRATURA</h3>
+            <h3 style="font-size: 10px;margin-block: 0px;">DIRECCIÓN GENERAL DE RECURSOS HUMANOS</h3>
+            <h3 style="font-size: 10px;margin-block: 0px;">División de Reclutamiento y Selección</h3>
+        </div>
+        <div class="place">
+            <p style="margin-left: 61%;font-size: 10px;margin-block: 0px;">
+                Caracas,
+            </p>
+        </div>
+        <div class="number" style="display: flex !important; justify-content: space-between !important;">
+            <div class="letter">
+                <p style="font-size: 10px;display: flex !important; justify-content: space-between !important;">N° DGRH/DET/DRS</p>
+            </div>
+            <div>
+                <p style="font-size: 10px;display: flex !important; justify-content: space-between !important;">213", 164 y 24</p>
+            </div>
+
+        </div>
+        <div class="infoPostulado">
+            <p style="font-size: 10px;margin-block: 1px;">Ciudadano (a)</p>
+            <p style="font-size: 10px;margin-block: 1px">{{namePostulado}}</p>
+            <p style="font-size: 10px;margin-block: 1px">{{cedulaPostulado}}</p>
+            <p style="font-size: 10px;margin-block: 1px">Presente-</p>
+        </div>
+        <div class="infoParagraph" style="margin-top: 19px;margin-bottom: 19px;">
+            <p style="font-size: 10px;margin-block: 1px; text-indent: 20px; text-align: justify;">
+                Tengo el agrado de dirigirme a usted, en la oportunidad de informarle, 
+                que en virtud de la aprobación de su INGRESO al cargo de {{position}},
+                adscrito al {{{Workplace}}}, con fecha de vigencia: {{fechaInit}}, deberá
+
+            </p>
+            <p style="font-size: 10px;margin-block: 1px; text-indent: 20px; text-align: justify;">
+                Consignar dentro de los treinta (30) días siguientes de haber recibido ésta notificación, la DECLARACIÓN JURADA
+                DE
+                PATRIMONIO, a través del "Sistema para la Presentación de la Declaración Jurada de Patrimonio en Formato
+                Electrónico, disponible en el portal http://www.car.gob.ve, con el objeto de dar cumplimiento con lo establecido
+                en
+                la Resolución número 01-00-000122, de fecha diecinueve (19) de junio de 2009, publicada en Gaceta Oficial de la
+                República Bolivariana de Venezuela número 39.205, de fecha veintidós (22) de junio de 2009, emanada de la
+                Contraloría General de la República, y a su vez, deberá remitir a la Dirección General de Recursos Humanos, el
+                comprobante respectivo, como prueba fehaciente de haber cumplido con esta obligación, a los efectos de ser
+                archivado
+                en el expediente correspondiente. El cumplimiento de este requerimiento en el lapso establecido es de carácter
+                obligatorio, pues su incumplimiento conlleva a la aplicación de las medidas preventivas y sancionatorias,
+                previstas
+                en la Ley Contra la Corrupción. Asimismo, deberá ubicar mediante el Portal Fiscal www.seniat.gob.ve el
+                formulario
+                AR-1, llenarlo y presentarlo, dentro de los primeros cinco (5) días a partir de esta notificación, ante la
+                División
+                de Servicios al Personal de la Dirección Administrativa Regional del estado correspondiente / Dirección General
+                de
+                Servicios Regionales de este Organismo según lo dispuesto en los artículos 73 y 86 de la Ley de Impuesto sobre
+                la
+                Renta.
+
+            </p>
+        </div>
+        <div class="infoStaff" style="text-align: center;margin: auto;width: 59%;    margin-top: 6%; margin-bottom: 6%;">
+            <p style="font-size: 10px; margin-top: 2%; margin-bottom: 2%;"> Atentamente,</p>
+            <p style="font-size: 10px;margin-block: 2px;    text-indent: 101px; font-weight: bold;">{{directorRecursosHum}}</p>
+            <p style="font-size: 10px;margin-block: 2px;">Directora General de Recursos Humanos (E)</p>
+            <p style="font-size: 8px;margin-block: 2px;">
+                Resolución No 0332 de fecha 16 de noviembre de 2022, publicada en la Gaceta Oficial 
+                de la Republica Bolivariana de Venezuela N 42.510 de fecha 22 de noviembre de 2022
+            </p>
+        </div>
+        <div class="footer-document">
+            <p style="font-size: 10px;margin: 0;">
+                Firmará al pie de la presente como prueba de haber sido notificado (a):
+            </p>
+            <div class="formDiv">
+                <div class="postuladoDiv" style="margin-top: 1%;margin-bottom: 1%;">
+                    <label style="font-size: 8px" for="fname">Nombre y Apellido.</label>
+                    <input type="text" style="width: 28%; border-top: 0px;border-left: 0px;border-right: 0px;" class="fname" name="fname">
+                    <label style="font-size: 8px" for="fname">Cedula de Identidad</label>
+                    <input type="text" style="width: 28%; border-top: 0px;border-left: 0px;border-right: 0px;" class="fname" name="fname">
+                </div>
+                <div class="funcionarioDiv" style="margin-top: 3%;margin-bottom: 3%;">
+                    <label style="font-size: 8px" for="fname">Firma del (la) Funcionario (a):</label>
+                    <input type="text" style="width: 28%; border-top: 0px;border-left: 0px;border-right: 0px;" class="fname" name="fname">
+                    <label style="font-size: 8px" for="fname"> Fecha y Hora:</label>
+                    <input type="text" style="width: 28%; border-top: 0px;border-left: 0px;border-right: 0px;" class="fname" name="fname">
+                </div>
+                <div class="LTB">
+                    <p style="font-size: 8px">LTB/Yb</p>
+                </div>
+                <div>
+                    <input type="text" style="width: 100%;border-top: 0px;border-left: 0px;border-right: 0px;" name="" id="">
+                </div>
+                <div class="piePagina" style="text-align: center;">
+                    <p style="font-size: 8px">
+                        Av. Francisco de Miranda, entre Calles Elce y La Joya, Edit Tribunal Supremo de Justicia, 
+                        Dirección Ejecutiva de la <br>
+                        Magistratura, Cod Postal 1060, Cracao Caracas-Venezuela REF: G-20000028-7
+                    </p>
+                </div>
+                
+            </div>
+        </div>
+        <br>
+    </div>
+
+</body>
+
+</html>

@@ -12,9 +12,10 @@
          justify-content: center;
          text-align: justify;
       }
+
       td.firmas {
-    height: 20vh;
-}
+         height: 20vh;
+      }
 
       .tablaCuenta {
          width: 100%;
@@ -22,7 +23,7 @@
       }
 
       p {
-         font-family: verdana;
+
          font-size: 10px;
          line-height: 16px;
          font-weight: 100;
@@ -33,7 +34,6 @@
       }
 
       h3 {
-         font-family: verdana;
          text-align: center;
       }
 
@@ -78,6 +78,7 @@
          width: 83%;
          font-size: 8px;
       }
+
       td.tdAsunto p {
          font-size: 8px;
       }
@@ -107,44 +108,64 @@
       <table class="tablaCuenta">
          <thead>
             <tr class="headerTable">
-               <td class="tdEscudo" colspan="1">
+               <td class="tdEscudo" >
                   <img class="img-escudo" src="Escudo_de_Armas.png" alt="">
                </td>
-               <td colspan="2">
-                  <h3 class="subTitle">REPÚBLICA BOLIVARIANA DE VENEZUELA
-                     <br>DIRECCIÓN EJECUTIVA DE LA MAGISTRATURA
-                     <br>DIREECIÓN GENERAL DE RECURSOS HUMANOS
-                  </h3>
+               <td>
+                  <h3 class="subTitle"
+                     style="font-size: 10px;font-weight: 100;line-height: 13px; margin: 0% !important;">
+                     REPÚBLICA BOLIVARIANA DE VENEZUELA</h3>
+                  <h3 class="subTitle"
+                     style="font-size: 10px;font-weight: 100;line-height: 13px;margin: 0% !important;">
+                     DIRECCIÓN EJECUTIVA DE LA MAGISTRATURA</h3>
+                  <h3 class="subTitle"
+                     style="font-size: 10px;font-weight: 100;line-height: 13px;margin: 0% !important;">
+                     DIREECIÓN GENERAL DE RECURSOS HUMANOS</h3>
                </td>
-               <td colspan="3">
-                  <p>pag. 1 de 2</p>
+               <td >
+               
                </td>
+               <td >
+                <p style="font-size: 10px;">pag. 1 de 2</p>
+             </td>
             </tr>
          </thead>
          <tbody>
             <tr>
 
                <td colspan="3">
-                  <p>
+                  <p style="font-size: 8px;
+                        line-height: 16px;
+                        font-weight: 100;margin-top: 3px;
+                        margin-bottom: 3px;">
                      PARA: DIRECCIÓN EJECUTIVA
                   </p>
                </td>
                <td class="rowNumber" rowspan="3">
-                  <P>
+                  <p style="font-size: 8px; 
+                        line-height: 16px;
+                        font-weight: 100;">
                      CUENTA N° <br><strong>{{añoGenerate}}-{{idPostulado}}-{{nomenclature}}</strong> <br>RECIBIDA
-                  </P>
+                  </p>
                </td>
             </tr>
             <tr>
                <td colspan="3">
-                  <p>DE: DIRECCIÓN GENERAL DE RECURSOS HUMANOS</p>
+                  <p style="font-size: 8px; 
+                         line-height: 16px;
+                         font-weight: 100;margin-top: 3px;
+                        margin-bottom: 3px;">DE: DIRECCIÓN GENERAL DE RECURSOS HUMANOS</p>
                </td>
             </tr>
             <tr>
                <td class="tdAsunto" colspan="3">
-                  <p>
+                  <p style="font-size: 8px; 
+                  line-height: 16px;
+                  font-weight: 100;margin-top: 3px;
+                        margin-bottom: 3px;">
                      ASUNTO: <br>
-                     APROBACIÓN DE UN MOVIMIENTO DE INGRESO A FAVOR DEL CIUDADANO {{name}}, TITULAR DE LA CEDULA DE
+                     APROBACIÓN DE UN MOVIMIENTO DE INGRESO A FAVOR DEL CIUDADANO {{name}}, TITULAR DE LA CEDULA
+                     DE
                      IDENTIDAD
                      NÚMERO {{cedula}}, PARA OCUPAR EL CARGO VACANTE DE <strong>{{position}}</strong> ADSCRITO A
                      <strong>{{Workplace}}</strong>,
@@ -156,26 +177,33 @@
             <tr>
 
                <td class="antecedesText" colspan="4">
-                  <p>
+                  <p style="font-size: 9px; 
+                  line-height: 16px;
+                  font-weight: 100;">
                      ANTECEDENTES: La Dirección General de Recursos Humanos, somete a consideración del Director
                      Ejecutivo de la Magistratura, en
                      ejercicio de las atribuciones conferidas en el Particular Primero de la Resolución número
-                     2005-00011, de fecha seis (06) de abril de 2005, publicada en la Gaceta Oficial de la República
-                     Bolivariana de Venezuela número 38.205. de fecha nueve (09) de junio de 2005. La contratación del
+                     2005-00011, de fecha seis (06) de abril de 2005, publicada en la Gaceta Oficial de la
+                     República
+                     Bolivariana de Venezuela número 38.205. de fecha nueve (09) de junio de 2005. La
+                     contratación del
                      ciudadano que se señala a continuación
                      <br>
                      <br>
                      1.- <strong>{{name}}</strong>, titular de la cédula de identidad número
                      <strong>{{cedula}}</strong>,
                      para desempeñar funciones
-                     como <strong>{{position}}</strong> Código REC y SIGEFIRRHH: <strong>{{codePosition}}</strong>
+                     como <strong>{{position}}</strong> Código REC y SIGEFIRRHH:
+                     <strong>{{codePosition}}</strong>
                      Vigencia: desde el <strong>{{fechaInit}}</strong>. Adscripción: Dirección
-                     <strong>{{Workplace}}</strong> para cumplir funciones de <strong>{{jobFunctions}}</strong> en las
+                     <strong>{{Workplace}}</strong> para cumplir funciones de <strong>{{jobFunctions}}</strong>
+                     en las
                      instalaciones de
                      los diferentes <strong>{{state}}</strong>.
                      <br>
                      {{#disincorporate}}
-                     Vacante generada por el egreso de <strong>{{disincorporateName}}</strong>. titular de la cédula de
+                     Vacante generada por el egreso de <strong>{{disincorporateName}}</strong>. titular de la
+                     cédula de
                      identidad número <strong>{{disincorporateCedula}}</strong>, en fecha
                      <strong>{{disincorporatefecha}}</strong>.
                      {{/disincorporate}}
@@ -198,177 +226,162 @@
 
       </table>
    </div>
-  
    <br>
+
    <div class="container">
-    <table class="tablaCuenta">
+    <table class="tablaCuenta" style="border-bottom: none;">
        <thead>
           <tr class="headerTable">
-             <th class="tdEscudo" colspan="1">
+             <td class="tdEscudo" >
                 <img class="img-escudo" src="Escudo_de_Armas.png" alt="">
-             </th>
-             <th colspan="2">
-                <h3 class="subTitle">REPÚBLICA BOLIVARIANA DE VENEZUELA
-                   <br>DIRECCIÓN EJECUTIVA DE LA MAGISTRATURA
-                   <br>DIREECIÓN GENERAL DE RECURSOS HUMANOS
-                </h3>
-             </th>
-             <th colspan="2">
-                <p>pag. 2 de 2</p>
-             </th>
+             </td>
+             <td>
+                <h3 class="subTitle"
+                   style="font-size: 10px;font-weight: 100;line-height: 13px; margin: 0% !important;">
+                   REPÚBLICA BOLIVARIANA DE VENEZUELA</h3>
+                <h3 class="subTitle"
+                   style="font-size: 10px;font-weight: 100;line-height: 13px;margin: 0% !important;">
+                   DIRECCIÓN EJECUTIVA DE LA MAGISTRATURA</h3>
+                <h3 class="subTitle"
+                   style="font-size: 10px;font-weight: 100;line-height: 13px;margin: 0% !important;">
+                   DIREECIÓN GENERAL DE RECURSOS HUMANOS</h3>
+             </td>
+             <td >
+                <p style="font-size: 10px;"></p>
+             </td>
+             <td >
+                <p style="font-size: 10px;">pag. 2 de 2</p>
+             </td>
           </tr>
        </thead>
        <tbody>
           <tr>
 
              <td colspan="3">
-                <p>
+                <p style="font-size: 8px;
+                      line-height: 16px;
+                      font-weight: 100;margin-top: 3px;
+                      margin-bottom: 3px;">
                    PARA: DIRECCIÓN EJECUTIVA
                 </p>
              </td>
              <td class="rowNumber" rowspan="3">
-                <P>
-                   CUENTA N° <br><strong>{{yearGenerate}}-{{idPostulado}}-{{nomenclature}}</strong> <br>RECIBIDA
-                </P>
+                <p style="font-size: 8px; 
+                      line-height: 16px;
+                      font-weight: 100;">
+                   CUENTA N° <br><strong>{{añoGenerate}}-{{idPostulado}}-{{nomenclature}}</strong> <br>RECIBIDA
+                </p>
              </td>
           </tr>
           <tr>
              <td colspan="3">
-                <p>DE: DIRECCIÓN GENERAL DE RECURSOS HUMANOS</p>
+                <p style="font-size: 8px; 
+                       line-height: 16px;
+                       font-weight: 100;margin-top: 3px;
+                      margin-bottom: 3px;">DE: DIRECCIÓN GENERAL DE RECURSOS HUMANOS</p>
              </td>
           </tr>
           <tr>
              <td class="tdAsunto" colspan="3">
-                <p>
+                <p style="font-size: 8px; 
+                line-height: 16px;
+                font-weight: 100;margin-top: 3px;
+                      margin-bottom: 3px;">
                    ASUNTO: <br>
-                   APROBACIÓN DE UN MOVIMIENTO DE INGRESO A FAVOR DEL CIUDADANO {{name}}, TITULAR DE LA CEDULA DE
+                   APROBACIÓN DE UN MOVIMIENTO DE INGRESO A FAVOR DEL CIUDADANO {{name}}, TITULAR DE LA CEDULA
+                   DE
                    IDENTIDAD
                    NÚMERO {{cedula}}, PARA OCUPAR EL CARGO VACANTE DE <strong>{{position}}</strong> ADSCRITO A
                    <strong>{{Workplace}}</strong>,
                    SEGUN CODIGO DE AGENDA NÚMERO {{numAgenda}} DE FECHA {{fechaAgenda}}.
+
                 </p>
              </td>
           </tr>
           <tr>
 
-             <td class="antecedesText" colspan="5">
-
+             <td class="antecedesText" colspan="4">
+                <p style="font-size: 9px; 
+                line-height: 16px;
+                font-weight: 100;">
+                </p>
              </td>
           </tr>
-          <tr>
+       </tbody>
+    </table>
+    <table class="tablaCuenta" style="border-top: none;">
+        <tr>
             <td colspan="1">
-               <p>
-  
-               </p>
-            </td>
-            <td colspan="1">
-               <p>
+               <p style="font-size: 8px; 
+            line-height: 16px;
+            font-weight: 100;">
                   LISMAR YOVEIDY TERAN BARRIOS <br> DIRECTORA DE ESTUDIS TÉCNICOS <br>(E)
                </p>
             </td>
             <td colspan="1">
-               <p>
+               <p style="font-size: 8px; 
+            line-height: 16px;
+            font-weight: 100;">
                   YORLENI MADELEN RANGEL <br> CASTILLO <br> DIRECTORA GENERAL DE RECURSOS HUMANOS (E)
                </p>
             </td>
          </tr>
          <tr class="uniClass">
-            <td colspan="2">
-               <h5> UNIDAD VINCULADAS <br></h5>
-               <P>
+            <td colspan="1">
+               <h2 style="font-size: 9px;"> UNIDAD VINCULADAS <br></h2>
+               <p style="font-size: 7px; 
+            line-height: 16px;
+            font-weight: 100;">
+
+                  <input type="checkbox" id="cbox1" value="first_checkbox" />
                   <label>
-                     <input type="checkbox" id="cbox1" value="first_checkbox" /> 
                      DIRECCIÓN GENERAL DE RECURSOS HUMANOS
                   </label> <br>
+
+                  <input type="checkbox" id="cbox2" value="first_checkbox" />
                   <label>
-                     <input type="checkbox" id="cbox2" value="first_checkbox" /> 
                      DIRECCIÓN GENERAL DE ADMINISTRACIÓN Y FINANZAS
                   </label> <br>
+
+                  <input type="checkbox" id="cbox3" value="first_checkbox" />
                   <label>
-                     <input type="checkbox" id="cbox3" value="first_checkbox" /> 
                      DIRECCIÓN GENERAL DE PLANIFICACÍON Y DESARROLLO INSTITUCIONAL
                   </label> <br>
                   <br>
-                 
-               </P>
+
+               </p>
             </td>
-            <td colspan="2">
-               <p>
+            <td colspan="1">
+               <p style=" font-size: 7px;
+            line-height: 16px;
+            font-weight: 100;">
                   <label>
-                     <input type="checkbox" id="cbox4" value="first_checkbox" /> 
-                     OFICINA DE DESARROLLO INFORMATICO 
+                     <input type="checkbox" id="cbox4" value="first_checkbox" />
+                     OFICINA DE DESARROLLO INFORMATICO
                   </label> <br>
                   <label>
-                     <input type="checkbox" id="cbox4" value="first_checkbox" /> 
+                     <input type="checkbox" id="cbox4" value="first_checkbox" />
                      OFICINA DE ASESORIA JURIDICA
                   </label> <br>
                   <label>
-                     <input type="checkbox" id="cbox5" value="first_checkbox" /> 
+                     <input type="checkbox" id="cbox5" value="first_checkbox" />
                      OFICINA DE COMUNICACIÓ
                   </label> <br>
                   <label>
-                     <input type="checkbox" id="cbox6" value="first_checkbox" /> 
+                     <input type="checkbox" id="cbox6" value="first_checkbox" />
                      OFICINA DE SEGURIDAD
                   </label> <br>
                </p>
             </td>
          </tr>
          <tr>
-            <td>
-               <p>
-                  AGENDA <br>
-                  FECHA <br>
-                  <input type="text" id="cbox7" class="checkAgenda"  /> <br>
-                  N°<br>
-                  <input type="text" id="cbox7" class="checkAgenda"  /> 
-               </p> <br>               
-            </td>
-            <td>
-               <p>
-                  DECISIÓN <br>
-                  <label>
-                     
-                     <input type="checkbox" id="cbox8" class ="decisionClass" value="first_checkbox" /> 
-                     APROBADO 
-                  </label> <br>
-                  <label>
-                     <input type="checkbox" id="cbox9" class ="decisionClass" value="first_checkbox" /> 
-                     NEGADO 
-                  </label> <br>
-                  <label>
-                     <input type="checkbox" id="cbox10" class ="decisionClass" value="first_checkbox" /> 
-                     DIFERIDO 
-                  </label> <br>
-                  <label colspan="3">
-                     <input type="checkbox" id="cbox11" class ="decisionClass" value="first_checkbox" /> 
-                     VISTO 
-                  </label> <br>
-               </p>
-            </td>
-            <td class="thObser" colspan="3">
-               <div class="observacion">
-                 <p>
-                  OBSERVACIÓN
-                 </p>
-               </div>
-            
-            </td>
+            <td colspan="4" class="firmas">{{firma-director-dem}}</td>
+
          </tr>
-  <tr>
-   <td colspan="5" class="firmas">{{firma-director-dem}}</td>
-  
-  </tr>
-       </tbody>
     </table>
-    <table class="tablafooter">
-
-
-       
-
-    </table>
-
-    
  </div>
+
+   
 </body>
 
 </html>

@@ -84,6 +84,7 @@ export class NotificationsService {
         .createQueryBuilder('notification')
         .innerJoinAndSelect('notification.approvement', 'approvement')
         .select(['notification', 'approvement.id'])
+        .orderBy('notification.createdAt', 'DESC')
         .skip(options.skip)
         .take(options.take)
         .where(searchParams.where)

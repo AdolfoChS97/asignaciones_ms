@@ -22,9 +22,13 @@ import {
   ApiTags,
 } from '@nestjs/swagger';
 import { UpdateParameterDto } from './dto/update-parameter.dto';
+import {
+  getParametersDto,
+  getParameterDto,
+  GetParameterByGroup,
+  GetParameterByStatus,
+} from './dto/get-parameter.dto';
 import { PaginationQueryParamsDto } from '@/shared/dtos/pagination.dto';
-import { getParametersDto, getParameterDto, GetParameterByGroup } from './dto/get-parameter.dto';
-import { bool } from 'joi';
 
 @ApiTags('Parameters')
 @Controller('parameters')
@@ -59,10 +63,56 @@ export class ParametersController {
     }
   }
 
+  @Get('types')
+  @ApiQuery({ name: 'pageNumber', type: 'number', required: true, example: 1 })
+  @ApiQuery({ name: 'pageSize', type: 'number', required: true, example: 10 })
+  @ApiQuery({
+    name: 'statusParam',
+    type: 'boolean',
+    required: false,
+    example: true,
+    description: 'Estado del parametro',
+  })
+  @ApiOkResponse({
+    description: 'Devuelve un arreglo de parametros segun la paginación',
+    type: getParametersDto,
+  })
+  @ApiBadRequestResponse({
+    description: 'No se encontro el parametro',
+    schema: {
+      type: 'object',
+      properties: {
+        statusCode: { type: 'number', example: 400 },
+        message: { type: 'string', example: 'Bad request' },
+        error: { type: 'string', example: 'Solicitud Incrorrecta' },
+      },
+    },
+  })
+  async findAllTypes(
+    @Query() { pageNumber, pageSize, statusParam }: GetParameterByStatus,
+    @Res() response,
+  ) {
+    try {
+      const data = await this.parametersService.findAllTypes({
+        pageNumber: +pageNumber,
+        pageSize: +pageSize,
+        statusParam: statusParam,
+      });
+      return response.status(HttpStatus.OK).json(data);
+    } catch (e) {
+      throw e;
+    }
+  }
+
   @Get()
   @ApiQuery({ name: 'pageNumber', type: 'number', required: true, example: 1 })
   @ApiQuery({ name: 'pageSize', type: 'number', required: true, example: 10 })
-  @ApiQuery({ name: 'name', type: 'string', required: false, example: 'activo' })
+  @ApiQuery({
+    name: 'name',
+    type: 'string',
+    required: false,
+    example: 'activo',
+  })
   @ApiQuery({
     name: 'type',
     type: 'string',
@@ -75,7 +125,6 @@ export class ParametersController {
     required: false,
     example: 'true',
   })
- 
   @ApiOkResponse({
     description: 'Devuelve un arreglo de parametros segun la paginación',
     type: getParametersDto,
@@ -92,7 +141,8 @@ export class ParametersController {
     },
   })
   async findAll(
-    @Query() { pageNumber, pageSize, name, statusParam, type }: GetParameterByGroup,
+    @Query()
+    { pageNumber, pageSize, name, statusParam, type }: GetParameterByGroup,
     @Res() response,
   ) {
     try {
@@ -101,7 +151,7 @@ export class ParametersController {
         pageSize: +pageSize,
         name: name,
         statusParam: statusParam,
-        type: type
+        type: type,
       });
       return response.status(HttpStatus.OK).json(data);
     } catch (e) {

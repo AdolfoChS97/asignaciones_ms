@@ -5,20 +5,21 @@ import {
 } from '@nestjs/common';
 import { CreateParameterDto } from './dto/create-parameter.dto';
 import { UpdateParameterDto } from './dto/update-parameter.dto';
-import { GetParameterByGroup } from './dto/get-parameter.dto';
+import {
+  GetParameterByGroup,
+  GetParameterByStatus,
+} from './dto/get-parameter.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Parameter } from './entities/parameter.entity';
-import { PaginationQueryParamsDto } from '@/shared/dtos/pagination.dto';
 import {
   generatesParameterRecord,
-  getParametersRecords,
   getParameterRecord,
   generatesUpdatedParameterRecord,
 } from './mappers/parameter.mapper';
 import { checkProperties } from '@/shared/utils/checkProperties';
 import { isBoolean } from '@shared/utils/isBoolean';
-import { object } from 'joi';
+import { applyParamsToSearch } from '@/shared/utils/applyParamsToSearch';
 
 @Injectable()
 export class ParametersService {
@@ -75,6 +76,47 @@ export class ParametersService {
     } catch (e) {
       throw e;
     }
+  }
+
+  async findAllTypes(queryParams: GetParameterByStatus) {
+    try {
+      const { pageNumber, pageSize, ...rest } = queryParams;
+
+      if (!pageNumber || !pageSize)
+        throw new BadRequestException('pageNumber y pageSize son requeridos');
+
+      if (!Number.isInteger(pageNumber) && !Number.isInteger(pageSize))
+        throw new BadRequestException(
+          'pageNumber y pageSize deben ser números enteros',
+        );
+
+      if (pageNumber < 1 || pageSize < 1)
+        throw new BadRequestException(
+          'pageNumber y pageSize deben ser mayores a 0',
+        );
+
+      if (!isBoolean(rest.statusParam))
+        throw new BadRequestException('statusParam debe ser un booleano');
+
+      const options = {
+        skip: (pageNumber - 1) * pageSize,
+        take: pageSize,
+        where: {},
+      };
+
+      const searchParams = applyParamsToSearch(rest, options);
+
+      const paramTypes = await this.parameterRepository
+        .createQueryBuilder('parameter')
+        .select('type')
+        .distinct(true)
+        .where({ ...searchParams.where })
+        .take(options.take)
+        .skip(options.skip)
+        .getRawMany();
+
+      return getParameterRecord(paramTypes);
+    } catch (e) {}
   }
 
   async findOne(id: number) {

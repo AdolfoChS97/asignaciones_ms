@@ -60,16 +60,20 @@ export class ParametersService {
 
   async findAll(queryParams: GetParameterByGroup) {
     try {
-      const { pageNumber, pageSize, name, statusParam, type } = queryParams;
+      const { pageNumber, pageSize, ...rest } = queryParams;
 
-      const parameters = await this.parameterRepository.find({
-        where: {
-          name: name || null,
-          type: type || null,
-          statusParam: statusParam,
-        },
+      const options = {
         skip: (pageNumber - 1) * pageSize,
         take: pageSize,
+        where: {},
+      };
+
+      const searchParams = applyParamsToSearch(rest, options);
+
+      const parameters = await this.parameterRepository.find({
+        where: { ...searchParams.where },
+        skip: searchParams.skip,
+        take: searchParams.take,
       });
 
       return getParameterRecord(parameters);
@@ -104,8 +108,6 @@ export class ParametersService {
       };
 
       const searchParams = applyParamsToSearch(rest, options);
-
-      console.log(JSON.stringify(searchParams.where));
 
       const paramTypes = await this.parameterRepository
         .createQueryBuilder('parameter')
@@ -143,7 +145,6 @@ export class ParametersService {
       const parameterExists = await this.parameterRepository.findOne({
         where: { id: id },
       });
-      console.log('existe', parameterExists);
       if (!parameterExists) {
         throw new NotFoundException(`Parametro con id ${id} no encontrado`);
       }

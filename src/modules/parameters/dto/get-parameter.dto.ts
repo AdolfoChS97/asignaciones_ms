@@ -12,7 +12,6 @@ export class getParametersDto {
   })
   data: Parameter[];
 
-
   @ApiProperty({
     type: 'number',
     example: 1,
@@ -26,9 +25,6 @@ export class getParametersDto {
     description: 'Codigo de la respuesta',
   })
   status: HttpStatus.OK;
-
-
-
 }
 
 export class getParameterDto {
@@ -47,29 +43,36 @@ export class getParameterDto {
   status: HttpStatus.OK;
 }
 
-
-export class GetParameterByGroup extends PartialType(
-  PaginationQueryParamsDto
-){
-
+export class GetParameterByGroup extends PartialType(PaginationQueryParamsDto) {
   @ApiProperty({
     type: 'string',
     example: 'name',
-    description : 'Nombre del parametro'
+    description: 'Nombre del parametro',
   })
   name: string;
 
   @ApiProperty({
     type: 'string',
     example: 'type',
-    description : 'Tipo del parametro'
+    description: 'Tipo del parametro',
   })
   type: string;
 
   @ApiProperty({
     type: 'bool',
     example: 'true',
-    description : 'Estatus del parametro',
+    description: 'Estatus del parametro',
+  })
+  statusParam: boolean;
+}
+
+export class GetParameterByStatus extends PartialType(
+  PaginationQueryParamsDto,
+) {
+  @ApiProperty({
+    type: 'bool',
+    example: 'true',
+    description: 'Estatus del parametro',
   })
   statusParam: boolean;
 }

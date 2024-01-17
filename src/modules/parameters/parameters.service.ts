@@ -95,8 +95,7 @@ export class ParametersService {
           'pageNumber y pageSize deben ser mayores a 0',
         );
 
-      if (!isBoolean(rest.statusParam))
-        throw new BadRequestException('statusParam debe ser un booleano');
+      if (rest?.statusParam) isBoolean(rest.statusParam);
 
       const options = {
         skip: (pageNumber - 1) * pageSize,
@@ -105,6 +104,8 @@ export class ParametersService {
       };
 
       const searchParams = applyParamsToSearch(rest, options);
+
+      console.log(JSON.stringify(searchParams.where));
 
       const paramTypes = await this.parameterRepository
         .createQueryBuilder('parameter')
@@ -116,7 +117,9 @@ export class ParametersService {
         .getRawMany();
 
       return getParameterRecord(paramTypes);
-    } catch (e) {}
+    } catch (e) {
+      throw e;
+    }
   }
 
   async findOne(id: number) {

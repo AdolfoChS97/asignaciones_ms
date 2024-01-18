@@ -15,7 +15,7 @@
 
         .tablaCuenta {
             width: 100%;
-            border: 1px solid #868080;
+            border: 1px solid black;
            
         }
 
@@ -109,9 +109,6 @@
             vertical-align: super;
         }
 
-        td.firmas {
-            height: 17vh;
-        }
 
         .puntoCuenta {
             font-size: 12px;
@@ -189,9 +186,9 @@
                             TITULAR LA
                             CÉDULA DE IDENTIDAD NÚMERO
                             <strong>{{cedula}}</strong>, MEDIANTE PUNTO DE CUENTA NÚMERO <strong><span
-                                    id="puntoCuenta">{{yearGenerate}}-{{idPostulado}}-{{nomenclature}}</span></strong>,
+                                    id="puntoCuenta">{{añoGenerate}}-{{idPostulado}}-{{nomenclature}}</span></strong>,
                             APROBADO EN
-                            <strong>{{approvalFecha}}</strong>.
+                            <strong>{{aprovalFecha}}</strong>.
                         </p>
                     </td>
                 </tr>
@@ -240,8 +237,7 @@
                             SOPORTES:
                             <br>
                             <br>
-                            1.- Copia simple del Punto de Cuenta número <strong><span
-                                    id="puntoCuenta">{{yearGenerate}}-{{idPostulado}}-{{nomenclature}}</span></strong>,
+                            1.- Copia simple del Punto de Cuenta número <strong>{{añoGenerate}}-{{idPostulado}}-{{nomenclature}}</strong>,
                             aprobado en fecha <strong>{{approvalfecha}}</strong>
                             <br>
                             <br>
@@ -291,7 +287,7 @@
 
                     </td>
                     <td>
-                        <p style="font-size: 10px;">pag. 1 de 2</p>
+                        <p style="font-size: 10px;">pag. 2 de 2</p>
                     </td>
                 </tr>
             </thead>
@@ -309,7 +305,7 @@
                         <p style="font-size: 8px; 
                         line-height: 16px;
                         font-weight: 100;">
-                            CUENTA N° <br><strong>{{yearGenerate}}-{{idPostulado}}-{{nomenclature}}</strong>
+                            CUENTA N° <br><strong>{{añoGenerate}}-{{idPostulado}}-{{nomenclature}}</strong>
                             <br>RECIBIDA
                         </p>
                     </td>
@@ -331,9 +327,9 @@
                             TITULAR LA
                             CÉDULA DE IDENTIDAD NÚMERO
                             <strong>{{cedula}}</strong>, MEDIANTE PUNTO DE CUENTA NÚMERO <strong><span
-                                    id="puntoCuenta">{{yearGenerate}}-{{idPostulado}}-{{nomenclature}}</span></strong>,
+                                    id="puntoCuenta">{{añoGenerate}}-{{idPostulado}}-{{nomenclature}}</span></strong>,
                             APROBADO EN
-                            <strong>{{approvalFecha}}</strong>.
+                            <strong>{{aprovalFecha}}</strong>.
                         </p>
                     </td>
                 </tr>
@@ -350,14 +346,16 @@
                 <td colspan="1">
                     <p style="font-size: 8px; 
             line-height: 16px;
-            font-weight: 100;">
+            font-weight: 100;    margin-top: 0;
+    margin-bottom: 0px;">
                         LISMAR YOVEIDY TERAN BARRIOS <br> DIRECTORA DE ESTUDIS TÉCNICOS <br>(E)
                     </p>
                 </td>
                 <td colspan="1">
                     <p style="font-size: 8px; 
             line-height: 16px;
-            font-weight: 100;">
+            font-weight: 100;    margin-top: 0;
+    margin-bottom: 0px;">
                         YORLENI MADELEN RANGEL <br> CASTILLO <br> DIRECTORA GENERAL DE RECURSOS HUMANOS (E)
                     </p>
                 </td>
@@ -367,7 +365,8 @@
                     <h2 style="font-size: 9px;"> UNIDAD VINCULADAS <br></h2>
                     <p style="font-size: 7px; 
             line-height: 16px;
-            font-weight: 100;">
+            font-weight: 100;    margin-top: 0;
+    margin-bottom: 0px;">
 
                         <input type="checkbox" id="cbox1" value="first_checkbox" />
                         <label>
@@ -390,7 +389,8 @@
                 <td colspan="1">
                     <p style=" font-size: 7px;
             line-height: 16px;
-            font-weight: 100;">
+            font-weight: 100;    margin-top: 0;
+    margin-bottom: 0px;">
                         <label>
                             <input type="checkbox" id="cbox4" value="first_checkbox" />
                             OFICINA DE DESARROLLO INFORMATICO
@@ -416,22 +416,22 @@
                 <td id="agenda" style="width: 34%;" colspan="1">
                     <p style=" font-size: 7px;
                     line-height: 16px;
-                    font-weight: 100;">
+                    font-weight: 100; margin: 0;">
                         AGENDA <br>
                         FECHA <br>
-                        <input type="text" id="cbox7" class="checkAgenda" /> <br>
+                        <input type="text" id="cbox7" style="padding: 0;box-shadow: 5px 5px 10px;" class="checkAgenda" /> <br>
                         N°<br>
-                        <input type="text" id="cbox7" class="checkAgenda" />
+                        <input type="text" id="cbox7" style="padding: 0;box-shadow: 5px 5px 10px;" class="checkAgenda" />
                     </p> <br>
                 </td>
                 <td colspan="1">
                     <p style=" font-size: 7px;
                     line-height: 16px;
-                    font-weight: 100;">
+                    font-weight: 100; margin: 0;">
                         DECISIÓN <br>
                         <label>
 
-                            <input type="checkbox" id="cbox8" class="decisionClass" value="first_checkbox" />
+                            <input type="checkbox" class="box-shadow: 0px 0px 0px;" id="cbox8" class="decisionClass" value="first_checkbox" />
                             APROBADO
                         </label> <br>
                         <label>
@@ -452,7 +452,7 @@
                     <div class="observacion">
                         <p style=" font-size: 7px;
                         line-height: 16px;
-                        font-weight: 100;">
+                        font-weight: 100; margin: 0;">
                             OBSERVACIÓN
                         </p>
                     </div>
@@ -460,7 +460,7 @@
                 </td>
             </tr>
             <tr>
-                <td colspan="4" class="firmas">{{firma-director-dem}}</td>
+                <td colspan="4" style="height: 19vh;" class="firmas">{{firma-director-dem}}</td>
 
             </tr>
 

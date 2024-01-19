@@ -60,13 +60,15 @@ export class ParametersService {
 
   async findAll(queryParams: GetParameterByGroup) {
     try {
-      const { pageNumber, pageSize, name, statusParam, type } = queryParams;
+      const { pageNumber, pageSize, name, statusParam, type, description } =
+        queryParams;
 
       const parameters = await this.parameterRepository.find({
         where: {
           name: name || null,
           type: type || null,
           statusParam: statusParam,
+          description: description || null,
         },
         skip: (pageNumber - 1) * pageSize,
         take: pageSize,

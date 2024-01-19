@@ -59,6 +59,13 @@ export class GetParameterByGroup extends PartialType(PaginationQueryParamsDto) {
   type: string;
 
   @ApiProperty({
+    type: 'string',
+    example: 'description',
+    description: 'Descripcion del parametro',
+  })
+  description: string;
+
+  @ApiProperty({
     type: 'bool',
     example: 'true',
     description: 'Estatus del parametro',

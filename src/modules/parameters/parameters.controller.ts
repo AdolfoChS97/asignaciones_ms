@@ -142,7 +142,14 @@ export class ParametersController {
   })
   async findAll(
     @Query()
-    { pageNumber, pageSize, name, statusParam, type }: GetParameterByGroup,
+    {
+      pageNumber,
+      pageSize,
+      name,
+      statusParam,
+      type,
+      description,
+    }: GetParameterByGroup,
     @Res() response,
   ) {
     try {
@@ -152,6 +159,7 @@ export class ParametersController {
         name: name,
         statusParam: statusParam,
         type: type,
+        description: description,
       });
       return response.status(HttpStatus.OK).json(data);
     } catch (e) {

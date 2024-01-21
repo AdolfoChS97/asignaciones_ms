@@ -16,7 +16,7 @@
         .tablaCuenta {
             width: 100%;
             border: 1px solid black;
-           
+
         }
 
         p {
@@ -115,7 +115,7 @@
         }
 
         td.antecedesText {
-           
+
             vertical-align: super;
         }
     </style>
@@ -123,7 +123,8 @@
 
 <body>
     <div class="container">
-        <table class="tablaCuenta" style="margin-bottom: 25%;">
+        <table class="tablaCuenta" style="margin-bottom: 25%; border: 1px solid black;
+        border-collapse: collapse;">
             <thead>
                 <tr class="headerTable">
                     <td class="tdEscudo">
@@ -194,7 +195,7 @@
                 </tr>
                 <tr>
 
-                    <td class="antecedesText"  style="border: 0;" colspan="4">
+                    <td class="antecedesText" style="border: 0;" colspan="4">
                         <p style="font-size: 9px; 
                         line-height: 16px;
                         font-weight: 100;">
@@ -241,8 +242,8 @@
                             RECOMENDACION: La Dirección General de Recursos Humanos, somete a consideración del Director
                             Ejecutivo de la
                             Magistratura, la aprobación del Sin Efecto antes señalado.
-                        <br>
-                        <br><br><br>
+                            <br>
+                            <br><br><br>
                         </p>
                     </td>
                 </tr>
@@ -251,7 +252,8 @@
         </table>
         <br>
         <br>
-        <table class="tablaCuenta" style=" border-bottom: 0;">
+        <table class="tablaCuenta" style=" border-bottom: 0;  border: 1px solid black;
+        border-collapse: collapse;">
             <thead>
                 <tr class="headerTable">
                     <td class="tdEscudo">
@@ -326,9 +328,10 @@
                 </tr>
             </tbody>
         </table>
-        <table class="tablaCuenta" style="border-bottom: none;border-top: none;">
+        <table class="tablaCuenta" style="border-bottom: none;border-top: none;
+        border-collapse: collapse;">
             <tr>
-                <td colspan="1">
+                <td colspan="1" style="border-right: 0px; border: none">
                     <p style="font-size: 8px; 
             line-height: 16px;
             font-weight: 100;    margin-top: 0;
@@ -336,7 +339,7 @@
                         LISMAR YOVEIDY TERAN BARRIOS <br> DIRECTORA DE ESTUDIS TÉCNICOS <br>(E)
                     </p>
                 </td>
-                <td colspan="1">
+                <td colspan="1" style="border-left: 0px;  border: none">
                     <p style="font-size: 8px; 
             line-height: 16px;
             font-weight: 100;    margin-top: 0;
@@ -346,7 +349,7 @@
                 </td>
             </tr>
             <tr class="uniClass">
-                <td colspan="1">
+                <td colspan="1" style="border-right: 0px;">
                     <h2 style="font-size: 9px;"> UNIDAD VINCULADAS <br></h2>
                     <p style="font-size: 7px; 
             line-height: 16px;
@@ -371,7 +374,7 @@
 
                     </p>
                 </td>
-                <td colspan="1">
+                <td colspan="1" style="border-left: 0px;">
                     <p style=" font-size: 7px;
             line-height: 16px;
             font-weight: 100;    margin-top: 0;
@@ -396,27 +399,29 @@
                 </td>
             </tr>
         </table>
-        <table class="tablaCuenta" style="border-top: none; border-bottom: 1px solid #868080;;">
+        <table class="tablaCuenta" style="border-top: none; border-bottom: 1px solid #000000;
+        border-collapse: collapse;">
             <tr>
-                <td id="agenda" style="width: 34%;" colspan="1">
+                <td id="agenda" style="width: 34%; border: none" colspan="1">
                     <p style=" font-size: 7px;
                     line-height: 16px;
                     font-weight: 100; margin: 0;">
                         AGENDA <br>
                         FECHA <br>
-                        <input type="text" id="cbox7" style="padding: 0;box-shadow: 5px 5px 10px;" class="checkAgenda" /> <br>
+                        <input type="text" id="cbox7" style="padding: 0;" class="checkAgenda" /> <br>
                         N°<br>
-                        <input type="text" id="cbox7" style="padding: 0;box-shadow: 5px 5px 10px;" class="checkAgenda" />
+                        <input type="text" id="cbox7" style="padding: 0;" class="checkAgenda" />
                     </p> <br>
                 </td>
-                <td colspan="1">
+                <td colspan="1" style=" border-top: none">
                     <p style=" font-size: 7px;
                     line-height: 16px;
                     font-weight: 100; margin: 0;">
                         DECISIÓN <br>
                         <label>
 
-                            <input type="checkbox" class="box-shadow: 0px 0px 0px;" id="cbox8" class="decisionClass" value="first_checkbox" />
+                            <input type="checkbox" class="box-shadow: 0px 0px 0px;" id="cbox8" class="decisionClass"
+                                value="first_checkbox" />
                             APROBADO
                         </label> <br>
                         <label>
@@ -433,7 +438,7 @@
                         </label> <br>
                     </p>
                 </td>
-                <td class="thObser" colspan="3">
+                <td class="thObser" style=" border-top: none"colspan="3">
                     <div class="observacion">
                         <p style=" font-size: 7px;
                         line-height: 16px;

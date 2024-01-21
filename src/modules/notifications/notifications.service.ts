@@ -37,6 +37,7 @@ export class NotificationsService {
     emitterId,
     rolId,
     title,
+    entityId,
   }: CreateNotificationDto) {
     try {
       if (!approvement && !Number.isInteger(+approvement))
@@ -54,6 +55,11 @@ export class NotificationsService {
           'rolId is required and should be a number',
         );
 
+      if (!entityId && !Number.isInteger(+entityId))
+        throw new BadRequestException(
+          'entityId is required and should be a number',
+        );
+
       if (!title) throw new BadRequestException('title is required');
 
       return await generatesNotificationRecord(
@@ -62,6 +68,7 @@ export class NotificationsService {
           emitterId,
           rolId,
           title,
+          entityId,
         }),
       );
     } catch (e) {
@@ -98,7 +105,7 @@ export class NotificationsService {
 
   async findOne(
     id: number,
-    { approvement, rolId, emitterId }: GetNotificationDto,
+    { approvement, rolId, emitterId, entityId }: GetNotificationDto,
   ): Promise<GetNotificationRecord> {
     try {
       await this.approvementService.findOne(+approvement);
@@ -110,6 +117,7 @@ export class NotificationsService {
           id: id,
           approvement: approvement,
           emitterId: emitterId,
+          entityId: entityId,
         },
         options,
       );
@@ -138,6 +146,7 @@ export class NotificationsService {
       title,
       description,
       status,
+      entityId,
     }: UpdateNotificationDto,
   ) {
     try {
@@ -165,6 +174,11 @@ export class NotificationsService {
 
       if (!status) throw new BadRequestException('status is required');
 
+      if (!entityId && !Number.isInteger(+entityId))
+        throw new BadRequestException(
+          'entityId is required and should be a number',
+        );
+
       const notification = await this.notificationRepository
         .createQueryBuilder('notification')
         .innerJoinAndSelect('notification.approvement', 'approvement')
@@ -182,6 +196,7 @@ export class NotificationsService {
         title,
         description,
         status,
+        entityId,
       }) as unknown as Notification;
 
       if (Object.keys(propertiesToUpdate).length === 0)

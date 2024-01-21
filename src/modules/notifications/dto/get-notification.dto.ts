@@ -12,6 +12,7 @@ class QueryParamsNotification extends PickType(Notification, [
   'approvement',
   'emitterId',
   'rolId',
+  'entityId',
 ]) {}
 
 export class GetNotificationsDto extends IntersectionType(

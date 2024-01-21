@@ -20,6 +20,15 @@ export class Notification {
   id: number;
 
   @ApiProperty({
+    description: 'ID del estado al cual pertenece el usuario',
+    example: 1,
+    type: 'number',
+    required: true,
+  })
+  @Column({ type: 'integer', nullable: false })
+  entityId: number; // id del usuario que recibe la notificación
+
+  @ApiProperty({
     description: 'ID de la solicitud de aprobación',
     example: 1,
     type: 'number',

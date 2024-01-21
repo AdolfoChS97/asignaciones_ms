@@ -158,6 +158,7 @@ export class NotificationsController {
       approvement,
       rolId,
       emitterId,
+      entityId,
     }: GetNotificationsDto,
     @Res() response,
   ) {
@@ -169,6 +170,7 @@ export class NotificationsController {
           approvement: +approvement,
           rolId: +rolId,
           emitterId: +emitterId,
+          entityId: +entityId,
         }),
       );
     } catch (e) {
@@ -205,6 +207,14 @@ export class NotificationsController {
     description: 'ID del usuario que envía la notificación',
     required: false,
   })
+  @ApiQuery({
+    name: 'entityId',
+    type: 'number',
+    example: 1,
+    description:
+      'ID del estado al cual pertenece el usuario que recibe la notificación',
+    required: false,
+  })
   @ApiOkResponse({
     type: GetNotificationDto,
     description: 'Ejemplo de respuesta al obtener la notificación',
@@ -235,7 +245,7 @@ export class NotificationsController {
   async findOne(
     @Param('id') id: string,
     @Query()
-    { approvement, rolId, emitterId }: GetNotificationDto,
+    { approvement, rolId, emitterId, entityId }: GetNotificationDto,
     @Res() response,
   ) {
     try {
@@ -243,6 +253,7 @@ export class NotificationsController {
         approvement: +approvement,
         rolId: +rolId,
         emitterId: +emitterId,
+        entityId: +entityId,
       });
       return response.status(status).json(data);
     } catch (e) {

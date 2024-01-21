@@ -8,6 +8,7 @@ export class UpdateNotificationDto extends PickType(Notification, [
   'title',
   'description',
   'status',
+  'entityId',
 ]) {}
 
 export class UpdatedNotificationDto {

@@ -7,6 +7,7 @@ export class CreateNotificationDto extends PickType(Notification, [
   'emitterId',
   'rolId',
   'title',
+  'entityId',
 ] as const) {}
 
 export class CreatedNotificationDto {

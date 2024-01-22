@@ -56,6 +56,9 @@
         table {
             width: 100%;
         }
+        input#cbox1, input#cbox2, input#cbox3, input#cbox4, input#cbox5, input#cbox6 {
+    margin: 0;
+}
 
         td {
             border: 1px solid black;
@@ -160,11 +163,11 @@
                             PARA: DIRECCIÓN EJECUTIVA
                         </p>
                     </td>
-                    <td class="rowNumber" rowspan="3">
+                    <td class="rowNumber" rowspan="3" style="vertical-align:baseline">
                         <p style="font-size: 8px; 
                              line-height: 16px;
-                             font-weight: 100;">
-                            CUENTA N° <br><strong>{{añoGenerate}}-{{idPostulado}}-{{nomenclature}}</strong> <br>RECIBIDA
+                             font-weight: 100; margin: 0;">
+                            <strong>CUENTA N°</strong> <br>{{añoGenerate}}-{{idPostulado}}-{{nomenclature}}<br><strong>RECIBIDA</strong>
                         </p>
                     </td>
                 </tr>
@@ -288,12 +291,11 @@
                             PARA: DIRECCIÓN EJECUTIVA
                         </p>
                     </td>
-                    <td class="rowNumber" rowspan="3">
+                    <td class="rowNumber" rowspan="3" style="vertical-align:baseline">
                         <p style="font-size: 8px; 
                         line-height: 16px;
-                        font-weight: 100;">
-                            CUENTA N° <br><strong>{{añoGenerate}}-{{idPostulado}}-{{nomenclature}}</strong>
-                            <br>RECIBIDA
+                        font-weight: 100;    margin: 0;">
+                           <strong>CUENTA N°</strong> <br>{{añoGenerate}}-{{idPostulado}}-{{nomenclature}}<br><strong>RECIBIDA</strong>
                         </p>
                     </td>
                 </tr>
@@ -330,30 +332,31 @@
         </table>
         <table class="tablaCuenta" style="border-bottom: none;border-top: none;
         border-collapse: collapse;">
-            <tr>
-                <td colspan="1" style="border-right: 0px; border: none">
+            <tr class="tr-one">
+                <th colspan="1" style="
+            border-collapse: collapse;">
                     <p style="font-size: 8px; 
             line-height: 16px;
-            font-weight: 100;    margin-top: 0;
-    margin-bottom: 0px;">
-                        LISMAR YOVEIDY TERAN BARRIOS <br> DIRECTORA DE ESTUDIS TÉCNICOS <br>(E)
+            font-weight: 100;text-align: end;">
+                        LISMAR YOVEIDY TERAN BARRIOS <br> DIRECTORA DE ESTUDIS TÉCNICOS (E)
                     </p>
-                </td>
-                <td colspan="1" style="border-left: 0px;  border: none">
+                </th>
+                <th colspan="1" style="
+            border-collapse: collapse;    border-right: 1px solid black;">
                     <p style="font-size: 8px; 
             line-height: 16px;
-            font-weight: 100;    margin-top: 0;
-    margin-bottom: 0px;">
-                        YORLENI MADELEN RANGEL <br> CASTILLO <br> DIRECTORA GENERAL DE RECURSOS HUMANOS (E)
+            font-weight: 100;
+            text-align: center;">
+                        YORLENI MADELEN RANGEL CASTILLO <br> DIRECTORA GENERAL DE RECURSOS HUMANOS (E)
                     </p>
-                </td>
+                </th>
             </tr>
             <tr class="uniClass">
                 <td colspan="1" style="border-right: 0px;">
                     <h2 style="font-size: 9px;"> UNIDAD VINCULADAS <br></h2>
                     <p style="font-size: 7px; 
             line-height: 16px;
-            font-weight: 100;    margin-top: 0;
+            font-weight: 100; margin-top: 0;
     margin-bottom: 0px;">
 
                         <input type="checkbox" id="cbox1" value="first_checkbox" />
@@ -402,22 +405,22 @@
         <table class="tablaCuenta" style="border-top: none; border-bottom: 1px solid #000000;
         border-collapse: collapse;">
             <tr>
-                <td id="agenda" style="width: 34%; border: none" colspan="1">
+                <td id="agenda" style="width: 22%; border: none;text-align: center;" colspan="1">
                     <p style=" font-size: 7px;
                     line-height: 16px;
                     font-weight: 100; margin: 0;">
-                        AGENDA <br>
-                        FECHA <br>
-                        <input type="text" id="cbox7" style="padding: 0;" class="checkAgenda" /> <br>
+                        <strong>AGENDA</strong> <br>
+                        <strong>FECHA</strong> <br>
+                        <input type="text" id="cbox7" style="padding: 0;width: 44%;" class="checkAgenda" /> <br>
                         N°<br>
-                        <input type="text" id="cbox7" style="padding: 0;" class="checkAgenda" />
+                        <input type="text" id="cbox7" style="padding: 0;width: 44%;" class="checkAgenda" />
                     </p> <br>
                 </td>
-                <td colspan="1" style=" border-top: none">
+                <td colspan="1" style=" border-top: none; width: 20%;">
                     <p style=" font-size: 7px;
                     line-height: 16px;
-                    font-weight: 100; margin: 0;">
-                        DECISIÓN <br>
+                    font-weight: 100; margin: 0;margin: 0px 9px 0px 9px;">
+                        <strong>DECISIÓN</strong> <br>
                         <label>
 
                             <input type="checkbox" class="box-shadow: 0px 0px 0px;" id="cbox8" class="decisionClass"
@@ -443,7 +446,7 @@
                         <p style=" font-size: 7px;
                         line-height: 16px;
                         font-weight: 100; margin: 0;">
-                            OBSERVACIÓN
+                           <strong>OBSERVACIÓN</strong> 
                         </p>
                     </div>
 

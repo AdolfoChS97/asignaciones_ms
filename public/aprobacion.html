@@ -12,6 +12,9 @@
             justify-content: center;
             text-align: justify;
         }
+        input#cbox1, input#cbox2, input#cbox3, input#cbox4, input#cbox5, input#cbox6 {
+    margin: 0;
+}
 
 
 
@@ -140,11 +143,11 @@
                             PARA: DIRECCIÓN EJECUTIVA
                         </p>
                     </td>
-                    <td class="rowNumber" rowspan="3">
+                    <td class="rowNumber" rowspan="3" style="vertical-align:baseline">
                         <p style="font-size: 8px; 
                         line-height: 16px;
                         font-weight: 100;">
-                            CUENTA N° <br><strong>{{añoGenerate}}-{{idPostulado}}-{{nomenclature}}</strong> <br>RECIBIDA
+                            <strong>CUENTA N°</strong> <br>{{añoGenerate}}-{{idPostulado}}-{{nomenclature}}<br><strong>RECIBIDA</strong>
                         </p>
                     </td>
                 </tr>
@@ -185,7 +188,7 @@
                             La Dirección de Recursos Humanos, somete a consideracíon del Director
                             Ejecutivo de la Magistratura, en ejercicio de las atribuciones conferidas en la Ley Orgánica
                             del tribunal Supremo de la Justicia de la República Bolivariana de Venezuela, en su artículo
-                            77, numeral 12, la aprobacíon del movimiento de personasl saber:
+                            77, numeral 12, la aprobacíon del movimiento de personal saber:
                             <br>
                             <br>
                             1.- <strong>{{name}}</strong>, titular de la cédula de identidad número
@@ -270,11 +273,11 @@
                             PARA: DIRECCIÓN EJECUTIVA
                         </p>
                     </td>
-                    <td class="rowNumber" rowspan="3">
+                    <td class="rowNumber" rowspan="3" style="vertical-align:baseline">
                         <p style="font-size: 8px; 
                       line-height: 16px;
                       font-weight: 100;">
-                            CUENTA N° <br><strong>{{añoGenerate}}-{{idPostulado}}-{{nomenclature}}</strong> <br>RECIBIDA
+                            <strong>CUENTA N°</strong> <br>{{añoGenerate}}-{{idPostulado}}-{{nomenclature}}<br><strong>RECIBIDA</strong>
                         </p>
                     </td>
                 </tr>
@@ -321,16 +324,17 @@
             border-collapse: collapse;">
                     <p style="font-size: 8px; 
             line-height: 16px;
-            font-weight: 100;">
-                        LISMAR YOVEIDY TERAN BARRIOS <br> DIRECTORA DE ESTUDIS TÉCNICOS <br>(E)
+            font-weight: 100;text-align: end;">
+                        LISMAR YOVEIDY TERAN BARRIOS <br> DIRECTORA DE ESTUDIS TÉCNICOS (E)
                     </p>
                 </th>
                 <th colspan="1" style="
-            border-collapse: collapse;">
+            border-collapse: collapse;    border-right: 1px solid black;">
                     <p style="font-size: 8px; 
             line-height: 16px;
-            font-weight: 100;">
-                        YORLENI MADELEN RANGEL <br> CASTILLO <br> DIRECTORA GENERAL DE RECURSOS HUMANOS (E)
+            font-weight: 100;
+            text-align: center;">
+                        YORLENI MADELEN RANGEL CASTILLO <br> DIRECTORA GENERAL DE RECURSOS HUMANOS (E)
                     </p>
                 </th>
             </tr>
@@ -339,7 +343,7 @@
                     <h2 style="font-size: 9px;"> UNIDAD VINCULADAS <br></h2>
                     <p style="font-size: 7px; 
             line-height: 16px;
-            font-weight: 100;">
+            font-weight: 100; margin: 0;">
 
                         <input type="checkbox" id="cbox1" value="first_checkbox" />
                         <label>
@@ -356,13 +360,12 @@
                             DIRECCIÓN GENERAL DE PLANIFICACÍON Y DESARROLLO INSTITUCIONAL
                         </label> <br>
                         <br>
-
                     </p>
                 </td>
                 <td colspan="1" style="border-left: 0px;">
                     <p style=" font-size: 7px;
             line-height: 16px;
-            font-weight: 100;">
+            font-weight: 100;margin: 0;">
                         <label>
                             <input type="checkbox" id="cbox4" value="first_checkbox" />
                             OFICINA DE DESARROLLO INFORMATICO

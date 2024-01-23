@@ -215,9 +215,8 @@
                         </p>
 
                         <p style="font-size: 9px; 
-                  line-height: 16px;
-                  font-weight: 100;
-                  border: 0 !important;">
+                        line-height: 16px;
+                        font-weight: 100;margin-top: 12%;">
                             RECOMENDACIÓN:
                             <br>
                             La Dirección General de Recursos Humanos, somete a consideración del Director
@@ -318,7 +317,7 @@
             <tr class="tr-one">
                 <th colspan="1" style="
             border-collapse: collapse;">
-                    <p style="font-size: 8px; 
+                    <p style="font-size: 7px; 
             line-height: 16px;
             font-weight: 100;text-align: end;">
                         LISMAR YOVEIDY TERAN BARRIOS <br> DIRECTORA DE ESTUDIS TÉCNICOS (E)
@@ -326,7 +325,7 @@
                 </th>
                 <th colspan="1" style="
             border-collapse: collapse;    border-right: 1px solid black;">
-                    <p style="font-size: 8px; 
+                    <p style="font-size: 7px; 
             line-height: 16px;
             font-weight: 100;
             text-align: center;">
@@ -339,7 +338,7 @@
                     <h2 style="font-size: 9px;"> UNIDAD VINCULADAS <br></h2>
                     <p style="font-size: 7px; 
             line-height: 16px;
-            font-weight: 100; margin: 0;">
+            font-weight: 100; margin: 0;text-align: left;">
 
                         <input type="checkbox" id="cbox1" value="first_checkbox" />
                         <label>
@@ -361,7 +360,7 @@
                 <td colspan="1" style="border-left: 0px;">
                     <p style=" font-size: 7px;
             line-height: 16px;
-            font-weight: 100;margin: 0;">
+            font-weight: 100;margin: 0;text-align: left;">
                         <label>
                             <input type="checkbox" id="cbox4" value="first_checkbox" />
                             OFICINA DE DESARROLLO INFORMATICO
@@ -381,10 +380,62 @@
                     </p>
                 </td>
             </tr>
+        </table>
+        <table class="tablaCuenta" style="border-top: none; border-bottom: 1px solid #000000;
+        border-collapse: collapse;">
             <tr>
-                <td colspan="5" style="height: 30vh;" class="firmas">{{firma-director-dem}}</td>
+                <td id="agenda" style="width: 22%; border: none;text-align: center;" colspan="1">
+                    <p style=" font-size: 7px;
+                    line-height: 16px;
+                    font-weight: 100; margin: 0;">
+                        <strong>AGENDA</strong> <br>
+                        <strong>FECHA</strong> <br>
+                        <input type="text" id="cbox7" style="padding: 0;width: 44%;" class="checkAgenda" /> <br>
+                        N°<br>
+                        <input type="text" id="cbox7" style="padding: 0;width: 44%;" class="checkAgenda" />
+                    </p> <br>
+                </td>
+                <td colspan="1" style=" border-top: none; width: 20%;">
+                    <p style=" font-size: 7px;
+                    line-height: 16px;
+                    font-weight: 100; margin: 0;margin: 0px 9px 0px 9px;">
+                        <strong>DECISIÓN</strong> <br>
+                        <label>
+
+                            <input type="checkbox" class="box-shadow: 0px 0px 0px;" id="cbox8" class="decisionClass"
+                                value="first_checkbox" />
+                            APROBADO
+                        </label> <br>
+                        <label>
+                            <input type="checkbox" id="cbox9" class="decisionClass" value="first_checkbox" />
+                            NEGADO
+                        </label> <br>
+                        <label>
+                            <input type="checkbox" id="cbox10" class="decisionClass" value="first_checkbox" />
+                            DIFERIDO
+                        </label> <br>
+                        <label colspan="3">
+                            <input type="checkbox" id="cbox11" class="decisionClass" value="first_checkbox" />
+                            VISTO
+                        </label> <br>
+                    </p>
+                </td>
+                <td class="thObser" style=" border-top: none"colspan="3">
+                    <div class="observacion">
+                        <p style=" font-size: 7px;
+                        line-height: 16px;
+                        font-weight: 100; margin: 0;">
+                           <strong>OBSERVACIÓN</strong> 
+                        </p>
+                    </div>
+
+                </td>
+            </tr>
+            <tr>
+                <td colspan="4" style="height: 19vh;" class="firmas">{{director-dem}}</td>
 
             </tr>
+
         </table>
     </div>
 

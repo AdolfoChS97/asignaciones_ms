@@ -125,6 +125,12 @@ export class ParametersController {
     required: false,
     example: 'true',
   })
+  @ApiQuery({
+    name: 'descripcion',
+    type: 'string',
+    required: false,
+    example: 'Descripción'
+  })
   @ApiOkResponse({
     description: 'Devuelve un arreglo de parametros segun la paginación',
     type: getParametersDto,

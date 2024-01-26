@@ -60,21 +60,41 @@ export class ParametersService {
 
   async findAll(queryParams: GetParameterByGroup) {
     try {
-      const { pageNumber, pageSize, name, statusParam, type, description } =
-        queryParams;
+    
 
-      const parameters = await this.parameterRepository.find({
-        where: {
-          name: name || null,
-          type: type || null,
-          statusParam: statusParam,
-          description: description || null,
-        },
-        skip: (pageNumber - 1) * pageSize,
-        take: pageSize,
-      });
+      const { pageNumber, pageSize, ...rest } = queryParams;
+      
+        const options = {
+          skip: (pageNumber - 1) * pageSize,
+          take: pageSize,
+          where: {},
+        };  
+        const searchParams = applyParamsToSearch(rest, options);
+        console.log(searchParams)  ;      
+
+      const parameters = await this.parameterRepository
+        .createQueryBuilder('parameter')
+        .where({ ...searchParams.where })
+        .take(options.take)
+        .skip(options.skip)
+        .getRawMany();
+
+
+      // const parameters = await this.parameterRepository.find({
+      //   where: {
+      //     name: name || null,
+      //     type: type || null,
+      //     statusParam: statusParam,
+      //     description: description || null,
+      //   },
+      //   skip: (pageNumber - 1) * pageSize,
+      //   take: pageSize,
+      // });
+
+      
 
       return getParameterRecord(parameters);
+      // return rest;
     } catch (e) {
       throw e;
     }

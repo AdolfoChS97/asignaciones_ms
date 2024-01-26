@@ -78,23 +78,10 @@ export class ParametersService {
         .take(options.take)
         .skip(options.skip)
         .getRawMany();
-
-
-      // const parameters = await this.parameterRepository.find({
-      //   where: {
-      //     name: name || null,
-      //     type: type || null,
-      //     statusParam: statusParam,
-      //     description: description || null,
-      //   },
-      //   skip: (pageNumber - 1) * pageSize,
-      //   take: pageSize,
-      // });
-
       
 
       return getParameterRecord(parameters);
-      // return rest;
+
     } catch (e) {
       throw e;
     }
@@ -127,7 +114,7 @@ export class ParametersService {
 
       const searchParams = applyParamsToSearch(rest, options);
 
-      console.log(JSON.stringify(searchParams.where));
+   
 
       const paramTypes = await this.parameterRepository
         .createQueryBuilder('parameter')

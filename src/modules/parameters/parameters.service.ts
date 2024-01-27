@@ -60,28 +60,25 @@ export class ParametersService {
 
   async findAll(queryParams: GetParameterByGroup) {
     try {
-    
-
       const { pageNumber, pageSize, ...rest } = queryParams;
-      
-        const options = {
-          skip: (pageNumber - 1) * pageSize,
-          take: pageSize,
-          where: {},
-        };  
-        const searchParams = applyParamsToSearch(rest, options);
-        console.log(searchParams)  ;      
+
+      const options = {
+        skip: (pageNumber - 1) * pageSize,
+        take: pageSize,
+        where: {},
+      };
+      const searchParams = applyParamsToSearch(rest, options);
+      console.log(searchParams);
 
       const parameters = await this.parameterRepository
         .createQueryBuilder('parameter')
+        .select('*')
         .where({ ...searchParams.where })
         .take(options.take)
         .skip(options.skip)
         .getRawMany();
-      
 
       return getParameterRecord(parameters);
-
     } catch (e) {
       throw e;
     }
@@ -113,8 +110,6 @@ export class ParametersService {
       };
 
       const searchParams = applyParamsToSearch(rest, options);
-
-   
 
       const paramTypes = await this.parameterRepository
         .createQueryBuilder('parameter')

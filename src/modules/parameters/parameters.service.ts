@@ -62,6 +62,22 @@ export class ParametersService {
     try {
       const { pageNumber, pageSize, ...rest } = queryParams;
 
+      if (!rest?.name) {
+        throw new BadRequestException('El nombre de ser un string no vacío');
+      }
+
+      if (!rest?.description) {
+        throw new BadRequestException(
+          'La descripcion debe ser un string no vacío',
+        );
+      }
+
+      isBoolean(rest?.statusParam);
+
+      if (!rest?.type) {
+        throw new BadRequestException('El tipo debe ser un string no vacío');
+      }
+
       const options = {
         skip: (pageNumber - 1) * pageSize,
         take: pageSize,

@@ -28,7 +28,6 @@ import {
   GetParameterByGroup,
   GetParameterByStatus,
 } from './dto/get-parameter.dto';
-import { PaginationQueryParamsDto } from '@/shared/dtos/pagination.dto';
 
 @ApiTags('Parameters')
 @Controller('parameters')

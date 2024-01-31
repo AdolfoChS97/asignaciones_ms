@@ -73,6 +73,7 @@ export class ParametersService {
       const parameters = await this.parameterRepository
         .createQueryBuilder('parameter')
         .select('*')
+        .orderBy('parameter.description', 'ASC')
         .where({ ...searchParams.where })
         .take(options.take)
         .skip(options.skip)

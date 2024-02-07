@@ -199,6 +199,7 @@ export class NotificationsService {
         description,
         status,
         entityId,
+        updatedAt: new Date(),
       }) as unknown as Notification;
 
       if (Object.keys(propertiesToUpdate).length === 0)

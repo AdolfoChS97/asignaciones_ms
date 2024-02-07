@@ -70,7 +70,6 @@ export class ParametersService {
         where: {},
       };
       const searchParams = applyParamsToSearch(rest, options);
-      console.log(searchParams);
 
       const parameters = await this.parameterRepository
         .createQueryBuilder('parameter')
@@ -160,6 +159,7 @@ export class ParametersService {
         description,
         ...(statusParam !== undefined ? { statusParam } : {}),
         type,
+        updated_at: new Date(),
       }) as unknown as Parameter;
 
       if (Object.keys(propertiesToUpdate).length === 0)

@@ -96,6 +96,7 @@ export class ObservationsService {
         detail,
         approvement,
         userId,
+        updated_at: new Date(),
       }) as unknown as Observation;
 
       if (Object.keys(propertiesToUpdate).length === 0)

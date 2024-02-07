@@ -144,6 +144,7 @@ export class DocumentsService {
         approvement,
         name,
         base64,
+        updated_at: new Date(),
       }) as unknown as Document;
 
       if (Object.keys(propertiesToUpdate).length === 0)

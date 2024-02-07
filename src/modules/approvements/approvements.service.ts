@@ -180,6 +180,7 @@ export class ApprovementsService {
         endorsement,
         status,
         description,
+        updatedAt: new Date(),
       }) as unknown as Approvement;
 
       if (Object.keys(propertiesToUpdate).length === 0)

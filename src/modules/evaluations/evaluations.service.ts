@@ -57,6 +57,8 @@ export class EvaluationsService {
         description,
         result,
         approvement,
+        created_at: new Date(),
+        updated_at: new Date(),
       });
       return generatesEvaluatioRecord(evaluation);
     } catch (e) {
@@ -108,6 +110,7 @@ export class EvaluationsService {
         name,
         description,
         ...(result !== undefined ? { result } : {}),
+        updated_at: new Date(),
       }) as unknown as Evaluation;
 
       if (Object.keys(propertiesToUpdate).length === 0)

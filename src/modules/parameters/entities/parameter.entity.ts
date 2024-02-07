@@ -1,5 +1,4 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { bool } from 'joi';
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity({ name: 'Parameters' })
@@ -41,7 +40,7 @@ export class Parameter {
     description: 'Estatus  del parametro',
     type: 'boolean',
   })
-  @Column({ type: 'bool', nullable: false})
+  @Column({ type: 'bool', nullable: false })
   statusParam: boolean;
 
   @ApiProperty({
@@ -50,7 +49,7 @@ export class Parameter {
     description: 'Día de la creación del parametro',
     required: false,
   })
-  @Column({ type: 'timestamptz', default: new Date() })
+  @Column({ type: 'timestamptz' })
   created_at: Date;
 
   @ApiProperty({
@@ -59,6 +58,6 @@ export class Parameter {
     description: 'Día de actualización del parametro',
     required: false,
   })
-  @Column({ type: 'timestamptz', default: new Date() })
+  @Column({ type: 'timestamptz' })
   updated_at: Date;
 }

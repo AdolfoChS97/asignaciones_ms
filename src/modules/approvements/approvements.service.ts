@@ -68,6 +68,8 @@ export class ApprovementsService {
         description,
         endorsement,
         status,
+        createdAt: new Date(),
+        updatedAt: new Date(),
       });
 
       const approvement =
@@ -178,6 +180,7 @@ export class ApprovementsService {
         endorsement,
         status,
         description,
+        updatedAt: new Date(),
       }) as unknown as Approvement;
 
       if (Object.keys(propertiesToUpdate).length === 0)

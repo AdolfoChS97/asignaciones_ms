@@ -127,7 +127,7 @@ export class Approvement {
     required: false,
     default: new Date(),
   })
-  @Column({ type: 'timestamptz', default: new Date() })
+  @Column({ type: 'timestamptz' })
   createdAt?: Date;
 
   @ApiProperty({
@@ -136,6 +136,6 @@ export class Approvement {
     required: false,
     default: new Date(),
   })
-  @Column({ type: 'timestamptz', default: new Date() })
+  @Column({ type: 'timestamptz' })
   updatedAt: Date;
 }

@@ -60,6 +60,8 @@ export class ObservationsService {
         approvement,
         detail,
         userId,
+        created_at: new Date(),
+        updated_at: new Date(),
       });
 
       return generatesObservationRecord(

@@ -57,6 +57,8 @@ export class EvaluationsService {
         description,
         result,
         approvement,
+        created_at: new Date(),
+        updated_at: new Date(),
       });
       return generatesEvaluatioRecord(evaluation);
     } catch (e) {

@@ -51,8 +51,6 @@ export class ParametersService {
         description,
         statusParam,
         type,
-        createdAt: new Date(),
-        updatedAt: new Date(),
       });
       return generatesParameterRecord(param);
     } catch (e) {

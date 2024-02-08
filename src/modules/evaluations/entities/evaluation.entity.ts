@@ -70,7 +70,7 @@ export class Evaluation {
     description: 'Día de la creación de la evaluacion',
     required: false,
   })
-  @Column({ type: 'timestamptz' })
+  @Column({ type: 'timestamptz', default: new Date() })
   created_at: Date;
 
   @ApiProperty({
@@ -79,6 +79,6 @@ export class Evaluation {
     description: 'Día de actualización de la evaluacion',
     required: false,
   })
-  @Column({ type: 'timestamptz' })
+  @Column({ type: 'timestamptz', default: new Date() })
   updated_at: Date;
 }

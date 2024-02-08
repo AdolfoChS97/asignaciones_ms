@@ -60,8 +60,6 @@ export class ObservationsService {
         approvement,
         detail,
         userId,
-        created_at: new Date(),
-        updated_at: new Date(),
       });
 
       return generatesObservationRecord(
@@ -96,7 +94,6 @@ export class ObservationsService {
         detail,
         approvement,
         userId,
-        updated_at: new Date(),
       }) as unknown as Observation;
 
       if (Object.keys(propertiesToUpdate).length === 0)

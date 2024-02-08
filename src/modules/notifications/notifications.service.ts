@@ -69,8 +69,6 @@ export class NotificationsService {
           rolId,
           title,
           entityId,
-          createdAt: new Date(),
-          updatedAt: new Date(),
         }),
       );
     } catch (e) {
@@ -199,7 +197,6 @@ export class NotificationsService {
         description,
         status,
         entityId,
-        updatedAt: new Date(),
       }) as unknown as Notification;
 
       if (Object.keys(propertiesToUpdate).length === 0)

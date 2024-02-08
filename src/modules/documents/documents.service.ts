@@ -35,6 +35,11 @@ export class DocumentsService {
 
   async create({ name, base64, approvement }: CreateDocumentDto) {
     try {
+      // if (fileName) {
+      //   const file = await this.fileService.getFile(fileName);
+      //   // base64 = file.url;
+      //   console.log(file);
+      // }
 
       if (base64) isBase64(base64);
 
@@ -48,8 +53,6 @@ export class DocumentsService {
         name,
         base64,
         approvement,
-        created_at: new Date(),
-        updated_at: new Date(),
       });
       return generatesDocumentRecord(doc);
     } catch (e) {
@@ -97,8 +100,6 @@ export class DocumentsService {
         base64: (await Promise.all(bufferPromises)).join(''),
         approvement,
         userId,
-        created_at: new Date(),
-        updated_at: new Date(),
       });
 
       return generatesDocumentRecord(doc);
@@ -144,7 +145,6 @@ export class DocumentsService {
         approvement,
         name,
         base64,
-        updated_at: new Date(),
       }) as unknown as Document;
 
       if (Object.keys(propertiesToUpdate).length === 0)

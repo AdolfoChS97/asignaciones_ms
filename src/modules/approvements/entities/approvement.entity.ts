@@ -137,5 +137,5 @@ export class Approvement {
     default: new Date(),
   })
   @Column({ type: 'timestamptz', default: new Date() })
-  updatedAt: Date;
+  updatedAt?: Date;
 }

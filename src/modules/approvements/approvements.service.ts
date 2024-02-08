@@ -55,9 +55,6 @@ export class ApprovementsService {
 
       isBoolean(endorsement);
 
-      // if (observations && observations?.length <= 0)
-      //   throw new BadRequestException('Debe existir al menos una observación');
-
       const propertiesToSave = checkProperties({
         applicationId,
         userId,
@@ -68,6 +65,8 @@ export class ApprovementsService {
         description,
         endorsement,
         status,
+        createdAt: new Date(),
+        updateAt: new Date(),
       });
 
       const approvement =
@@ -178,6 +177,7 @@ export class ApprovementsService {
         endorsement,
         status,
         description,
+        updateAt: new Date(),
       }) as unknown as Approvement;
 
       if (Object.keys(propertiesToUpdate).length === 0)

@@ -71,7 +71,7 @@ export class Evaluation {
     required: false,
   })
   @Column({ type: 'timestamptz', default: new Date() })
-  created_at: Date;
+  created_at?: Date;
 
   @ApiProperty({
     example: new Date(),
@@ -80,5 +80,5 @@ export class Evaluation {
     required: false,
   })
   @Column({ type: 'timestamptz', default: new Date() })
-  updated_at: Date;
+  updated_at?: Date;
 }

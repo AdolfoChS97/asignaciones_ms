@@ -33,6 +33,7 @@ export class EvaluationsService {
     description,
     result,
     approvement,
+    userId,
   }: CreateEvaluationDto) {
     try {
       if (!name) {
@@ -43,6 +44,11 @@ export class EvaluationsService {
           'La description debe ser un string no vacío',
         );
       }
+
+      if (!userId && Number.isInteger(userId)) {
+        throw new BadRequestException('El usuario debe ser un número');
+      }
+
       isBoolean(result);
 
       if (!Number.isInteger(approvement)) {
@@ -57,6 +63,7 @@ export class EvaluationsService {
         description,
         result,
         approvement,
+        userId,
         created_at: new Date(),
         updated_at: new Date(),
       });
@@ -95,7 +102,7 @@ export class EvaluationsService {
 
   async update(
     id: number,
-    { approvement, name, description, result }: UpdateEvaluationDto,
+    { approvement, name, description, result, userId }: UpdateEvaluationDto,
   ) {
     try {
       const evaluExists = await this.evaluationRepository.findBy({ id: id });
@@ -109,6 +116,7 @@ export class EvaluationsService {
         approvement,
         name,
         description,
+        userId,
         ...(result !== undefined ? { result } : {}),
         updated_at: new Date(),
       }) as unknown as Evaluation;

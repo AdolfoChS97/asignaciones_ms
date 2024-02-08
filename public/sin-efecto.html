@@ -5,6 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+<script>
+
+</script>
     <style>
         .container {
             margin-left: 7%;
@@ -120,6 +123,25 @@
         td.antecedesText {
 
             vertical-align: super;
+        }
+        .checkBox{
+            width: 6px;
+            height: 6px;
+            background: #ffff;
+            border: 1px solid #000000;
+        }
+        label{
+            line-height: 16px;
+            font-weight: 100; margin-top: 0;
+            margin-bottom: 0px;text-align: left;
+        }
+        #false{
+            background: #ffff;
+            border: 1px solid #1512128f;
+        }
+        #true{
+            background: #000000;
+            border: 1px solid #0000008f;
         }
     </style>
 </head>
@@ -360,53 +382,39 @@
                 </th>
             </tr>
             <tr class="uniClass">
-                <td colspan="1" style="border-right: 0px;">
+                <td colspan="1" style="border-right: 0px; width: 60%;">
                     <h2 style="font-size: 9px;"> UNIDAD VINCULADAS <br></h2>
-                    <p style="font-size: 6px; 
-            line-height: 16px;
-            font-weight: 100; margin-top: 0;
-    margin-bottom: 0px;text-align: left;">
-
-                        <input type="checkbox" id="cbox1" value="first_checkbox" />
-                        <label>
+                        <div id="{{rrhhBox}}" class="checkBox" style="display: inline-block;"></div>
+                        <label style="font-size: 6px">
                             DIRECCIÓN GENERAL DE RECURSOS HUMANOS
                         </label> <br>
-
-                        <input type="checkbox" id="cbox2" value="first_checkbox" />
-                        <label>
+                        <div id="{{admFiBox}}" class="checkBox" style="display: inline-block;"></div>
+                        <label style="font-size: 6px">
                             DIRECCIÓN GENERAL DE ADMINISTRACIÓN Y FINANZAS
-                        </label> <br>
-
-                        <input type="checkbox" id="cbox3" value="first_checkbox" />
-                        <label>
+                        </label class="font-size: 6px"> <br>
+                        <div id="{{admFiBox}}" class="checkBox" style="display: inline-block;"></div>
+                        <label style="font-size: 6px">
                             DIRECCIÓN GENERAL DE PLANIFICACIÓN Y DESARROLLO INSTITUCIONAL
                         </label> <br>
                         <br>
-
-                    </p>
                 </td>
                 <td colspan="1" style="border-left: 0px;">
-                    <p style=" font-size: 7px;
-            line-height: 16px;
-            font-weight: 100;    margin-top: 0;
-    margin-bottom: 0px;text-align: left;">
-                        <label>
-                            <input type="checkbox" id="cbox4" value="first_checkbox" />
+                    <div id="{{desaInfor}}" class="checkBox" style="display: inline-block;"></div>
+                        <label style="font-size: 6px">
                             OFICINA DE DESARROLLO INFORMÁTICO
                         </label> <br>
-                        <label>
-                            <input type="checkbox" id="cbox4" value="first_checkbox" />
+                        <div id="{{asesoJurid}}" class="checkBox" style="display: inline-block;"></div>
+                        <label style="font-size: 6px">
                             OFICINA DE ASESORÍA JURÍDICA
                         </label> <br>
-                        <label>
-                            <input type="checkbox" id="cbox5" value="first_checkbox" />
+                        <div id="{{ofiComu}}" class="checkBox" style="display: inline-block;"></div>
+                        <label style="font-size: 6px">
                             OFICINA DE COMUNICACIÓN
                         </label> <br>
-                        <label>
-                            <input type="checkbox" id="cbox6" value="first_checkbox" />
+                        <div id="{{ofiSegu}}" class="checkBox" style="display: inline-block;"></div>
+                        <label style="font-size: 6px">
                             OFICINA DE SEGURIDAD
                         </label> <br>
-                    </p>
                 </td>
             </tr>
         </table>
@@ -447,22 +455,20 @@
                     line-height: 16px;
                     font-weight: 100; margin: 0;margin: 0px 9px 0px 9px;">
                         <strong>DECISIÓN</strong> <br>
-                        <label>
-
-                            <input type="checkbox" class="box-shadow: 0px 0px 0px;" id="cbox8" class="decisionClass"
-                                value="first_checkbox" />
+                        <div id="{{aprobado}}" class="checkBox" style="display: inline-block; margin-left: 5px;"></div>
+                        <label style="font-size: 7px;">
                             APROBADO
                         </label> <br>
-                        <label>
-                            <input type="checkbox" id="cbox9" class="decisionClass" value="first_checkbox" />
+                        <div id="{{negado}}" class="checkBox" style="display: inline-block;margin-left: 5px;"></div>
+                        <label style="font-size: 7px;">
                             NEGADO
                         </label> <br>
-                        <label>
-                            <input type="checkbox" id="cbox10" class="decisionClass" value="first_checkbox" />
+                        <div id="{{diferido}}" class="checkBox" style="display: inline-block;margin-left: 5px;"></div>
+                        <label style="font-size: 7px;">
                             DIFERIDO
                         </label> <br>
-                        <label colspan="3">
-                            <input type="checkbox" id="cbox11" class="decisionClass" value="first_checkbox" />
+                        <div id="{{visto}}" class="checkBox" style="display: inline-block;margin-left: 5px;"></div>
+                        <label style="font-size: 7px;">
                             VISTO
                         </label> <br>
                     </p>
@@ -479,10 +485,11 @@
                 </td>
             </tr>
             <tr>
-                <img style="width: 34%;
-                text-align: center;" src="{{firmaDirectorDem}}" alt="">
+                
                 <td colspan="4" style="height: 19vh;text-align: center; font-size: 6px;vertical-align: bottom;text-transform: uppercase;" class="firmas">
-                {{directorDem}}<br> DIRECTOR(A) DEM
+                    <img style="width: 34%;
+                    text-align: center;" src="{{firmaDirectorDem}}" alt="">
+                    {{directorDem}}<br> DIRECTOR(A) DEM
                 </td>
             </tr>
 

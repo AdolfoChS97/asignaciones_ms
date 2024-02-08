@@ -57,7 +57,7 @@ export class Observation {
     required: false,
   })
   @IsDate()
-  @Column({ type: 'timestamptz' })
+  @Column({ type: 'timestamptz', default: new Date() })
   created_at: Date;
 
   @ApiProperty({
@@ -67,6 +67,6 @@ export class Observation {
     required: false,
   })
   @IsDate()
-  @Column({ type: 'timestamptz' })
+  @Column({ type: 'timestamptz', default: new Date() })
   updated_at: Date;
 }

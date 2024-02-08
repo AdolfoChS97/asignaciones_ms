@@ -65,7 +65,7 @@ export class Document {
     required: false,
   })
   @IsDate()
-  @Column({ type: 'timestamptz' })
+  @Column({ type: 'timestamptz', default: new Date() })
   created_at?: Date;
 
   @ApiProperty({
@@ -75,6 +75,6 @@ export class Document {
     required: false,
   })
   @IsDate()
-  @Column({ type: 'timestamptz' })
+  @Column({ type: 'timestamptz', default: new Date() })
   updated_at?: Date;
 }

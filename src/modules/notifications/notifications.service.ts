@@ -69,8 +69,6 @@ export class NotificationsService {
           rolId,
           title,
           entityId,
-          createdAt: new Date(),
-          updatedAt: new Date(),
         }),
       );
     } catch (e) {

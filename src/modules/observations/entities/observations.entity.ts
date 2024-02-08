@@ -58,7 +58,7 @@ export class Observation {
   })
   @IsDate()
   @Column({ type: 'timestamptz', default: new Date() })
-  created_at: Date;
+  created_at?: Date;
 
   @ApiProperty({
     example: new Date(),
@@ -68,5 +68,5 @@ export class Observation {
   })
   @IsDate()
   @Column({ type: 'timestamptz', default: new Date() })
-  updated_at: Date;
+  updated_at?: Date;
 }

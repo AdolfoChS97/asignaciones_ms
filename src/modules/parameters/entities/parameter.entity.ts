@@ -41,7 +41,7 @@ export class Parameter {
     description: 'Estatus  del parametro',
     type: 'boolean',
   })
-  @Column({ type: 'bool', nullable: false})
+  @Column({ type: 'bool', nullable: false })
   statusParam: boolean;
 
   @ApiProperty({
@@ -51,7 +51,7 @@ export class Parameter {
     required: false,
   })
   @Column({ type: 'timestamptz', default: new Date() })
-  created_at: Date;
+  created_at?: Date;
 
   @ApiProperty({
     example: new Date(),
@@ -60,5 +60,5 @@ export class Parameter {
     required: false,
   })
   @Column({ type: 'timestamptz', default: new Date() })
-  updated_at: Date;
+  updated_at?: Date;
 }

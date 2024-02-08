@@ -100,5 +100,5 @@ export class Notification {
     default: new Date(),
   })
   @Column({ type: 'timestamptz', default: new Date() })
-  updatedAt: Date;
+  updatedAt?: Date;
 }

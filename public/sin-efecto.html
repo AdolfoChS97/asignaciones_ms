@@ -5,9 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-<script>
+    <script>
 
-</script>
+    </script>
     <style>
         .container {
             margin-left: 7%;
@@ -59,9 +59,15 @@
         table {
             width: 100%;
         }
-        input#cbox1, input#cbox2, input#cbox3, input#cbox4, input#cbox5, input#cbox6 {
-    margin: 0;
-}
+
+        input#cbox1,
+        input#cbox2,
+        input#cbox3,
+        input#cbox4,
+        input#cbox5,
+        input#cbox6 {
+            margin: 0;
+        }
 
         td {
             border: 1px solid black;
@@ -124,22 +130,28 @@
 
             vertical-align: super;
         }
-        .checkBox{
+
+        .checkBox {
             width: 6px;
             height: 6px;
             background: #ffff;
             border: 1px solid #000000;
         }
-        label{
+
+        label {
             line-height: 16px;
-            font-weight: 100; margin-top: 0;
-            margin-bottom: 0px;text-align: left;
+            font-weight: 100;
+            margin-top: 0;
+            margin-bottom: 0px;
+            text-align: left;
         }
-        #false{
+
+        #false {
             background: #ffff;
             border: 1px solid #1512128f;
         }
-        #true{
+
+        #true {
             background: #000000;
             border: 1px solid #0000008f;
         }
@@ -189,7 +201,8 @@
                         <p style="font-size: 8px; 
                              line-height: 16px;
                              font-weight: 100; margin: 0;">
-                            <strong>CUENTA N°</strong> <br>{{añoGenerate}}-{{idPostulado}}-{{nomenclature}}<br><strong>RECIBIDA</strong>
+                            <strong>CUENTA N°</strong>
+                            <br>{{añoGenerate}}-{{idPostulado}}-{{nomenclature}}<br><strong>RECIBIDA</strong>
                         </p>
                     </td>
                 </tr>
@@ -208,7 +221,8 @@
                         font-weight: 100;margin-top: 3px;
                               margin-bottom: 3px;">
                             ASUNTO: <br>
-                            DEJAR SIN EFECTO UN (01) MOVIMIENTO DE INGRESO A FAVOR DEL CIUDADANO <strong>{{name}}</strong>.
+                            DEJAR SIN EFECTO UN (01) MOVIMIENTO DE INGRESO A FAVOR DEL CIUDADANO
+                            <strong>{{name}}</strong>.
                             TITULAR LA
                             CÉDULA DE IDENTIDAD NÚMERO
                             <strong>{{cedula}}</strong>, MEDIANTE PUNTO DE CUENTA NÚMERO <strong><span
@@ -246,7 +260,7 @@
                             Oficina de Atención al Público (OAP) de la Coordinación del Trabajo de la Circunscripción
                             Judicial
                             del estado Vargas.
-                        <br>
+                            <br>
                             {{#disincorporate}}
                             Vacante generada por el egreso de <strong>{{disincorporateName}}</strong>. titular de la
                             cédula de identidad número <strong>{{disincorporateCedula}}</strong>, en fecha
@@ -264,8 +278,8 @@
                             SOPORTES:
                             <br>
                             {{#loopSoporte}}
-                                {{soporteInput}}
-                                <br>
+                            {{soporteInput}}
+                            <br>
                             {{/loopSoporte}}
                         </p>
                         <p style="font-size: 9px; 
@@ -325,7 +339,8 @@
                         <p style="font-size: 8px; 
                         line-height: 16px;
                         font-weight: 100;    margin: 0;">
-                           <strong>CUENTA N°</strong> <br>{{añoGenerate}}-{{idPostulado}}-{{nomenclature}}<br><strong>RECIBIDA</strong>
+                            <strong>CUENTA N°</strong>
+                            <br>{{añoGenerate}}-{{idPostulado}}-{{nomenclature}}<br><strong>RECIBIDA</strong>
                         </p>
                     </td>
                 </tr>
@@ -342,7 +357,8 @@
                         line-height: 16px;
                         font-weight: 100;">
                             ASUNTO: <br>
-                            DEJAR SIN EFECTO UN (01) MOVIMIENTO DE INGRESO A FAVOR DEL CIUDADANO<strong>{{name}}</strong>.
+                            DEJAR SIN EFECTO UN (01) MOVIMIENTO DE INGRESO A FAVOR DEL CIUDADANO
+                            <strong>{{name}}</strong>.
                             TITULAR LA
                             CÉDULA DE IDENTIDAD NÚMERO
                             <strong>{{cedula}}</strong>, MEDIANTE PUNTO DE CUENTA NÚMERO <strong><span
@@ -364,57 +380,61 @@
         border-collapse: collapse;">
             <tr class="tr-one">
                 <th colspan="1" style="
-            border-collapse: collapse;">
-                    <p style="font-size: 7px; 
+            border-collapse: collapse; text-align: end;">
+            <img style="width: 30%;
+            text-align: center;" src="{{firmaEstudioTecnico}}" alt="">
+                    <p style="font-size: 5px; 
             line-height: 9px;
             font-weight: 100;text-align: end;text-transform: uppercase;">
                         {{dircEstuTecnicos}} <br> DIRECTOR(A) DE ESTUDIOS TÉCNICOS (E)
                     </p>
                 </th>
                 <th colspan="1" style="
-            border-collapse: collapse;    border-right: 1px solid black;">
-                    <p style="font-size: 7px; 
+            border-collapse: collapse;   border-right: 1px solid black; text-align: center;">
+            <img style="width: 30%;
+            text-align: center;" src="{{firmaDirectorRRHH}}" alt="">
+                    <p style="font-size: 5px; 
             line-height: 9px;
             font-weight: 100;
             text-align: center;text-transform: uppercase;">
-                       {{directorRecursosHum}} <br> DIRECTOR(A) GENERAL DE RECURSOS HUMANOS (E)
+                        {{directorRecursosHum}} <br> DIRECTOR(A) GENERAL DE RECURSOS HUMANOS (E)
                     </p>
                 </th>
             </tr>
             <tr class="uniClass">
                 <td colspan="1" style="border-right: 0px; width: 60%;">
-                    <h2 style="font-size: 9px;"> UNIDAD VINCULADAS <br></h2>
-                        <div id="{{rrhhBox}}" class="checkBox" style="display: inline-block;"></div>
-                        <label style="font-size: 6px">
-                            DIRECCIÓN GENERAL DE RECURSOS HUMANOS
-                        </label> <br>
-                        <div id="{{admFiBox}}" class="checkBox" style="display: inline-block;"></div>
-                        <label style="font-size: 6px">
-                            DIRECCIÓN GENERAL DE ADMINISTRACIÓN Y FINANZAS
-                        </label class="font-size: 6px"> <br>
-                        <div id="{{admFiBox}}" class="checkBox" style="display: inline-block;"></div>
-                        <label style="font-size: 6px">
-                            DIRECCIÓN GENERAL DE PLANIFICACIÓN Y DESARROLLO INSTITUCIONAL
-                        </label> <br>
-                        <br>
+                    <h2 style="font-size: 9px;margin-bottom: 0px;"> UNIDAD VINCULADAS <br></h2>
+                    <div id="{{rrhhBox}}" class="checkBox" style="display: inline-block;"></div>
+                    <label style="font-size: 6px">
+                        DIRECCIÓN GENERAL DE RECURSOS HUMANOS
+                    </label> <br>
+                    <div id="{{admFiBox}}" class="checkBox" style="display: inline-block;"></div>
+                    <label style="font-size: 6px">
+                        DIRECCIÓN GENERAL DE ADMINISTRACIÓN Y FINANZAS
+                    </label class="font-size: 6px"> <br>
+                    <div id="{{admFiBox}}" class="checkBox" style="display: inline-block;"></div>
+                    <label style="font-size: 6px">
+                        DIRECCIÓN GENERAL DE PLANIFICACIÓN Y DESARROLLO INSTITUCIONAL
+                    </label> <br>
+                    <br>
                 </td>
                 <td colspan="1" style="border-left: 0px;">
                     <div id="{{desaInfor}}" class="checkBox" style="display: inline-block;"></div>
-                        <label style="font-size: 6px">
-                            OFICINA DE DESARROLLO INFORMÁTICO
-                        </label> <br>
-                        <div id="{{asesoJurid}}" class="checkBox" style="display: inline-block;"></div>
-                        <label style="font-size: 6px">
-                            OFICINA DE ASESORÍA JURÍDICA
-                        </label> <br>
-                        <div id="{{ofiComu}}" class="checkBox" style="display: inline-block;"></div>
-                        <label style="font-size: 6px">
-                            OFICINA DE COMUNICACIÓN
-                        </label> <br>
-                        <div id="{{ofiSegu}}" class="checkBox" style="display: inline-block;"></div>
-                        <label style="font-size: 6px">
-                            OFICINA DE SEGURIDAD
-                        </label> <br>
+                    <label style="font-size: 6px">
+                        OFICINA DE DESARROLLO INFORMÁTICO
+                    </label> <br>
+                    <div id="{{asesoJurid}}" class="checkBox" style="display: inline-block;"></div>
+                    <label style="font-size: 6px">
+                        OFICINA DE ASESORÍA JURÍDICA
+                    </label> <br>
+                    <div id="{{ofiComu}}" class="checkBox" style="display: inline-block;"></div>
+                    <label style="font-size: 6px">
+                        OFICINA DE COMUNICACIÓN
+                    </label> <br>
+                    <div id="{{ofiSegu}}" class="checkBox" style="display: inline-block;"></div>
+                    <label style="font-size: 6px">
+                        OFICINA DE SEGURIDAD
+                    </label> <br>
                 </td>
             </tr>
         </table>
@@ -422,7 +442,7 @@
         border-collapse: collapse;">
             <tr>
                 <td id="agenda" style="width: 22%; border: none;text-align: center;" colspan="1">
-                    <p style=" font-size: 7px;
+                    <div style=" font-size: 6px;
                     line-height: 16px;
                     font-weight: 100; margin: 0;">
                         <strong>AGENDA</strong> <br>
@@ -434,64 +454,69 @@
                             {{fechaAgendaSecretaria}}
 
                         </p>
-                        
-                    </p>  
-                    <p style=" font-size: 7px;
-                    line-height: 16px;
-                    font-weight: bold; margin: 0;">
-                        N°<br>
-                    </p> 
-                    <p class="agenBox" style="    border: 1px solid black;
-                        margin-left: 4px;
-                        margin-right: 4px;
-                        padding: 4px;margin-top: 0px;">
+
+                    </div>
+                    <div>
+                        <p style=" font-size: 6px;
+                        line-height: 16px;
+                        font-weight: bold; margin: 0;">
+                            N°<br>
+                        </p>
+                        <p class="agenBox" style="    border: 1px solid black;
+                            margin-left: 4px;
+                            margin-right: 4px;
+                            padding: 4px;margin-top: 0px;">
                             {{numAgendaSecretaria}}
 
                         </p>
-                     <br>
+                    </div>
+
+                    <br>
                 </td>
                 <td colspan="1" style=" border-top: none; width: 20%;">
-                    <p style=" font-size: 7px;
+                    <p style=" font-size: 6px;
                     line-height: 16px;
                     font-weight: 100; margin: 0;margin: 0px 9px 0px 9px;">
                         <strong>DECISIÓN</strong> <br>
-                        <div id="{{aprobado}}" class="checkBox" style="display: inline-block; margin-left: 5px;"></div>
-                        <label style="font-size: 7px;">
-                            APROBADO
-                        </label> <br>
-                        <div id="{{negado}}" class="checkBox" style="display: inline-block;margin-left: 5px;"></div>
-                        <label style="font-size: 7px;">
-                            NEGADO
-                        </label> <br>
-                        <div id="{{diferido}}" class="checkBox" style="display: inline-block;margin-left: 5px;"></div>
-                        <label style="font-size: 7px;">
-                            DIFERIDO
-                        </label> <br>
-                        <div id="{{visto}}" class="checkBox" style="display: inline-block;margin-left: 5px;"></div>
-                        <label style="font-size: 7px;">
-                            VISTO
-                        </label> <br>
+                    <div id="{{aprobado}}" class="checkBox" style="display: inline-block; margin-left: 5px;"></div>
+                    <label style="font-size: 6px;">
+                        APROBADO
+                    </label> <br>
+                    <div id="{{negado}}" class="checkBox" style="display: inline-block;margin-left: 5px;"></div>
+                    <label style="font-size: 6px;">
+                        NEGADO
+                    </label> <br>
+                    <div id="{{diferido}}" class="checkBox" style="display: inline-block;margin-left: 5px;"></div>
+                    <label style="font-size: 6px;">
+                        DIFERIDO
+                    </label> <br>
+                    <div id="{{visto}}" class="checkBox" style="display: inline-block;margin-left: 5px;"></div>
+                    <label style="font-size: 6px;">
+                        VISTO
+                    </label> <br>
                     </p>
                 </td>
-                <td class="thObser" style=" border-top: none"colspan="3">
+                <td class="thObser" style=" border-top: none" colspan="3">
                     <div class="observacion">
-                        <p style=" font-size: 7px;
+                        <p style=" font-size: 6px;
                         line-height: 16px;
                         font-weight: 100; margin: 0;">
-                           <strong>OBSERVACIÓN</strong> 
+                            <strong>OBSERVACIÓN</strong>
                         </p>
                     </div>
 
                 </td>
             </tr>
-            <tr>          
-                <td colspan="4" style="height: 19vh;text-align: center; font-size: 6px;vertical-align: bottom;text-transform: uppercase;" class="firmas">
+            <tr>
+                <td colspan="4"
+                    style="height: 19vh;text-align: center; font-size: 6px;vertical-align: bottom;text-transform: uppercase;"
+                    class="firmas">
                     <img style="width: 34%;
                     text-align: center;" src="{{firmaDirectorDem}}" alt="">
-                    <p style="text-align: center;">
+                    <p style="text-align: center; font-size: 6px;">
                         {{directorDem}}<br> DIRECTOR(A) DEM
                     </p>
-                  
+
                 </td>
             </tr>
 

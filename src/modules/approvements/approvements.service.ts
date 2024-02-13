@@ -66,7 +66,7 @@ export class ApprovementsService {
         endorsement,
         status,
         createdAt: new Date(),
-        updateAt: new Date(),
+        updatedAt: new Date(),
       });
 
       const approvement =

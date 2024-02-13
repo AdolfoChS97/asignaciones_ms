@@ -82,7 +82,7 @@ export class DocumentsService {
         await this.fileService.getFile(files, 'html')
       ).map((file) => {
         return new Promise((resolve, reject) => {
-          Pdf?.create(Mustache.render(file.toString(), data)).toBuffer(
+          Pdf?.create(Mustache.render(file.toString(), data), { format: "Legal" }).toBuffer(
             (err, buffer) => {
               if (err) reject(new InternalServerErrorException(err.message));
               resolve(buffer.toString('base64'));

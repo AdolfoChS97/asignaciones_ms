@@ -85,7 +85,7 @@ export class DocumentsService {
           Pdf?.create(Mustache.render(file.toString(), data)).toBuffer(
             (err, buffer) => {
               if (err) reject(new InternalServerErrorException(err.message));
-              resolve(buffer.toString('base64'));
+              resolve(buffer?.toString('base64'));
             },
           );
         });

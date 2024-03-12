@@ -84,6 +84,7 @@ export class DocumentsService {
         return new Promise((resolve, reject) => {
           Pdf?.create(Mustache.render(file.toString(), data), {
             timeout: 1000000,
+            format: 'A4',
           }).toBuffer((err, buffer) => {
             if (err) reject(new InternalServerErrorException(err.message));
             resolve(buffer?.toString('base64'));

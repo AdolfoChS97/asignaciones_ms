@@ -221,7 +221,7 @@
                         font-weight: 100;margin-top: 3px;
                               margin-bottom: 3px;">
                             ASUNTO: <br>
-                            DEJAR SIN EFECTO UN (01) MOVIMIENTO DE INGRESO A FAVOR DEL CIUDADANO
+                            DEJAR SIN EFECTO UN (01) MOVIMIENTO DE <b style="text-transform: uppercase;font-weight: 100;">{{typeParticipation}}</b> A FAVOR DEL CIUDADANO
                             <strong>{{name}}</strong>.
                             TITULAR LA
                             CÉDULA DE IDENTIDAD NÚMERO
@@ -247,7 +247,9 @@
                             ejercicio de las atribuciones conferidas en la Ley Orgánica del Tribunal Supremo de Justicia
                             de la
                             República Bolivariana
-                            de Venezuela, en su artículo 77, numeral 12, la aprobación del Sin Efecto a saber:
+                            de Venezuela, en su artículo 77, numeral 12, la aprobación del Movimiento de personal a saber:
+                            <br>
+                            SIN EFECTO
                             <br>
                             <br>
                             1.- <strong>{{name}}</strong>, titular de la cédula de identidad número
@@ -267,12 +269,9 @@
                             <strong>{{disincorporatefecha}}</strong>.
                             {{/disincorporate}}
                             <br>
-                            Todo ello, en virtud de lo
-                            contenido en el Oficio
-                            número 096/2023 de fecha diez (10) de agosto de 2023, emanado de la Coordinación del Trabajo
-                            del
-                            Circuito Judicial
-                            del Trabajo de la Circunscripción Judicial del estado Vargas.
+
+                            <br>
+                            {{inputNota}}
                             <br>
                             <br>
                             SOPORTES:
@@ -355,9 +354,10 @@
                     <td class="tdAsunto" colspan="3">
                         <p style="font-size: 8px; 
                         line-height: 16px;
-                        font-weight: 100;">
+                        font-weight: 100;margin-top: 3px;
+                              margin-bottom: 3px;">
                             ASUNTO: <br>
-                            DEJAR SIN EFECTO UN (01) MOVIMIENTO DE INGRESO A FAVOR DEL CIUDADANO
+                            DEJAR SIN EFECTO UN (01) MOVIMIENTO DE <b style="text-transform: uppercase;font-weight: 100;">{{typeParticipation}}</b> A FAVOR DEL CIUDADANO
                             <strong>{{name}}</strong>.
                             TITULAR LA
                             CÉDULA DE IDENTIDAD NÚMERO
@@ -380,6 +380,7 @@
             <tr class="tr-one">
                 <th colspan="1" style="
             border-collapse: collapse; text-align: center; width: 30%;">
+            
                     
                 </th>
                 <th colspan="1" style="
@@ -456,7 +457,7 @@
                         <p class="agenBox" style="    border: 1px solid black;
                         margin-left: 4px;
                         margin-right: 4px;
-                        padding: 4px;    margin-top: 0px;">
+                        padding: 1px;    margin-top: 0px;">
                             {{fechaAgendaSecretaria}}
 
                         </p>
@@ -471,7 +472,7 @@
                         <p class="agenBox" style="    border: 1px solid black;
                             margin-left: 4px;
                             margin-right: 4px;
-                            padding: 4px;margin-top: 0px;">
+                            padding: 1px;margin-top: 0px;">
                             {{numAgendaSecretaria}}
 
                         </p>

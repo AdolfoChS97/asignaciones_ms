@@ -2,344 +2,346 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <style>
-        .container {
-            margin-left: 7%;
-            margin-right: 7%;
-            justify-content: center;
-            text-align: justify;
-            margin-top: 0% !important;
-            padding-top: 0px !important;
-            color: #000000;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .container {
+      margin-left: 7%;
+      margin-right: 7%;
+      justify-content: center;
+      text-align: justify;
+      margin-top: 0% !important;
+      padding-top: 0px !important;
+      color: #000000;
+    }
 
-        p {
-            font-family: verdana;
-            font-size: 10px;
-            line-height: 16px;
-        }
+    p {
+      font-family: verdana;
+      font-size: 10px;
+      line-height: 16px;
+    }
 
-        h3 {
-            font-family: verdana;
-            text-align: center;
-        }
+    h3 {
+      font-family: verdana;
+      text-align: center;
+    }
 
-        .textFinal {
-            display: grid;
-            grid-template-columns: auto auto;
-            margin-top: 15%;
-            justify-content: space-between;
-        }
+    .textFinal {
+      display: grid;
+      grid-template-columns: auto auto;
+      margin-top: 15%;
+      justify-content: space-between;
+    }
 
-        div#content-img {
-            text-align: center;
-        }
+    div#content-img {
+      text-align: center;
+    }
 
-        img.img-escudo {
-            height: 108px;
-        }
+    img.img-escudo {
+      height: 108px;
+    }
 
-        .pie-pagina {
-            display: grid;
-            grid-template-columns: auto auto auto;
-            margin-top: 15%;
+    .pie-pagina {
+      display: grid;
+      grid-template-columns: auto auto auto;
+      margin-top: 15%;
 
-        }
+    }
 
-        h3#documentID {
-            font-weight: 100;
-            text-decoration: underline;
-            font-size: 11px;
-        }
+    h3#documentID {
+      font-weight: 100;
+      text-decoration: underline;
+      font-size: 11px;
+    }
 
-        h3.republiClass {
-            margin-bottom: 0px;
-            font-size: 11px;
-        }
+    h3.republiClass {
+      margin-bottom: 0px;
+      font-size: 11px;
+    }
 
-        h3.subTitle {
-            margin-top: 0px;
-            font-size: 11px;
-        }
+    h3.subTitle {
+      margin-top: 0px;
+      font-size: 11px;
+    }
 
-        .pie-pagina .grid {
-            text-align: center;
-        }
+    .pie-pagina .grid {
+      text-align: center;
+    }
 
-        .puntoCuenta {
-            font-size: 12px;
-        }
-    </style>
+    .puntoCuenta {
+      font-size: 12px;
+    }
+  </style>
 </head>
 
 <body>
-    <div class="container">
-        <h3 class="republiClass">REPÚBLICA BOLIVARIANA DE VENEZUELA</h3>
-        <div id="content-img">
-            <img class="img-escudo" src="{{escudoVenezuela}}" alt="">
-        </div>
-
-        <h3 class="subTitle">TRIBUNAL SUPREMO DE JUSTICIA <br>DIRECCIÓN EJECUTIVA DE LA MAGISTRATURA</h3>
-
-        <h3 id="documentID">CONTRATO DE TRABAJO</h3>
+  <div class="container">
+    <h3 class="republiClass">REPÚBLICA BOLIVARIANA DE VENEZUELA</h3>
+    <div id="content-img">
+      <img class="img-escudo" src="{{escudoVenezuela}}" alt="">
     </div>
-    <div class="text-block" style="margin-left: 7%;
+
+    <h3 class="subTitle">TRIBUNAL SUPREMO DE JUSTICIA <br>DIRECCIÓN EJECUTIVA DE LA MAGISTRATURA</h3>
+
+    <h3 id="documentID">CONTRATO DE TRABAJO</h3>
+  </div>
+  <div class="text-block" style="margin-left: 7%;
       margin-right: 7%;
       justify-content: center;
       text-align: justify;
       margin-top: 0% !important;
       padding-top: 0px !important;
       color: #000000;">
-        <p>
-            Entre la República Bolivariana de Venezuela por órgano de la Dirección Ejecutiva de la Magistratura del Tribunal
-        Supremo de Justicia. Creada mediante Normativa sobre la Dirección, Gobierno y Administración del Poder Judicial de
-        fecha 02 de agosto de 2000, publicada en Gaceta Oficial N°37.014 de fecha 15 de agosto de 2000, inscrita en el
-        Registro de Información Fiscal baja el número RIF G-200000287 y representada en este acto por el ciudadano SILIO
-        CÉSAR SÁNCHEZ ZERPA, venezolano, mayor de edad, titular de la cédula de identidad N° V - 13.656.999, domiciliado
-        en el Área Metropolitana de Caracas, en su carácter de Director Ejecutivo de la Magistratura, según Resolución
-        Número 2022-0005, de fecha veinticuatro (24) de octubre de 2022, publicada en la Gaceta Oficial de la República
-        Bolivariana de Venezuela número 42.490, de fecha veinticinco (25) de octubre de 2022, quien en lo adelante y a
-        los efectos de este contrato se denominará “LA DIRECCIÓN” por una parte, y por la otra el ciudadano
-        <b>{{name}}</b>, venezolano, mayor de edad, titular de la cédula de identidad N° <b>{{cedula}}</b>,
-            soltero, quien en lo sucesivo y a los efectos de este documento se denominará: “EL CONTRATADO”, se ha
-            convenido en celebrar el presente contrato de trabajo a TIEMPO DETERMINADO, sujeto a las cláusulas
-            siguientes: PRIMERA: OBJETO DEL CONTRATO: la presente contratación se efectúa en virtud de la necesidad
-            de servicio de personal calificado, por lo que “EL CONTRATADO” se compromete con “LA DIRECCIÓN” a prestar
-            sus labores como <b>{{position}}</b> por tiempo determinado, adscrito a {{Workplace}},
-                todo de conformidad con lo dispuesto a los artículos 59, 62 y 64 de la Ley Orgánica del Trabajo, los
-                trabajadores y las Trabajadoras, en adelante (LOTTT), en concordancia con lo establecido en los
-                artículos 37 y 38 de la Ley del Estatuto de la Función Pública. En tal sentido, las actividades a
-                desempeñar por “EL CONTRATADO” estarán destinadas específicamente a la inspección de las
-                instalaciones, resguardo de los bienes institucionales y del personal, tanto en el ámbito
-                administrativo como jurisdiccional del Poder Judicial dentro del territorio nacional, según sea
-                programado por la Dirección General de Seguridad, y requerido por su superior directo, sin menoscabo
-                de los derechos laborales irrenunciables de “EL CONTRATADO”, quedando obligado a realizar cualquier
-                otra actividad que “LA DIRECCIÓN” le indique a través de sus representantes, conforme al artículo 41
-                de la LOTTT, siempre que esté vinculada con la naturaleza de su labor, en consecuencia “EL
-                CONTRATADO” queda en disposición de efectuar las tareas e instrucciones que le sean asignadas,
-                asistir a la programación de formación, capacitación y eventos institucionales que le sean convocados;
-                cumplir con la legislación, resoluciones, manuales, circulares, plan estratégico, misión, visión y
-                normas que regulan el funcionamiento de este órgano; mostrar una conducta enmarcada en la moral, las
-                buenas costumbres, el respeto y consideración en la realización de sus labores; evitar hechos
-                internacionales, omisiones, negligencias o imprudencias que afecten la seguridad, la higiene y la
-                imagen institucional; hacer buen uso de las herramientas o equipos de trabajo y realizar
-        </p>
-        <div>
-            <table style="width:100%">
-                <tr>
-                    <th style="text-align: center;">
-                        <p><b>{{ name}}</b> </p>
-                    </th>
-                    <th style="text-align: center;">
-                        <p> <b>{{cedula}}</b></p>
-                    </th>
-                    <th style="text-align: center;">
-                        <p> Página 1 de 4</p>
-                    </th>
-                </tr>
-                <tr></tr>
-            </table>
-        </div>
+    <p>
+      Entre la República Bolivariana de Venezuela por órgano de la Dirección Ejecutiva de la Magistratura del Tribunal
+      Supremo de Justicia. Creada mediante Normativa sobre la Dirección, Gobierno y Administración del Poder Judicial de
+      fecha 02 de agosto de 2000, publicada en Gaceta Oficial N°37.014 de fecha 15 de agosto de 2000, inscrita en el
+      Registro de Información Fiscal baja el número RIF G-200000287 y representada en este acto por el ciudadano SILIO
+      CÉSAR SÁNCHEZ ZERPA, venezolano, mayor de edad, titular de la cédula de identidad N° V - 13.656.999, domiciliado
+      en el Área Metropolitana de Caracas, en su carácter de Director Ejecutivo de la Magistratura, según Resolución
+      Número 2022-0005, de fecha veinticuatro (24) de octubre de 2022, publicada en la Gaceta Oficial de la República
+      Bolivariana de Venezuela número 42.490, de fecha veinticinco (25) de octubre de 2022, quien en lo adelante y a
+      los efectos de este contrato se denominará “LA DIRECCIÓN” por una parte, y por la otra el ciudadano
+      <b>{{name}}</b>, venezolano, mayor de edad, titular de la cédula de identidad N° <b>{{cedula}}</b>,
+      soltero, quien en lo sucesivo y a los efectos de este documento se denominará: “EL CONTRATADO”, se ha
+      convenido en celebrar el presente contrato de trabajo a TIEMPO DETERMINADO, sujeto a las cláusulas
+      siguientes: PRIMERA: OBJETO DEL CONTRATO: la presente contratación se efectúa en virtud de la necesidad
+      de servicio de personal calificado, por lo que “EL CONTRATADO” se compromete con “LA DIRECCIÓN” a prestar
+      sus labores como <b>{{position}}</b> por tiempo determinado, adscrito a {{Workplace}},
+      todo de conformidad con lo dispuesto a los artículos 59, 62 y 64 de la Ley Orgánica del Trabajo, los
+      trabajadores y las Trabajadoras, en adelante (LOTTT), en concordancia con lo establecido en los
+      artículos 37 y 38 de la Ley del Estatuto de la Función Pública. En tal sentido, las actividades a
+      desempeñar por “EL CONTRATADO” estarán destinadas específicamente a la inspección de las
+      instalaciones, resguardo de los bienes institucionales y del personal, tanto en el ámbito
+      administrativo como jurisdiccional del Poder Judicial dentro del territorio nacional, según sea
+      programado por la Dirección General de Seguridad, y requerido por su superior directo, sin menoscabo
+      de los derechos laborales irrenunciables de “EL CONTRATADO”, quedando obligado a realizar cualquier
+      otra actividad que “LA DIRECCIÓN” le indique a través de sus representantes, conforme al artículo 41
+      de la LOTTT, siempre que esté vinculada con la naturaleza de su labor, en consecuencia “EL
+      CONTRATADO” queda en disposición de efectuar las tareas e instrucciones que le sean asignadas,
+      asistir a la programación de formación, capacitación y eventos institucionales que le sean convocados;
+      cumplir con la legislación, resoluciones, manuales, circulares, plan estratégico, misión, visión y
+      normas que regulan el funcionamiento de este órgano; mostrar una conducta enmarcada en la moral, las
+      buenas costumbres, el respeto y consideración en la realización de sus labores; evitar hechos
+      internacionales, omisiones, negligencias o imprudencias que afecten la seguridad, la higiene y la
+      imagen institucional; hacer buen uso de las herramientas o equipos de trabajo y realizar
+    </p>
+    <div>
+      <table style="width:100%">
+        <tr>
+          <th style="text-align: center;">
+            <p><b>{{ name}}</b> </p>
+          </th>
+          <th style="text-align: center;">
+            <p> <b>{{cedula}}</b></p>
+          </th>
+          <th style="text-align: center;">
+            <p> Página 1 de 4</p>
+          </th>
+        </tr>
+        <tr></tr>
+      </table>
     </div>
-    </div>
-    <div class="text-block" style="margin-left: 7%;
+  </div>
+  </div>
+  <div class="text-block" style="margin-left: 7%;
             margin-right: 7%;
             justify-content: center;
             text-align: justify;
             margin-top: 0% !important;
             padding-top: 0px !important;
             color: #000000;">
-        <p>
-            cualquier
-            otra tarea que le indique la autoridad correspondiente. SEGUNDA: MODALIDAD Y VIGENCIA: el presente
-            contrato de trabajo por tiempo determinado tendrá una vigencia desde el 6 de marzo 2023 hasta el 31
-            de diciembre de 2023, quedando entendido que en ningún caso podrá operar la prórroga del mismo,
-            salvo que ello sea convenido por escrito antes del vencimiento del plazo indicado, por cuanto “LA
-            DIRECCIÓN” se encuentra limitada para comprometer los recursos económicos por un periodo superior al
-            presente ejercicio fiscal, de acuerdo al principio de disponibilidad presupuestaria, en consonancia
-            con el principio de eficacia y eficiencia en la asignación y utilización de los recursos públicos,
-            consagrados en los artículos 19 y 20 del Decreto con Rango, Valor y Fuerza de Ley Orgánica de la Administración
-            Pública. En ningún caso podrá ser
-            considerada la suscripción del presente contrato, como una vía de ingreso a la Administración Pública, según lo
-            dispone el artículo 39 de la Ley del Estatuto de la Función Pública. TERCERA: JORNADA DE TRABAJO: Conforme a lo
-            establecido en la cláusula primera del presente contrato y en consonancia con lo dispuesto en los artículos 173,
-            175, numeral 2, 179, literal “c” de la LOTTT, en concordancia con el artículo 8, literales “b” Y “c” del
-            Reglamento Parcial del Decreto con Rango, Valor y Fuerza de Ley Orgánica del Trabajo, los Trabajadores y
-            Trabajadoras, sobre el tiempo de trabajo, la jornada de trabajo del “EL CONTRATADO” no estará sometida a los
-            límites establecidos en el artículo 174 del mencionado Decreto Ley. Por lo tanto, “EL CONTRATADO” deberá prestar
-            servicios de forma rotativa, según sea programado por la Dirección General de Seguridad en los roles de guardias
-            previstos. CUARTA: EXCLUSIVIDAD: queda expresamente convenido que la prestación de servicios personales por
-            parte de “EL CONTRATADO” a “LA DIRECCIÓN” será exclusiva. Por tanto, “EL CONTRATADO” no podrá ceder, parcial ni
-            totalmente, el presente contrato a personas naturales o jurídicas, incluyendo socios o asociados, debido a que
-            se ha celebrado atendiendo a las condiciones personales de “EL CONTRATADO”. QUINTA: CONTRAPRESTACIÓN Y
-            DEDUCCIONES: “LA DIRECCIÓN” se compromete a pagar a “EL CONTRATADO” por la presentación de sus servicios
-            personales, la cantidad de SEISCIENTOS DIECISIETE BOLÍVARES CON CUARENTA CÉNTIMOS (Bs. 617,40) mensuales, que le
-            serán pagados por quincenas vencidas, a tenor de lo establecido en el artículo 126 de la LOTTT; quedando
-            autorizada “LA DIRECCIÓN” para efectuar los descuentos, deducciones o aportes que correspondan, de acuerdo a la
-            legislación aplicable durante la vigencia del presente contrato. SEXTA: BENEFICIOS: "EL CONTRATADO gozará,
-            además de todos los beneficios establecidos en la legislación laboral vigente, de aquellos que apliquen según sea
-            su condición en las respectivas Convenciones Colectivas de Trabajo de la Dirección Ejecutiva de la Magistratura
-            (DEM). Asimismo, estará amparado bajo la cobertura del Fondo Auto Administrado de Salud de la Dirección Ejecutiva
-            de la Magistratura (FASDEM), el cual comprende hospitalización, cirugía y maternidad (HCM). SÉPTIMA: PERIODO DE
-            PRUEBA Y EVALUACIONES: "EL CONTRATADO" está sujeto a un periodo de prueba de un (01) mes, contado a partir desde
-            el momento que comience a prestar sus servicios; durante dicho lapso "EL CONTRATADO" se considerará excluido del
-            régimen de estabilidad, por ende, cualquiera de las partes podrá dar por extinguido el contrato, sin que hubiere
-            lugar a indemnización alguna. "LA DIRECCIÓN", a través de sus representantes, supervisará el cumplimiento de las
-            labores requeridas a "EL CONTRATADO en la prestación de sus servicios, en razón de lo cual "EL CONTRATADO”
-            conviene que se someterá periódicamente a evaluaciones de suficiencia, con el objeto de ponderar el cumplimiento
-            de las actividades asignadas. OCTAVA: CONFIDENCIALIDAD: "EL CONTRATADO” se obliga a mantener bajo estricto
-            secreto todos los documentos, conversaciones Y en general, cualquier información que se maneje, en virtud de la
-            ejecución de este contrato, garantizando el carácter confidencial de la misma y su no revelación a personas
-            naturales o jurídicas, ajenas a “LA DIRECCIÓN”.  Esta obligación de confidencialidad, subsistirá aún después de la
-            terminación de este contrato,
-        </p>
-        <div>
-            <table style="width:100%">
-                <tr>
-                    <th style="text-align: center;">
-                        <p><b>{{ name}}</b> </p>
-                    </th>
-                    <th style="text-align: center;">
-                        <p> <b>{{cedula}}</b></p>
-                    </th>
-                    <th style="text-align: center;">
-                        <p> Página 2 de 4</p>
-                    </th>
-                </tr>
-                <tr></tr>
-            </table>
-        </div>
+    <p>
+      cualquier
+      otra tarea que le indique la autoridad correspondiente. SEGUNDA: MODALIDAD Y VIGENCIA: el presente
+      contrato de trabajo por tiempo determinado tendrá una vigencia desde el {{fechaInit}} hasta el {{fechaFin}}, quedando entendido que en ningún caso podrá operar la prórroga del mismo,
+      salvo que ello sea convenido por escrito antes del vencimiento del plazo indicado, por cuanto “LA
+      DIRECCIÓN” se encuentra limitada para comprometer los recursos económicos por un periodo superior al
+      presente ejercicio fiscal, de acuerdo al principio de disponibilidad presupuestaria, en consonancia
+      con el principio de eficacia y eficiencia en la asignación y utilización de los recursos públicos,
+      consagrados en los artículos 19 y 20 del Decreto con Rango, Valor y Fuerza de Ley Orgánica de la Administración
+      Pública. En ningún caso podrá ser
+      considerada la suscripción del presente contrato, como una vía de ingreso a la Administración Pública, según lo
+      dispone el artículo 39 de la Ley del Estatuto de la Función Pública. TERCERA: JORNADA DE TRABAJO: Conforme a lo
+      establecido en la cláusula primera del presente contrato y en consonancia con lo dispuesto en los artículos 173,
+      175, numeral 2, 179, literal “c” de la LOTTT, en concordancia con el artículo 8, literales “b” Y “c” del
+      Reglamento Parcial del Decreto con Rango, Valor y Fuerza de Ley Orgánica del Trabajo, los Trabajadores y
+      Trabajadoras, sobre el tiempo de trabajo, la jornada de trabajo del “EL CONTRATADO” no estará sometida a los
+      límites establecidos en el artículo 174 del mencionado Decreto Ley. Por lo tanto, “EL CONTRATADO” {{workingMode}}, según sea programado por la Dirección General de Seguridad en los roles de guardias
+      previstos. CUARTA: EXCLUSIVIDAD: queda expresamente convenido que la prestación de servicios personales por
+      parte de “EL CONTRATADO” a “LA DIRECCIÓN” será exclusiva. Por tanto, “EL CONTRATADO” no podrá ceder, parcial ni
+      totalmente, el presente contrato a personas naturales o jurídicas, incluyendo socios o asociados, debido a que
+      se ha celebrado atendiendo a las condiciones personales de “EL CONTRATADO”. QUINTA: CONTRAPRESTACIÓN Y
+      DEDUCCIONES: “LA DIRECCIÓN” se compromete a pagar a “EL CONTRATADO” por la presentación de sus servicios
+      personales, la cantidad de <b
+      style="text-transform: uppercase">{{textSalary}}</b> (Bs. {{numbSalary}}) mensuales, que le
+      serán pagados por quincenas vencidas, a tenor de lo establecido en el artículo 126 de la LOTTT; quedando
+      autorizada “LA DIRECCIÓN” para efectuar los descuentos, deducciones o aportes que correspondan, de acuerdo a la
+      legislación aplicable durante la vigencia del presente contrato. SEXTA: BENEFICIOS: "EL CONTRATADO gozará,
+      además de todos los beneficios establecidos en la legislación laboral vigente, de aquellos que apliquen según sea
+      su condición en las respectivas Convenciones Colectivas de Trabajo de la Dirección Ejecutiva de la Magistratura
+      (DEM). Asimismo, estará amparado bajo la cobertura del Fondo Auto Administrado de Salud de la Dirección Ejecutiva
+      de la Magistratura (FASDEM), el cual comprende hospitalización, cirugía y maternidad (HCM). SÉPTIMA: PERIODO DE
+      PRUEBA Y EVALUACIONES: "EL CONTRATADO" está sujeto a un periodo de prueba de un (01) mes, contado a partir desde
+      el momento que comience a prestar sus servicios; durante dicho lapso "EL CONTRATADO" se considerará excluido del
+      régimen de estabilidad, por ende, cualquiera de las partes podrá dar por extinguido el contrato, sin que hubiere
+      lugar a indemnización alguna. "LA DIRECCIÓN", a través de sus representantes, supervisará el cumplimiento de las
+      labores requeridas a "EL CONTRATADO en la prestación de sus servicios, en razón de lo cual "EL CONTRATADO”
+      conviene que se someterá periódicamente a evaluaciones de suficiencia, con el objeto de ponderar el cumplimiento
+      de las actividades asignadas. OCTAVA: CONFIDENCIALIDAD: "EL CONTRATADO” se obliga a mantener bajo estricto
+      secreto todos los documentos, conversaciones Y en general, cualquier información que se maneje, en virtud de la
+      ejecución de este contrato, garantizando el carácter confidencial de la misma y su no revelación a personas
+      naturales o jurídicas, ajenas a “LA DIRECCIÓN”. Esta obligación de confidencialidad, subsistirá aún después de la
+      terminación de este contrato,
+    </p>
+    <div>
+      <table style="width:100%">
+        <tr>
+          <th style="text-align: center;">
+            <p><b>{{ name}}</b> </p>
+          </th>
+          <th style="text-align: center;">
+            <p> <b>{{cedula}}</b></p>
+          </th>
+          <th style="text-align: center;">
+            <p> Página 2 de 4</p>
+          </th>
+        </tr>
+        <tr></tr>
+      </table>
     </div>
-    <div class="text-block" style="margin-left: 7%;
+  </div>
+  <div class="text-block" style="margin-left: 7%;
       margin-right: 7%;
       justify-content: center;
       text-align: justify;
       margin-top: 0% !important;
       padding-top: 0px !important;
       color: #000000;">
-        <p>
-         momento en el cual deberá devolver documentos, herramientas e información de este
-         Organismo que reposen en su poder; así como la credencial que lo identifique como trabajador de la Dirección
-         Ejecutiva de la Magistratura (DEM) o el Poder Judicial.
-             El incumplimiento de la presente cláusula será
-            considerado una falta a las obligaciones que impone la relación de trabajo, sin perjuicio de la responsabilidad
-            civil, administrativa y penal en la que pudiese incurrir. No será considerada como confidencial la información que
-            es de dominio público, cualquier información divulgada por "LA DIRECCIÓN y “EL CONTRATADO" de común acuerdo, la
-            Información que haya sido requerida por algún organismo
-            público legalmente autorizado para ello, o con motivo de una causa judicial, procediendo en virtud de la ley o en
-            caso que las partes ocurran ante estas instancias. NOVENA: AUSENCIA LABORAL: “EL CONTRATADO”, se compromete a
-            cumplir con la jornada laboral que le corresponde. En caso de fuerza mayor, eventualidad o imprevisto, orden
-            público, salud, familia, “EL CONTRATADO” deberá notificar a su superior inmediato, dentro de un lapso de tres (03)
-            días hábiles siguientes a la ocurrencia de hecho, así como presentar el informe con los alegatos
-            correspondientes de la causa que justificare su inasistencia al trabajo, de manera de dejar constancia y someter a
-            la consideración de la "DIRECCIÓN', su calificación de suficiencia. DÉCIMA: TERMINACIÓN DE LA RELACIÓN DE TRABAJO:
-            son causas de terminación del presente contrato 1) expiración del contrato o su correspondiente prórroga; 2)
-            manifestación de voluntad del trabajador o trabajadora de culminar la relación de trabajo; 3) manifestación de
-            voluntad del patrono de culminar la relación de trabajo, en el marco de la normativa laboral vigente; 4) despido
-            justificado, previa autorización, de despido; 5) la privación de libertad en el proceso penal, cuando resulte en
-            sentencia condenatoria, previa autorización de despido; 6) incumplimiento de los compromisos previstos en la
-            cláusulas de este contrato, por parte de "EL CONTRATADO” será considerado razón suficiente para proceder a la
-            terminación anticipada del mismo y 7) fallecimiento del trabajador o trabajadora. DÉCIMA PRIMERA: INFORMACIÓN
-            PERSONAL: queda expresamente entendido que durante la vigencia del presente contrato, "EL CONTRATADO' estará
-            obligado a suministrar a “LA DIRECCIÓN” su información personal actualizada (dirección de domicilio, dirección
-            de correo electrónico y números de teléfono de contacto), cuando se efectúe alguna modificación o sea requerido
-            por “LA DIRECCIÓN”. DÉCIMA SEGUNDA: NOTIFICACIONES Y DOMICILIO: Todas las notificaciones que deban efectuarse a
-            “LA DIRECCIÓN” con ocasión al presente contrato, se realizarán por escrito a la siguiente dirección: Av
-            Francisco de Miranda entre Calles Elice y La Joya, edificio Tribunal Supremos de Justicia, Dirección Ejecutiva de
-            la Magistratura, municipio Chacao, estado Miranda y las notificaciones a “EL CONTRATADO”, se realizarán según lo siguiente: Yo, <b>{{name}}</b> venezolano, mayor de edad, titular de la Cédula de identidad N° <b>{{cedula}}</b>,  plenamente identificado, juro que mi correo electrónico es el siguiente
-            <b>{{correo}}</b>, el cual bajo el presente juramento señalo como propio, a los fines de
-                        mi notificación personal a través de este medio, aceptando los términos legales y condiciones de uso
-                        establecidas por la Dirección Ejecutiva de la Magistratura. A tal efecto, toda notificación emitida por
-                        el organismo, quedará efectiva, a partir de la fecha y hora en la que quede disponible en la bandeja
-                        de entrada del correo electrónico aquí declarado, por lo que no podré alegar en ningún caso
-                        desconocimiento de los actos notificados por operaciones en el buzón delegadas en terceros. La
-                        Dirección Ejecutiva de la Magistratura en la comunicación mediante la cual se remite el Acto
-                        Administrativo que se va a notificar por vía electrónica, indicará el nombre y cargo del funcionario
-                        competente, el del interesado y la fecha de expedición del mensaje de datos, adjuntando el acto
-                        administrativo en formato PDF inmodificable. DÉCIMA TERCERA: ACUERDO Y MODIFICACIÓN DEL CONTRATO: el
-                        presente contrato representa el acuerdo definitivo entre las partes, toda modificación que surgiere con
-                        ocasión al mismo, deberá ser pactada de común acuerdo mediante la suscripción de un Addendum, el
-                        cual se anexará al contrato y formará parte
-        </p>
-        <table style="width:100%">
-            <tr>
-                <th style="text-align: center;">
-                    <p><b>{{ name}}</b> </p>
-                </th>
-                <th style="text-align: center;">
-                    <p> <b>{{cedula}}</b></p>
-                </th>
-                <th style="text-align: center;">
-                    <p> Página 3 de 4</p>
-                </th>
-            </tr>
-            <tr></tr>
-        </table>
-    </div>
-    <div class="text-block" style="margin-left: 7%;
+    <p>
+      momento en el cual deberá devolver documentos, herramientas e información de este
+      Organismo que reposen en su poder; así como la credencial que lo identifique como trabajador de la Dirección
+      Ejecutiva de la Magistratura (DEM) o el Poder Judicial.
+      El incumplimiento de la presente cláusula será
+      considerado una falta a las obligaciones que impone la relación de trabajo, sin perjuicio de la responsabilidad
+      civil, administrativa y penal en la que pudiese incurrir. No será considerada como confidencial la información que
+      es de dominio público, cualquier información divulgada por "LA DIRECCIÓN y “EL CONTRATADO" de común acuerdo, la
+      Información que haya sido requerida por algún organismo
+      público legalmente autorizado para ello, o con motivo de una causa judicial, procediendo en virtud de la ley o en
+      caso que las partes ocurran ante estas instancias. NOVENA: AUSENCIA LABORAL: “EL CONTRATADO”, se compromete a
+      cumplir con la jornada laboral que le corresponde. En caso de fuerza mayor, eventualidad o imprevisto, orden
+      público, salud, familia, “EL CONTRATADO” deberá notificar a su superior inmediato, dentro de un lapso de tres (03)
+      días hábiles siguientes a la ocurrencia de hecho, así como presentar el informe con los alegatos
+      correspondientes de la causa que justificare su inasistencia al trabajo, de manera de dejar constancia y someter a
+      la consideración de la "DIRECCIÓN', su calificación de suficiencia. DÉCIMA: TERMINACIÓN DE LA RELACIÓN DE TRABAJO:
+      son causas de terminación del presente contrato 1) expiración del contrato o su correspondiente prórroga; 2)
+      manifestación de voluntad del trabajador o trabajadora de culminar la relación de trabajo; 3) manifestación de
+      voluntad del patrono de culminar la relación de trabajo, en el marco de la normativa laboral vigente; 4) despido
+      justificado, previa autorización, de despido; 5) la privación de libertad en el proceso penal, cuando resulte en
+      sentencia condenatoria, previa autorización de despido; 6) incumplimiento de los compromisos previstos en la
+      cláusulas de este contrato, por parte de "EL CONTRATADO” será considerado razón suficiente para proceder a la
+      terminación anticipada del mismo y 7) fallecimiento del trabajador o trabajadora. DÉCIMA PRIMERA: INFORMACIÓN
+      PERSONAL: queda expresamente entendido que durante la vigencia del presente contrato, "EL CONTRATADO' estará
+      obligado a suministrar a “LA DIRECCIÓN” su información personal actualizada (dirección de domicilio, dirección
+      de correo electrónico y números de teléfono de contacto), cuando se efectúe alguna modificación o sea requerido
+      por “LA DIRECCIÓN”. DÉCIMA SEGUNDA: NOTIFICACIONES Y DOMICILIO: Todas las notificaciones que deban efectuarse a
+      “LA DIRECCIÓN” con ocasión al presente contrato, se realizarán por escrito a la siguiente dirección: Av
+      Francisco de Miranda entre Calles Elice y La Joya, edificio Tribunal Supremos de Justicia, Dirección Ejecutiva de
+      la Magistratura, municipio Chacao, estado Miranda y las notificaciones a “EL CONTRATADO”, se realizarán según lo
+      siguiente: Yo, <b>{{name}}</b> venezolano, mayor de edad, titular de la Cédula de identidad N° <b>{{cedula}}</b>,
+      plenamente identificado, juro que mi correo electrónico es el siguiente
+      <b>{{correo}}</b>, el cual bajo el presente juramento señalo como propio, a los fines de
+      mi notificación personal a través de este medio, aceptando los términos legales y condiciones de uso
+      establecidas por la Dirección Ejecutiva de la Magistratura. A tal efecto, toda notificación emitida por
+      el organismo, quedará efectiva, a partir de la fecha y hora en la que quede disponible en la bandeja
+      de entrada del correo electrónico aquí declarado, por lo que no podré alegar en ningún caso
+      desconocimiento de los actos notificados por operaciones en el buzón delegadas en terceros. La
+      Dirección Ejecutiva de la Magistratura en la comunicación mediante la cual se remite el Acto
+      Administrativo que se va a notificar por vía electrónica, indicará el nombre y cargo del funcionario
+      competente, el del interesado y la fecha de expedición del mensaje de datos, adjuntando el acto
+      administrativo en formato PDF inmodificable. DÉCIMA TERCERA: ACUERDO Y MODIFICACIÓN DEL CONTRATO: el
+      presente contrato representa el acuerdo definitivo entre las partes, toda modificación que surgiere con
+      ocasión al mismo, deberá ser pactada de común acuerdo mediante la suscripción de un Addendum, el
+      cual se anexará al contrato y formará parte
+    </p>
+    <table style="width:100%">
+      <tr>
+        <th style="text-align: center;">
+          <p><b>{{ name}}</b> </p>
+        </th>
+        <th style="text-align: center;">
+          <p> <b>{{cedula}}</b></p>
+        </th>
+        <th style="text-align: center;">
+          <p> Página 3 de 4</p>
+        </th>
+      </tr>
+      <tr></tr>
+    </table>
+  </div>
+  <div class="text-block" style="margin-left: 7%;
       margin-right: 7%;
       justify-content: center;
       text-align: justify;
       margin-top: 0% !important;
       padding-top: 0px !important;
       color: #000000;">
-        <p>
-            integrante del mismo. DÉCIMA CUARTA: DECLARACIÓN JURADA
-                        DE PATRIMONIO Y AR-I: "EL CONTRATADO”, deberá consignar dentro los treinta (30) días siguientes de
-                        haber suscrito el presente contrato, la DECLARACIÓN JURADA DE PATRIMONIO, a través del “Sistema para
-                        la Presentación de la Declaración Jurada de Patrimonio en Formato Electrónico” , disponible en el portal http://www.cgr.gob.ve, con el objeto
-                        de dar cumplimiento con lo establecido en la Resolución número 01-00-000122, de fecha diecinueve (19) de
-                        junio de 2009, publicada en Gaceta Oficial de la República Bolivariana de Venezuela número 39.205, de
-                        fecha veintidós (22) de junio de 2009, emanada de la Contraloría General de la República, y a su vez,
-                        deberá consignar ante la Dirección General de Recursos Humanos, Dirección de Servicios al Personal,
-                        División de Servicios Administrativos el comprobante respectivo, como prueba fehaciente de haber cumplido
-                        con esta obligación. Asimismo, deberá ubicar mediante el Portal Fiscal www.seniat.gob.ve el formulario
-                        AR-I, llenarlo y presentarlo, dentro de los primeros cinco (5) días a partir de haber suscrito el
-                        presente contrato, ante esa Unidad según lo dispuesto en los Artículos 73 y 86 de la Ley de Impuesto
-                        sobre la Renta. DÉCIMA QUINTA: JURISDICCIÓN Y DOMICILIO ESPECIAL: para todos los efectos de este
-                        contrato, las partes eligen como domicilio especial la ciudad de Caracas, a la competencia de cuyos
-                        tribunales declaran expresamente someterse. Se hacen dos (02) ejemplares de un mismo tenor y a un sólo
-                        efecto.
-        </p>
-        <div>
+    <p>
+      integrante del mismo. DÉCIMA CUARTA: DECLARACIÓN JURADA
+      DE PATRIMONIO Y AR-I: "EL CONTRATADO”, deberá consignar dentro los treinta (30) días siguientes de
+      haber suscrito el presente contrato, la DECLARACIÓN JURADA DE PATRIMONIO, a través del “Sistema para
+      la Presentación de la Declaración Jurada de Patrimonio en Formato Electrónico” , disponible en el portal
+      http://www.cgr.gob.ve, con el objeto
+      de dar cumplimiento con lo establecido en la Resolución número 01-00-000122, de fecha diecinueve (19) de
+      junio de 2009, publicada en Gaceta Oficial de la República Bolivariana de Venezuela número 39.205, de
+      fecha veintidós (22) de junio de 2009, emanada de la Contraloría General de la República, y a su vez,
+      deberá consignar ante la Dirección General de Recursos Humanos, Dirección de Servicios al Personal,
+      División de Servicios Administrativos el comprobante respectivo, como prueba fehaciente de haber cumplido
+      con esta obligación. Asimismo, deberá ubicar mediante el Portal Fiscal www.seniat.gob.ve el formulario
+      AR-I, llenarlo y presentarlo, dentro de los primeros cinco (5) días a partir de haber suscrito el
+      presente contrato, ante esa Unidad según lo dispuesto en los Artículos 73 y 86 de la Ley de Impuesto
+      sobre la Renta. DÉCIMA QUINTA: JURISDICCIÓN Y DOMICILIO ESPECIAL: para todos los efectos de este
+      contrato, las partes eligen como domicilio especial la ciudad de Caracas, a la competencia de cuyos
+      tribunales declaran expresamente someterse. Se hacen dos (02) ejemplares de un mismo tenor y a un sólo
+      efecto.
+    </p>
+    <div>
 
-         <table style="width:100%;margin-top: 30%;">
-            <tr>
-                <th style="text-align: center;">
-                    <hr style="background-color: black; width: 80%;">
-                  <p> <b>"EL CONTRATADO"</b></p>
-                </th>
-                <th style="text-align: center;">
-                    <hr style="background-color: black; width: 80%;">
-                  <p>  "LA DIRECCIÓN"</p>
-                </th>
-            </tr>
-            <tr></tr>
-        </table>
-
-      </div>
-        <table style="width:100%;margin-top:50%;">
-            <tr>
-                <th style="text-align: center;">
-                    
-                    <p><b>{{ name}}</b> </p>
-                </th>
-                <th style="text-align: center;">
-                    <p> <b>{{cedula}}</b></p>
-                </th>
-                <th style="text-align: center;">
-                    <p> Página 4 de 4</p>
-                </th>
-            </tr>
-            <tr></tr>
-        </table>
-    </div>
-
+      <table style="width:100%;margin-top: 30%;">
+        <tr>
+          <th style="text-align: center;">
+            <hr style="background-color: black; width: 80%;">
+            <p> <b>"EL CONTRATADO"</b></p>
+          </th>
+          <th style="text-align: center;">
+            <hr style="background-color: black; width: 80%;">
+            <p> "LA DIRECCIÓN"</p>
+          </th>
+        </tr>
+        <tr></tr>
+      </table>
 
     </div>
+    <table style="width:100%;margin-top:50%;">
+      <tr>
+        <th style="text-align: center;">
+
+          <p><b>{{ name}}</b> </p>
+        </th>
+        <th style="text-align: center;">
+          <p> <b>{{cedula}}</b></p>
+        </th>
+        <th style="text-align: center;">
+          <p> Página 4 de 4</p>
+        </th>
+      </tr>
+      <tr></tr>
+    </table>
+  </div>
+
+
+  </div>
 </body>
 
 </html>

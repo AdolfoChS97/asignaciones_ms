@@ -45,7 +45,7 @@ export class Notification {
     description: 'ID del usuario que analiza la notificación',
     required: false,
   })
-  @Column({ type: 'boolean', nullable: true })
+  @Column({ type: 'integer', nullable: true })
   analystId: number | null;
 
   @ApiProperty({

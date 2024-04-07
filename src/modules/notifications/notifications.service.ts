@@ -107,7 +107,7 @@ export class NotificationsService {
 
   async findOne(
     id: number,
-    { approvement, rolId, emitterId, entityId }: GetNotificationDto,
+    { approvement, rolId, emitterId, entityId, analystId }: GetNotificationDto,
   ): Promise<GetNotificationRecord> {
     try {
       await this.approvementService.findOne(+approvement);
@@ -120,6 +120,7 @@ export class NotificationsService {
           approvement: approvement,
           emitterId: emitterId,
           entityId: entityId,
+          analystId: analystId,
         },
         options,
       );
@@ -144,6 +145,7 @@ export class NotificationsService {
     {
       approvement,
       emitterId,
+      analystId,
       rolId,
       title,
       description,
@@ -157,6 +159,11 @@ export class NotificationsService {
       if (!approvement && !Number.isInteger(+approvement))
         throw new BadRequestException(
           'approvement is required and should be a number',
+        );
+
+      if (!analystId && !Number.isInteger(+analystId))
+        throw new BadRequestException(
+          'analystId is required and should be a number',
         );
 
       if (!emitterId && !Number.isInteger(+emitterId))
@@ -194,6 +201,7 @@ export class NotificationsService {
       const propertiesToUpdate = checkProperties({
         approvement,
         emitterId,
+        analystId,
         rolId,
         title,
         description,

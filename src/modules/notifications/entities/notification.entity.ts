@@ -39,6 +39,16 @@ export class Notification {
   approvement: number;
 
   @ApiProperty({
+    type: 'number',
+    example: 1,
+    nullable: true,
+    description: 'ID del usuario que analiza la notificación',
+    required: false,
+  })
+  @Column({ type: 'boolean', nullable: true })
+  analystId: number | null;
+
+  @ApiProperty({
     description: 'ID del usuario que envía la notificación',
     example: 1,
     type: 'number',

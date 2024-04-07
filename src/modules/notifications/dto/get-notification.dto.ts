@@ -11,6 +11,7 @@ import { HttpStatus } from '@nestjs/common';
 class QueryParamsNotification extends PickType(Notification, [
   'approvement',
   'emitterId',
+  'analystId',
   'rolId',
   'entityId',
 ]) {}

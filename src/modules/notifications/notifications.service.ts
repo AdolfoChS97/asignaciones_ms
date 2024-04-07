@@ -35,6 +35,7 @@ export class NotificationsService {
   async create({
     approvement,
     emitterId,
+    analystId,
     rolId,
     title,
     entityId,
@@ -43,6 +44,11 @@ export class NotificationsService {
       if (!approvement && !Number.isInteger(+approvement))
         throw new BadRequestException(
           'approvement is required and should be a number',
+        );
+
+      if (!analystId && !Number.isInteger(+analystId))
+        throw new BadRequestException(
+          'analystId is required and should be a number',
         );
 
       if (!emitterId && !Number.isInteger(+emitterId))
@@ -69,6 +75,7 @@ export class NotificationsService {
           rolId,
           title,
           entityId,
+          analystId,
           createdAt: new Date(),
           updatedAt: new Date(),
         }),

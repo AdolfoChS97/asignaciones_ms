@@ -5,6 +5,7 @@ import { HttpStatus } from '@nestjs/common';
 export class CreateNotificationDto extends PickType(Notification, [
   'approvement',
   'emitterId',
+  'analystId',
   'rolId',
   'title',
   'entityId',

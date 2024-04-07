@@ -4,6 +4,7 @@ import { Notification } from '../entities/notification.entity';
 export class UpdateNotificationDto extends PickType(Notification, [
   'approvement',
   'emitterId',
+  'analystId',
   'rolId',
   'title',
   'description',

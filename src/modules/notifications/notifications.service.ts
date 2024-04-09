@@ -46,11 +46,6 @@ export class NotificationsService {
           'approvement is required and should be a number',
         );
 
-      if (!analystId && !Number.isInteger(+analystId))
-        throw new BadRequestException(
-          'analystId is required and should be a number',
-        );
-
       if (!emitterId && !Number.isInteger(+emitterId))
         throw new BadRequestException(
           'emitterId is required and should be a number',

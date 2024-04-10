@@ -43,7 +43,8 @@ services:
     ports:
       - 80:80
     networks:
-      - ingress
+      ingress:
+        ipv4_address: 12.5.0.4
 
 volumes:
   db:

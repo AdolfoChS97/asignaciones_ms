@@ -64,6 +64,8 @@ export class DocumentsService {
     data,
   }: CrearPuntosDeCuentaDto) {
     try {
+      let footer = {};
+
       if (Array.isArray(files) && files.length === 0)
         throw new BadRequestException('files should be an array');
 
@@ -78,17 +80,20 @@ export class DocumentsService {
 
       if (!userId) throw new BadRequestException('userId is required');
 
+      if (files.includes('contrato'))
+        footer = {
+          height: '15mm',
+          contents: {
+            default: `<span>${data['name']}${data['cedula']} {{page}}</span>`,
+          },
+        };
+
       const bufferPromises = (
         await this.fileService.getFile(files, 'html')
       ).map((file) => {
         return new Promise((resolve, reject) => {
           Pdf?.create(Mustache.render(file.toString(), data), {
-            footer: {
-              height: '15mm',
-              contents: {
-                default: `<span style="margin-left=9%; margin-right=8%; font-size: 8px;">${data['nombre']}${data['cedula']} {{page}}</span>`,
-              },
-            },
+            footer: footer,
             timeout: 1000000,
             format: 'A4',
           }).toBuffer((err, buffer) => {

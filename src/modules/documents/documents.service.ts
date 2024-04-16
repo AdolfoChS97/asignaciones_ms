@@ -86,7 +86,7 @@ export class DocumentsService {
             footer: {
               height: '15mm',
               contents: {
-                default: 'footer',
+                default: `<span style="margin-left=9%; margin-right=8%; font-size: 8px;">${data['nombre']}${data['cedula']} {{page}}</span>`,
               },
             },
             timeout: 1000000,

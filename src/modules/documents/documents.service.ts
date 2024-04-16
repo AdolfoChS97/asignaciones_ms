@@ -83,6 +83,12 @@ export class DocumentsService {
       ).map((file) => {
         return new Promise((resolve, reject) => {
           Pdf?.create(Mustache.render(file.toString(), data), {
+            footer: {
+              height: '15mm',
+              contents: {
+                default: 'footer',
+              },
+            },
             timeout: 1000000,
             format: 'A4',
           }).toBuffer((err, buffer) => {

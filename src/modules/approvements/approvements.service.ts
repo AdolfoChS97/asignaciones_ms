@@ -81,6 +81,7 @@ export class ApprovementsService {
   async findAll(queryParams: getApprovementsByQueryParams) {
     try {
       const { pageNumber, pageSize, ...rest } = queryParams;
+
       const options = {
         skip: (pageNumber - 1) * pageSize,
         take: pageSize,
@@ -88,6 +89,24 @@ export class ApprovementsService {
       };
 
       const searchParams = applyParamsToSearch(rest, options);
+
+      if (!rest?.nested) {
+        const approvements = await this.approvementRepository
+          .createQueryBuilder('approvement')
+          .select([
+            'approvement.id AS id',
+            'approvement.status AS status',
+            'approvement.rolId AS rolId',
+            'approvement.applicationId AS applicationId',
+          ])
+          .skip(options.skip)
+          .take(options.take)
+          .where({ ...searchParams.where })
+          .getRawMany();
+
+        return getApprovementRecords(approvements);
+      }
+
 
       const approvements = await this.approvementRepository
         .createQueryBuilder('approvement')

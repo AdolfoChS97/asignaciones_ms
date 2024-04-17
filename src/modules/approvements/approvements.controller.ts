@@ -86,6 +86,12 @@ export class ApprovementsController {
     required: false,
     example: 'aprobado',
   })
+  @ApiQuery({
+    name: 'nested',
+    type: 'boolean',
+    required: false,
+    example: 'false',
+  })
   @ApiOkResponse({
     description: 'Devuelve un object de aprobaciones segun la pagina',
     type: GetApprovementRecords,
@@ -99,6 +105,7 @@ export class ApprovementsController {
       applicationId,
       userId,
       status,
+      nested,
     }: getApprovementsByQueryParams,
     @Res() response,
   ) {
@@ -110,6 +117,7 @@ export class ApprovementsController {
         applicationId: +applicationId,
         userId: +userId,
         status: status,
+        nested: nested,
       });
       return response.status(HttpStatus.OK).json(data);
     } catch (e) {

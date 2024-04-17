@@ -10,7 +10,7 @@ export class GetApprovementRecords {
     description: 'Devuelve un array de aprobaciones',
     example: Approvement,
   })
-  data: Approvement[];
+  data: Approvement[] | any;
 
   @ApiProperty({
     type: 'number',
@@ -66,4 +66,12 @@ export class getApprovementsByQueryParams extends PartialType(
     description: 'Estado de la aprobación',
   })
   status?: string;
+
+  @ApiProperty({
+    type: 'boolean',
+    example: 'false',
+    description:
+      'Parametro que indica sí la respuesta contiene datos anidados o no',
+  })
+  nested?: boolean;
 }

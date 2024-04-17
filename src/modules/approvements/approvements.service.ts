@@ -90,7 +90,7 @@ export class ApprovementsService {
 
       const searchParams = applyParamsToSearch(rest, options);
 
-      if (rest?.nested) {
+      if (!rest?.nested) {
         const approvements = await this.approvementRepository
           .createQueryBuilder('approvement')
           .select([

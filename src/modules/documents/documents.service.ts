@@ -64,9 +64,9 @@ export class DocumentsService {
     data,
   }: CrearPuntosDeCuentaDto) {
     try {
-      let options = {
+      const options = {
         footer: {},
-        border: {}
+        border: {},
       };
 
       if (Array.isArray(files) && files.length === 0)
@@ -84,10 +84,10 @@ export class DocumentsService {
       if (!userId) throw new BadRequestException('userId is required');
 
       if (files.includes('contrato')) {
-          options.footer = {
-            height: '15mm',
-            contents: {
-              default: `
+        options.footer = {
+          height: '15mm',
+          contents: {
+            default: `
               <table 
                 style="
                   width:100%; 
@@ -108,13 +108,13 @@ export class DocumentsService {
                   <tr></tr>
               </table>
               `,
-            }
-          }
-          options.border = {
-            left: '20mm',
-            right: '15mm',
-          }       
-        }
+          },
+        };
+        options.border = {
+          left: '20mm',
+          right: '15mm',
+        };
+      }
 
       const bufferPromises = (
         await this.fileService.getFile(files, 'html')

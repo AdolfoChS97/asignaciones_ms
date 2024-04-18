@@ -89,15 +89,20 @@ export class ApprovementsService {
       };
 
       const searchParams = applyParamsToSearch(rest, options);
-
-      if (!rest?.nested) {
+      
+      const nested = Boolean(rest?.nested) || false;
+      if (!nested) {
+        
         const approvements = await this.approvementRepository
           .createQueryBuilder('approvement')
           .select([
             'approvement.id AS id',
             'approvement.status AS status',
-            'approvement.rolId AS rolId',
-            'approvement.applicationId AS applicationId',
+            'approvement.rolId AS "rolId"',
+            'approvement.applicationId AS "applicationId"',
+            'approvement.endorsement AS endorsement',
+            'approvement.createdAt AS "createdAt"',
+            'approvement.updatedAt AS "updatedAt"'
           ])
           .skip(options.skip)
           .take(options.take)

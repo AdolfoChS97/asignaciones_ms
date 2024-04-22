@@ -67,6 +67,8 @@ export class DocumentsService {
       const options = {
         footer: {},
         border: {},
+        paperSize :{},
+        format: {},
       };
 
       if (Array.isArray(files) && files.length === 0)
@@ -114,6 +116,14 @@ export class DocumentsService {
           left: '20mm',
           right: '15mm',
         };
+      }
+      if(files.includes('aprobacion' || 'sin-efecto')){
+        options.paperSize  = {
+          margin: {
+            botton: '20px'
+          },
+          format: 'A4'
+        }
       }
 
       const bufferPromises = (

@@ -5,9 +5,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <script>
-
-    </script>
     <style>
         .container {
             margin-left: 7%;
@@ -16,10 +13,20 @@
             text-align: justify;
         }
 
+        input#cbox1,
+        input#cbox2,
+        input#cbox3,
+        input#cbox4,
+        input#cbox5,
+        input#cbox6 {
+            margin: 0;
+        }
+
+
+
         .tablaCuenta {
             width: 100%;
             border: 1px solid black;
-
         }
 
         p {
@@ -34,7 +41,6 @@
         }
 
         h3 {
-
             text-align: center;
         }
 
@@ -51,6 +57,9 @@
             margin-top: 0% !important;
         }
 
+
+
+
         h3.republiClass {
             margin-bottom: 0px;
             font-size: 12px;
@@ -58,15 +67,6 @@
 
         table {
             width: 100%;
-        }
-
-        input#cbox1,
-        input#cbox2,
-        input#cbox3,
-        input#cbox4,
-        input#cbox5,
-        input#cbox6 {
-            margin: 0;
         }
 
         td {
@@ -83,10 +83,15 @@
 
         td.tdAsunto {
             width: 83%;
+            font-size: 8px;
+        }
+
+        td.tdAsunto p {
+            font-size: 8px;
         }
 
         td.antecedesText p {
-            font-size: 12px;
+            font-size: 9px;
             line-height: 22px;
         }
 
@@ -94,41 +99,13 @@
             text-align: center;
         }
 
-        div#puntoCuenta {
-            font-size: 12px;
-        }
-
-        img.img-escudo {
-            height: 75px;
-        }
-
-        table.tablafooter {
-            text-align: center;
-            height: 18vh;
-        }
-
-        tr.uniClass {
-            text-align: justify;
-        }
-
-        tr.uniClass h4 {
-            margin-top: 1px;
-            margin-bottom: 1px;
-            font-weight: 100;
-        }
-
-        td.thObser {
-            vertical-align: super;
-        }
-
-
-        .puntoCuenta {
-            font-size: 12px;
-        }
-
         td.antecedesText {
 
             vertical-align: super;
+        }
+
+        .puntoCuenta {
+            font-size: 9px;
         }
 
         .checkBox {
@@ -139,6 +116,7 @@
         }
 
         label {
+            font-size: 6px;
             line-height: 16px;
             font-weight: 100;
             margin-top: 0;
@@ -160,8 +138,8 @@
 
 <body>
     <div class="container">
-        <table class="tablaCuenta" style="margin-bottom: 25%; border: 1px solid black;
-        border-collapse: collapse;">
+        <table class="tablaCuenta" style="margin-bottom: 10%; border: 1px solid black;
+      border-collapse: collapse;">
             <thead>
                 <tr class="headerTable">
                     <td class="tdEscudo">
@@ -176,7 +154,7 @@
                             DIRECCIÓN EJECUTIVA DE LA MAGISTRATURA</h3>
                         <h3 class="subTitle"
                             style="font-size: 9px;font-weight: 100;line-height: 13px;margin: 0% !important;">
-                            DIREECIÓN GENERAL DE RECURSOS HUMANOS</h3>
+                            DIRECCIÓN GENERAL DE RECURSOS HUMANOS</h3>
                     </td>
                     <td>
 
@@ -191,16 +169,16 @@
 
                     <td colspan="3">
                         <p style="font-size: 8px;
-                             line-height: 16px;
-                             font-weight: 100;margin-top: 3px;
-                             margin-bottom: 3px;">
-                            PARA: DIRECCIÓN EJECUTIVA
+                        line-height: 16px;
+                        font-weight: 100;margin-top: 3px;
+                        margin-bottom: 3px;">
+                            <strong>PARA: DIRECCIÓN EJECUTIVA</strong>
                         </p>
                     </td>
                     <td class="rowNumber" rowspan="3" style="vertical-align:baseline">
                         <p style="font-size: 8px; 
-                             line-height: 16px;
-                             font-weight: 100; margin: 0;">
+                        line-height: 16px;
+                        font-weight: 100;">
                             <strong>CUENTA N°</strong>
                             <br>{{añoGenerate}}-{{idPostulado}}-{{nomenclature}}<br><strong>RECIBIDA</strong>
                         </p>
@@ -209,25 +187,24 @@
                 <tr>
                     <td colspan="3">
                         <p style="font-size: 8px; 
-                        line-height: 16px;
-                        font-weight: 100;margin-top: 3px;
-                       margin-bottom: 3px;">DE: DIRECCIÓN GENERAL DE RECURSOS HUMANOS</p>
+                         line-height: 16px;
+                         font-weight: 100;margin-top: 3px;
+                        margin-bottom: 3px;"><strong>DE: DIRECCIÓN GENERAL DE RECURSOS HUMANOS</strong></p>
                     </td>
                 </tr>
                 <tr>
                     <td class="tdAsunto" colspan="3">
                         <p style="font-size: 7px; 
-                        line-height: 16px;
-                        font-weight: 100;margin-top: 3px;
-                              margin-bottom: 3px;">
-                            ASUNTO: <br>
+                  line-height: 16px;
+                  font-weight: 100;margin-top: 3px;
+                        margin-bottom: 3px;">
+                            <strong>ASUNTO: </strong> <br>
                             DEJAR SIN EFECTO UN (01) MOVIMIENTO DE <b
                                 style="text-transform: uppercase;font-weight: 100;">{{typeParticipation}}</b> A FAVOR
-                            DEL CIUDADANO
-                            <strong>{{name}}</strong>.
-                            TITULAR LA
-                            CÉDULA DE IDENTIDAD NÚMERO
-                            <strong>{{cedula}}</strong>, MEDIANTE PUNTO DE CUENTA NÚMERO <strong><span
+                            DEL CIUDADANO <b style="text-transform: uppercase;font-weight: 100;"><strong>{{name}}</strong></b>, TITULAR
+                            DE LA CÉDULA DE IDENTIDAD NÚMERO <strong>{{cedula}}</strong>, MEDIANTE PUNTO DE CUENTA
+                            NÚMERO
+                            <strong><span
                                     id="puntoCuenta">{{añoGenerate}}-{{idPostulado}}-{{nomenclature}}</span></strong>,
                             APROBADO EN
                             <strong>{{aprovalFecha}}</strong>.
@@ -238,38 +215,33 @@
 
                     <td class="antecedesText" style="border: 0;" colspan="4">
                         <p style="font-size: 7px; 
-                        line-height: 16px;
-                        font-weight: 100; min-height: 120vh;">
+                  line-height: 16px;
+                  font-weight: 100;
+                  border: 0 !important; height: 170vh; max-height: 170vh;min-height: 170vh;">
                             ANTECEDENTES:
                             <br>
-                            <br>
-                            La Dirección General de Recursos Humanos, somete a consideración del Director Ejecutivo de
-                            la
-                            Magistratura, en
-                            ejercicio de las atribuciones conferidas en la Ley Orgánica del Tribunal Supremo de Justicia
-                            de la
-                            República Bolivariana
-                            de Venezuela, en su artículo 77, numeral 12, la aprobación del Movimiento de personal a
-                            saber:
+                            La Dirección General de Recursos Humanos, somete a consideración del Director
+                            Ejecutivo de la Magistratura, en ejercicio de las atribuciones conferidas en la Ley Orgánica
+                            del tribunal Supremo de Justicia de la República Bolivariana de Venezuela, en su artículo
+                            77, numeral 12, la aprobación del movimiento de personal a saber:
                             <br>
                             <br>
-                            SIN EFECTO
+                            <b style="text-transform: uppercase;font-weight: 100;">SIN EFECTO: </b>
                             <br>
-                            1.- <strong>{{name}}</strong>, titular de la cédula de identidad número
-                            <strong>{{cedula}}</strong>.
-                            Cargo:
-                            <strong>{{position}}</strong>, Código REC y SIGEFIRRHH: 230389. Vigencia: veintidós (22) de
-                            junio
-                            de
-                            2023, Adscripción:
-                            Oficina de Atención al Público (OAP) de la Coordinación del Trabajo de la Circunscripción
-                            Judicial
-                            del estado Vargas.
+                            1.-
+                            <b style="text-transform: uppercase;font-weight: 100;"><strong>{{name}}</strong></b>, titular de la cédula
+                            de identidad número
+                            <strong>{{cedula}}</strong>,
+                            cargo: <strong>{{position}}</strong> Código REC y SIGEFIRRHH:
+                            <strong>{{codePosition}}</strong>
+                            Vigencia: desde el <strong>{{fechaInit}}</strong>. Adscripción:
+                            <strong>{{Workplace}}</strong>.
                             <br>
-
                             {{#disincorporate}}
+                            <br>
                             Vacante generada por el egreso de <strong>{{disincorporateName}}</strong>. titular de la
-                            cédula de identidad número <strong>{{disincorporateCedula}}</strong>, en fecha
+                            cédula de
+                            identidad número <strong>{{disincorporateCedula}}</strong>, en fecha
                             <strong>{{disincorporatefecha}}</strong>.
                             {{/disincorporate}}
                             <br>
@@ -292,12 +264,13 @@
             </tbody>
 
         </table>
-        <br>
-        <br>
-        <table class="tablaCuenta" style=" border-bottom: 0;  border: 1px solid black;
-        border-collapse: collapse;page-break-before: always">
+    </div>
+    <br>
+    <div class="container">
+        <table class="tablaCuenta" style=" border: 1px solid black;
+    border-collapse: collapse;border-bottom: none;">
             <thead>
-                <tr class="headerTable" style="border: 1px solid #050202;">
+                <tr class="headerTable">
                     <td class="tdEscudo">
                         <img class="img-escudo" src="{{escudoVenezuela}}" alt="">
                     </td>
@@ -310,9 +283,10 @@
                             DIRECCIÓN EJECUTIVA DE LA MAGISTRATURA</h3>
                         <h3 class="subTitle"
                             style="font-size: 9px;font-weight: 100;line-height: 13px;margin: 0% !important;">
-                            DIREECIÓN GENERAL DE RECURSOS HUMANOS</h3>
+                            DIRECCIÓN GENERAL DE RECURSOS HUMANOS</h3>
                     </td>
                     <td>
+                        <p style="font-size: 10px;"></p>
                     </td>
                     <td>
                         <p style="font-size: 10px;">pag. 2 de 2</p>
@@ -323,16 +297,17 @@
                 <tr>
 
                     <td colspan="3">
-                        <p style="font-size: 8px; 
-                        line-height: 16px;
-                        font-weight: 100;">
+                        <p style="font-size: 8px;
+                      line-height: 16px;
+                      font-weight: 100;margin-top: 3px;
+                      margin-bottom: 3px;">
                             PARA: DIRECCIÓN EJECUTIVA
                         </p>
                     </td>
                     <td class="rowNumber" rowspan="3" style="vertical-align:baseline">
                         <p style="font-size: 8px; 
-                        line-height: 16px;
-                        font-weight: 100;    margin: 0;">
+                      line-height: 16px;
+                      font-weight: 100;">
                             <strong>CUENTA N°</strong>
                             <br>{{añoGenerate}}-{{idPostulado}}-{{nomenclature}}<br><strong>RECIBIDA</strong>
                         </p>
@@ -341,24 +316,23 @@
                 <tr>
                     <td colspan="3">
                         <p style="font-size: 8px; 
-                        line-height: 16px;
-                        font-weight: 100;">DE: DIRECCIÓN GENERAL DE RECURSOS HUMANOS</p>
+                       line-height: 16px;
+                       font-weight: 100;margin-top: 3px;
+                      margin-bottom: 3px;">DE: DIRECCIÓN GENERAL DE RECURSOS HUMANOS</p>
                     </td>
                 </tr>
                 <tr>
                     <td class="tdAsunto" colspan="3">
                         <p style="font-size: 7px; 
-                        line-height: 16px;
-                        font-weight: 100;margin-top: 3px;
-                              margin-bottom: 3px;">
-                            ASUNTO: <br>
+                  line-height: 16px;
+                  font-weight: 100;margin-top: 3px;
+                        margin-bottom: 3px;">
+                            <strong>ASUNTO: </strong> <br>
                             DEJAR SIN EFECTO UN (01) MOVIMIENTO DE <b
                                 style="text-transform: uppercase;font-weight: 100;">{{typeParticipation}}</b> A FAVOR
-                            DEL CIUDADANO
-                            <strong>{{name}}</strong>.
-                            TITULAR LA
-                            CÉDULA DE IDENTIDAD NÚMERO
-                            <strong>{{cedula}}</strong>, MEDIANTE PUNTO DE CUENTA NÚMERO <strong><span
+                            DEL CIUDADANO <b style="text-transform: uppercase;font-weight: 100;"><strong>{{name}}</strong></b>, TITULAR
+                            DE LA CÉDULA DE IDENTIDAD NÚMERO <strong>{{cedula}}</strong>, MEDIANTE PUNTO DE CUENTA
+                            NÚMERO <strong><span
                                     id="puntoCuenta">{{añoGenerate}}-{{idPostulado}}-{{nomenclature}}</span></strong>,
                             APROBADO EN
                             <strong>{{aprovalFecha}}</strong>.
@@ -367,33 +341,32 @@
                 </tr>
                 <tr>
 
-                    <td class="antecedesText" style="height: auto;border: 0;" colspan="5">
+                    <td class="antecedesText" style="border: 0;" colspan="4">
                         <p style="font-size: 7px; 
                         line-height: 16px;
                         font-weight: 100;">
-                            <br>
-                            RECOMENDACIÓN: 
+                            RECOMENDACIÓN:
                             <br>
                             La Dirección General de Recursos Humanos, somete a consideración del Director
-                            Ejecutivo de la
-                            Magistratura, la aprobación del Sin Efecto antes señalado.
-                            <br>
-                            <br>
+                            Ejecutivo de la Magistratura, la aprobación del movimiento del personal antes señalado.
+                        </p>
+                        <p style="font-size: 9px; 
+                line-height: 16px;
+                font-weight: 100; height:auto; max-height:30vh;">
                         </p>
                     </td>
                 </tr>
             </tbody>
         </table>
-        <table style=" border-left: 1px solid;border-right: 1px solid ">
+        <table style=" border-top: 1px solid black; border-left: 1px solid;border-right: 1px solid ">
             <tr class="tr-one">
                 <th colspan="1" style="
-            border-collapse: collapse; text-align: center; width: 30%;">
-
-
+                border-collapse: collapse; text-align: center;width: 33%;">
+                   
                 </th>
                 <th colspan="1" style="
             border-collapse: collapse; text-align: center;width: 33%;">
-                    <img style="width: 30%;
+                    <img style="width: 32%;
             text-align: center;" src="{{firmaEstudioTecnico}}" alt="">
                     <p style="font-size: 5px; 
             line-height: 9px;
@@ -403,7 +376,7 @@
                 </th>
                 <th colspan="1" style="
             border-collapse: collapse; text-align: center;width: 33%;">
-                    <img style="width: 30%;
+                    <img style="width: 32%;
             text-align: center;" src="{{firmaDirectorRRHH}}" alt="">
                     <p style="font-size: 5px; 
             line-height: 9px;
@@ -414,78 +387,79 @@
                 </th>
             </tr>
         </table>
-        <table class="tablaCuenta" style="border-bottom: none;border-top: none;
-        border-collapse: collapse;">
+        <table class="tablaCuenta" style=" border: 1px solid black;
+    border-collapse: collapse;">
             <tr class="uniClass">
-                <td colspan="1" style="border-right: 0px; width: 60%;">
-                    <h2 style="font-size: 7px;margin-bottom: 0px;"> UNIDAD VINCULADAS <br></h2>
+                <td colspan="1" style="border-right: 0px;">
+                    <h2 style="font-size: 7px;"> UNIDAD VINCULADAS <br></h2>
+
                     <div id="{{rrhhBox}}" class="checkBox" style="display: inline-block;"></div>
-                    <label style="font-size: 6px">
+                    <label style="font-size: 6px;">
                         DIRECCIÓN GENERAL DE RECURSOS HUMANOS
                     </label> <br>
+
                     <div id="{{admFiBox}}" class="checkBox" style="display: inline-block;"></div>
-                    <label style="font-size: 6px">
+                    <label style="font-size: 6px;">
                         DIRECCIÓN GENERAL DE ADMINISTRACIÓN Y FINANZAS
-                    </label class="font-size: 6px"> <br>
+                    </label> <br>
+
                     <div id="{{admFiBox}}" class="checkBox" style="display: inline-block;"></div>
-                    <label style="font-size: 6px">
+                    <label style="font-size: 6px;">
                         DIRECCIÓN GENERAL DE PLANIFICACIÓN Y DESARROLLO INSTITUCIONAL
                     </label> <br>
                     <br>
+
                 </td>
-                <td colspan="1" style="border-left: 0px;">
+                <td colspan="1" style="border-left: 0px;border-right: 0;">
                     <div id="{{desaInfor}}" class="checkBox" style="display: inline-block;"></div>
-                    <label style="font-size: 6px">
+                    <label style="font-size: 6px;">
                         OFICINA DE DESARROLLO INFORMÁTICO
                     </label> <br>
                     <div id="{{asesoJurid}}" class="checkBox" style="display: inline-block;"></div>
-                    <label style="font-size: 6px">
+                    <label style="font-size: 6px;">
                         OFICINA DE ASESORÍA JURÍDICA
                     </label> <br>
+
                     <div id="{{ofiComu}}" class="checkBox" style="display: inline-block;"></div>
-                    <label style="font-size: 6px">
+                    <label style="font-size: 6px;">
                         OFICINA DE COMUNICACIÓN
                     </label> <br>
                     <div id="{{ofiSegu}}" class="checkBox" style="display: inline-block;"></div>
-                    <label style="font-size: 6px">
+                    <label style="font-size: 6px;">
                         OFICINA DE SEGURIDAD
                     </label> <br>
                 </td>
+                <td colspan="1" style="border-left: 0px;"></td>
             </tr>
         </table>
         <table class="tablaCuenta" style="border-top: none; border-bottom: 1px solid #000000;
         border-collapse: collapse;">
             <tr>
                 <td id="agenda" style="width: 22%; border: none;text-align: center;" colspan="1">
-                    <div style=" font-size: 6px;
-                    line-height: 16px;
+                    <p style=" font-size: 6px;
+                    line-height: 15px;
                     font-weight: 100; margin: 0;">
                         <strong>AGENDA</strong> <br>
                         <strong>FECHA</strong> <br>
-                        <p class="agenBox" style="    border: 1px solid black;
+                    <p class="agenBox" style="   border: 1px solid black;
                         margin-left: 4px;
                         margin-right: 4px;
-                        padding: 1px;    margin-top: 0px;">
-                            {{fechaAgendaSecretaria}}
+                        padding: 1px; margin-top: 0px;font-size: 6px">
+                        {{fechaAgendaSecretaria}}
+                    </p>
+                    </p>
+                    <p style=" font-size: 6px;
+                    line-height: 16px;
+                    font-weight: bold; margin: 0;">
+                        N°<br>
+                    </p>
+                    <p class="agenBox" style="border: 1px solid black;
+                        margin-left: 4px;
+                        margin-right: 4px;
+                        padding: 1px;margin-top: 0px;font-size: 6px">
+                        {{numAgendaSecretaria}}
 
-                        </p>
-
-                    </div>
-                    <div>
-                        <p style=" font-size: 6px;
-                        line-height: 16px;
-                        font-weight: bold; margin: 0;">
-                            N°<br>
-                        </p>
-                        <p class="agenBox" style="    border: 1px solid black;
-                            margin-left: 4px;
-                            margin-right: 4px;
-                            padding: 1px;margin-top: 0px;">
-                            {{numAgendaSecretaria}}
-
-                        </p>
-                    </div>
-
+                    </p>
                     <br>
                 </td>
                 <td colspan="1" style=" border-top: none; width: 20%;">
@@ -493,10 +467,10 @@
                     line-height: 16px;
                     font-weight: 100; margin: 0;margin: 0px 9px 0px 9px;">
                         <strong>DECISIÓN</strong> <br>
-                    <div id="{{aprobado}}" class="checkBox" style="display: inline-block; margin-left: 5px;"></div>
+                    <div id="{{aprobado}}" class="checkBox" style="display: inline-block;margin-left: 5px;"></div>
                     <label style="font-size: 6px;">
                         APROBADO
-                    </label> <br>
+                    </label style="font-size: 6px;"> <br>
                     <div id="{{negado}}" class="checkBox" style="display: inline-block;margin-left: 5px;"></div>
                     <label style="font-size: 6px;">
                         NEGADO
@@ -511,7 +485,7 @@
                     </label> <br>
                     </p>
                 </td>
-                <td class="thObser" style=" border-top: none" colspan="3">
+                <td class="thObser" style=" border-top: none;vertical-align:baseline" colspan="3">
                     <div class="observacion">
                         <p style=" font-size: 6px;
                         line-height: 16px;
@@ -524,18 +498,20 @@
             </tr>
             <tr>
                 <td colspan="4"
-                style="height: 42vh;max-height: 42vh;text-align: center; font-size: 6px;vertical-align: bottom;text-transform: uppercase;"
-                class="firmas">
-                <img style="width: 30%;
-                text-align: center;" src="{{firmaDirectorDem}}" alt="">
-                <p style="text-align: center;font-size: 6px;">
-                    {{directorDem}}<br> DIRECTOR(A) DEM
-                </p>
-            </td>
+                    style="height: 42vh;max-height: 42vh;text-align: center; font-size: 6px;vertical-align: bottom;text-transform: uppercase;"
+                    class="firmas">
+                    <img style="width: 30%;
+                    text-align: center;" src="{{firmaDirectorDem}}" alt="">
+                    <p style="text-align: center;font-size: 6px;">
+                        {{directorDem}}<br> DIRECTOR(A) DEM
+                    </p>
+                </td>
             </tr>
 
         </table>
     </div>
+
+
 </body>
 
 </html>

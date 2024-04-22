@@ -115,7 +115,6 @@ export class DocumentsService {
           right: '15mm',
         };
       }
-
       const bufferPromises = (
         await this.fileService.getFile(files, 'html')
       ).map((file) => {

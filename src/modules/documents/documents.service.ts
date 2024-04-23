@@ -67,6 +67,7 @@ export class DocumentsService {
       const options = {
         footer: {},
         border: {},
+        height: '280mm',
       };
 
       if (Array.isArray(files) && files.length === 0)
@@ -91,7 +92,7 @@ export class DocumentsService {
               <table 
                 style="
                   width:100%; 
-                  font-size: 8px;                  
+                  font-size: 4px;                  
                   "
               >
                 <tr>
@@ -123,7 +124,7 @@ export class DocumentsService {
             border: options.border,
             footer: options.footer,
             timeout: 1000000,
-            format: 'A4',
+            format: 'Legal',
           }).toBuffer((err, buffer) => {
             if (err) reject(new InternalServerErrorException(err.message));
             resolve(buffer?.toString('base64'));

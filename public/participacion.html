@@ -8,40 +8,38 @@
 </head>
 
 <body>
-    <div class="container" style="margin: 9px 40px 9px 40px">
-        <div class="header" style="text-align: center;line-height: 8px;">
-            <h1 style="font-size: 28px; margin-block: 0px;">DEM</h1>
-            <h3 style="font-size: 10px;  margin-block: 0px;font-weight: 100;">REPÚBLICA BOLIVARIANA DE VENEZUELA</h3>
-            <h3 style="font-size: 10px;margin-block: 0px;">DIRECCIÓN EJECUTIVA DE LA MAGISTRATURA</h3>
+    <div class="container" style="margin: 20px 29px 9px 29px">
+        <div class="header" style="text-align: center;line-height: 2px;">
+            <h1 style="font-size: 20px; margin-top: 5px ;margin-block: 0px;">DEM</h1>
+            <h3 style="font-size: 9px;  margin-block: 0px;font-weight: 100;">REPÚBLICA BOLIVARIANA DE VENEZUELA</h3>
+            <h3 style="font-size: 9px;margin-block: 0px;">DIRECCIÓN EJECUTIVA DE LA MAGISTRATURA</h3>
         </div>
         <div class="place">
-            <p style="margin-left: 61%;font-size: 10px;margin-block: 0px;">
+            <p style="margin-left: 61%;font-size: 9px;margin-block: 0px;">
                 Caracas, {{fecha}}
             </p>
         </div>
-        <br>
         <table style="width:100%; border: none;">
             <tr>
               <td style="width: 50%;padding: 0;">
                 <p
-                style="margin: 0;font-size: 10px;display: flex !important; justify-content: space-between !important;font-weight: bold;">
+                style="margin: 0;font-size: 9px;display: flex !important; justify-content: space-between !important;font-weight: bold;">
                 DE/S.A.-</p>
               </td>
               <td style="width: 50%;padding: 0;">
                 <p
-                style="margin: 0;text-align: end;font-size: 10px; justify-content: space-between !important;font-weight: bold;">
+                style="margin: 0;text-align: end;font-size: 9px; justify-content: space-between !important;font-weight: bold;">
                 213", 164 y 24</p>
               </td>
             </tr>
           </table>
-        <div class="infoPostulado" style="line-height: 3px;">
-            <p style="font-size: 10px;margin-block: 0px;">Ciudadano (a)</p>
-            <p style="font-size: 10px;margin-block: 0px;font-weight: bold;">{{name}}</p>
-            <p style="font-size: 10px;margin-block: 0px;font-weight: bold;">C.I.N° {{cedula}}</p>
+        <div class="infoPostulado" style="line-height: 2px;">
+            <p style="font-size: 9px;margin-block: 0px;">Ciudadano (a)</p>
+            <p style="font-size: 9px;margin-block: 0px;font-weight: bold;">{{name}}</p>
+            <p style="font-size: 9px;margin-block: 0px;font-weight: bold;">C.I.N° {{cedula}}</p>
             <p style="font-size: 10px;margin-block: 0px">Presente-</p>
         </div>
-        <br>
-        <div class="infoParagraph" style="margin-top: 15px;">
+        <div class="infoParagraph" style="margin-top: 3px;">
             <p style="font-size: 9px;margin-block: 1px; text-indent: 20px; text-align: justify;">
                 Le extiendo saludos en nombre de todo el equipo de la Dirección Ejecutiva de la Magistratura(DEM), en la oportunidad de participarle que fue aprobado su <b
                 style="text-transform: uppercase;font-weight: 100;">{{typeParticipation}}</b> al cargo de <b
@@ -114,22 +112,28 @@
                sobre
                la
                Renta.
+               <br>
+               {{#ingresoPersonal}}
+               <p style="font-size: 9px;margin-block: 1px; text-indent: 20px; text-align: justify;">
+               Finalmente, cumplimos con comunicarle que usted estará sujeto (a) al período de prueba contemplado en las disposiciones legales, estatutarias y convencionales que regulan la materia funcionarial en el Poder Judicial.
+               </p>
+               {{/ingresoPersonal}}
             </p>
 
         </div>
-        <div style="page-break-before: always; padding-top: 10%;">
+        <!-- <div style="page-break-before: always; padding-top: 10%;">
             {{#ingresoPersonal}}
             <p style="font-size: 10px;margin-block: 1px; text-indent: 20px; text-align: justify;">
             Finalmente, cumplimos con comunicarle que usted estará sujeto (a) al período de prueba contemplado en las disposiciones legales, estatutarias y convencionales que regulan la materia funcionarial en el Poder Judicial.
             </p>
             {{/ingresoPersonal}}
-        </div>
+        </div> -->
         <div class="infoStaff"
-            style="text-align: center; margin-left: auto;margin-right: auto ; width: 59%; margin-top: 10%; margin-bottom: 6%;">
-            <p style="font-size: 10px; margin-top: 10%; margin-bottom: 0%;">Atentamente,</p>
+            style="text-align: center; margin-left: auto;margin-right: auto ; width: 59%; margin-top: 1%; margin-bottom: 1%;">
+            <p style="font-size: 9px; margin-bottom: 0%;">Atentamente,</p>
             <img style="width: 30%;
                 text-align: center;" src="{{firmDirecMagistratura}}" alt="">
-            <p style="font-size: 10px;margin-block: 0px; text-indent: 1%; font-weight: bold;text-transform: uppercase;">{{directorMagistratura}}
+            <p style="font-size: 9px;margin-block: 0px; text-indent: 1%; font-weight: bold;text-transform: uppercase;">{{directorMagistratura}}
             </p>
             <p style="font-size: 9px;margin-top: -4%;">Director Ejecutivo de la Magistratura</p>
             <p style="font-size: 8px; margin-top: -4%;">
@@ -141,31 +145,33 @@
                 <strong>Favor devolver copia recibida por el (la) funcionario (a), con los siguientes datos:</strong>
             </p>
             <div class="formDiv">
-                <div class="postuladoDiv" style="margin-top: 1px;margin-bottom: 1px;">
+                <div class="postuladoDiv" style="margin-top: 0px;margin-bottom: 0px;">
                     <label style="font-size: 6px" for="fname"><strong>Nombre y Apellido.</strong></label>
-                    <input type="text" style="width: 28%; border-top: 0px;border-left: 0px;border-right: 0px;"
+                    <input type="text" style="width: 28%; border-top: 0px;border-left: 0px;border-right: 0px;padding-block: 0;"
                         class="fname" name="fname">
                     <label style="font-size: 6px" for="fname"><strong>Cédula de Identidad</strong></label>
-                    <input type="text" style="width: 28%; border-top: 0px;border-left: 0px;border-right: 0px;"
+                    <input type="text" style="width: 28%; border-top: 0px;border-left: 0px;border-right: 0px;padding-block: 0px;"
                         class="fname" name="fname">
                 </div>
-                <div class="funcionarioDiv" style="margin-top: 1px;margin-bottom: 1px;">
+                <div class="funcionarioDiv" style="margin-top: 0px;margin-bottom: 10x;">
                     <label style="font-size: 6px" for="fname"><strong>Firma del (la) Funcionario (a):</strong></label>
-                    <input type="text" style="width: 28%; border-top: 0px;border-left: 0px;border-right: 0px;"
+                    <input type="text" style="width: 28%; border-top: 0px;border-left: 0px;border-right: 0px;padding-block: 0;"
                         class="fname" name="fname">
                     <label style="font-size: 6px" for="fname"> <strong>Fecha y Hora:</strong></label>
-                    <input type="text" style="width: 28%; border-top: 0px;border-left: 0px;border-right: 0px;"
+                    <input type="text" style="width: 28%; border-top: 0px;border-left: 0px;border-right: 0px; padding-block: 0px;"
                         class="fname" name="fname">
                 </div>
                 <div class="LTB">
                     <p style="font-size: 8px; margin: 0%; display: contents;"><strong>LTB/Yb</strong></p>
-                </div>
-                <div>
-                    <input type="text" style="width: 100%;border-top: 0px;border-left: 0px;border-right: 0px;height: 0;"
+                    <input type="text" style="width: 100%;border-top: 0px;border-left: 0px;border-right: 0px;height: 0;padding-block: 0px;"
                         name="" id="">
                 </div>
+                <div>
+                    <!-- <input type="text" style="width: 100%;border-top: 0px;border-left: 0px;border-right: 0px;height: 0;"
+                        name="" id=""> -->
+                </div>
                 <div class="piePagina" style="text-align: center;">
-                    <p style="font-size: 6px;margin: 2px;">
+                    <p style="font-size: 6px;margin: 0px;">
                         Av. Francisco de Miranda, entre Calle Elice y La Joya, Edif. Tribunal Supremo de Justicia,
                         Dirección Ejecutiva de la <br>
                         Magistratura, Cód Postal 1060, Chacao Caracas-Venezuela RIF: G-20000028-7.

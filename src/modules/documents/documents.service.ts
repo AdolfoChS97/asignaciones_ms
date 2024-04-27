@@ -84,6 +84,8 @@ export class DocumentsService {
 
       if (!userId) throw new BadRequestException('userId is required');
 
+      const includeAprobacion = files.includes('aprobacion');
+
       if (files.includes('contrato')) {
         options.footer = {
           height: '15mm',
@@ -114,6 +116,12 @@ export class DocumentsService {
         options.border = {
           left: '20mm',
           right: '15mm',
+        };
+      }
+      
+      if(includeAprobacion){
+        options.footer = {
+          height: '0mm'
         };
       }
       const bufferPromises = (
